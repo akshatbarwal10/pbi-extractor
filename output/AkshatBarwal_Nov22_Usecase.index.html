@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PBIX Catalogue — AkshatBarwal_Nov22_Usecase.pbix</title>
+<style>
+:root {
+  --bg:#ffffff; --fg:#14181f; --muted:#5b6472; --line:#e3e6ec;
+  --panel:#f7f8fa; --accent:#1F3864; --code:#f2f3f7;
+  --err:#b3261e; --warn:#8a5a00; --info:#1F3864;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#14181f; --fg:#e8eaee; --muted:#9aa4b2; --line:#2a303a;
+    --panel:#1b2029; --accent:#8fb0e8; --code:#1e232c;
+    --err:#f2b8b5; --warn:#e8c98a; --info:#8fb0e8;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#14181f; --fg:#e8eaee; --muted:#9aa4b2; --line:#2a303a;
+  --panel:#1b2029; --accent:#8fb0e8; --code:#1e232c;
+  --err:#f2b8b5; --warn:#e8c98a; --info:#8fb0e8;
+}
+*,*::before,*::after { box-sizing:inherit; }
+html { scroll-padding-top:env(safe-area-inset-top,0px); }
+body { margin:0; background:var(--bg); color:var(--fg);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+.wrap { max-width:1100px; margin:0 auto; padding:24px 18px 64px; }
+h1 { font-size:24px; margin:0 0 4px; }
+h2 { font-size:18px; margin:36px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+.sub { color:var(--muted); font-size:13px; margin-bottom:20px; word-break:break-all; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:18px 0; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; text-align:center; }
+.card .num { font-size:26px; font-weight:700; color:var(--accent); }
+.card .lbl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+.banner { background:var(--panel); border-left:3px solid var(--accent); border-radius:6px; padding:12px 14px; margin:16px 0; font-size:13px; }
+.banner ul { margin:6px 0 0; padding-left:18px; }
+nav { position:sticky; top:env(safe-area-inset-top,0px); background:var(--bg); border-bottom:1px solid var(--line);
+  padding:10px 0; margin-bottom:8px; overflow-x:auto; white-space:nowrap; z-index:5; }
+nav a { color:var(--accent); text-decoration:none; font-size:13px; font-weight:600; margin-right:16px; }
+#q { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px;
+  background:var(--panel); color:var(--fg); font-size:14px; margin:8px 0 4px; }
+.item { border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin-bottom:10px; background:var(--panel); }
+.item-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; }
+.meta { color:var(--muted); font-size:12px; margin-left:auto; }
+.tags { margin:6px 0; }
+.tag { display:inline-block; background:var(--code); border:1px solid var(--line); border-radius:12px;
+  padding:1px 9px; font-size:11px; color:var(--muted); margin:2px 4px 2px 0; }
+.tag.c { font-weight:600; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px;
+  overflow-x:auto; font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; margin:8px 0; white-space:pre-wrap; word-break:break-word; }
+code { background:var(--code); border-radius:4px; padding:1px 5px; font:12px ui-monospace,Consolas,monospace; }
+.dep { font-size:12.5px; color:var(--muted); margin-top:5px; }
+.note { font-size:12px; color:var(--warn); margin-top:5px; }
+.muted { color:var(--muted); }
+table { width:100%; border-collapse:collapse; margin-top:8px; font-size:13px; display:block; overflow-x:auto; }
+table.full { display:table; }
+th,td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); }
+th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.4px; }
+.visual { border-left:2px solid var(--line); padding:6px 0 6px 12px; margin:8px 0 0 4px; }
+.fields { font-size:12.5px; color:var(--muted); margin-top:3px; }
+.finding { border:1px solid var(--line); border-left-width:3px; border-radius:6px;
+  padding:10px 12px; margin-bottom:8px; background:var(--panel); }
+.finding.error { border-left-color:var(--err); }
+.finding.warning { border-left-color:var(--warn); }
+.finding.info { border-left-color:var(--info); }
+.sev { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; margin-right:8px; }
+.finding.error .sev { color:var(--err); } .finding.warning .sev { color:var(--warn); }
+.finding.info .sev { color:var(--info); }
+.cat { font-size:11px; color:var(--muted); }
+.msg { margin-top:4px; }
+ul.detail { margin:6px 0 0; padding-left:18px; font-size:12.5px; color:var(--muted); }
+details summary { cursor:pointer; color:var(--accent); font-size:13px; font-weight:600; }
+</style></head><body><div class="wrap">
+
+<h1>AkshatBarwal_Nov22_Usecase.pbix</h1>
+<div class="sub">Extraction tier: <strong>report_only</strong> ·
+2026-09-25T04:37:11.682976+00:00 · sha256 6c94a64fd0877ed4… ·
+contract catalogue.v1</div>
+
+<div class="banner"><strong>Extraction notes</strong><ul><li>This is a .pbix: the DataModel part is VertiPaq/Xpress9-compressed and cannot be read offline. Measures, relationships and column metadata are NOT available from this file. To extract the model, either save it as a .pbit (File &gt; Save as &gt; Power BI template), connect via XMLA/DMV, or decompile with pbi-tools.</li></ul></div>
+<div class="cards"><div class="card"><div class="num">0</div><div class="lbl">Tables</div></div><div class="card"><div class="num">0</div><div class="lbl">Columns</div></div><div class="card"><div class="num">0</div><div class="lbl">Measures</div></div><div class="card"><div class="num">0</div><div class="lbl">Relationships</div></div><div class="card"><div class="num">4</div><div class="lbl">Pages</div></div><div class="card"><div class="num">45</div><div class="lbl">Visuals</div></div><div class="card"><div class="num">0</div><div class="lbl">M Queries</div></div><div class="card"><div class="num">0</div><div class="lbl">RLS Roles</div></div></div>
+
+<nav>
+<a href="#findings">Findings</a><a href="#tables">Tables</a><a href="#measures">Measures</a>
+<a href="#rels">Relationships</a><a href="#report">Report</a><a href="#pq">Power Query</a>
+<a href="#rls">RLS</a><a href="#graph">Dependencies</a>
+</nav>
+
+<input id="q" type="search" placeholder="Filter tables, measures, pages, queries…" autocomplete="off">
+
+<h2 id="findings">Findings</h2><div class="finding warning"><span class="sev">warning</span><span class="cat">report</span><div class="msg">2 implicit aggregation(s) used in visuals (a raw column summarised in the visual rather than an explicit measure). These carry business logic that lives outside the model.</div></div><div class="finding info"><span class="sev">info</span><span class="cat">coverage</span><div class="msg">Model layer not extracted — source was a .pbix, whose DataModel part is compressed and unreadable offline. Report and Power Query layers were extracted normally.</div></div>
+<h2 id="tables">Tables &amp; Columns</h2><div class="searchable"><p class="muted">No tables extracted (model layer unavailable).</p></div>
+<h2 id="measures">Measures &amp; Business Logic</h2><div class="searchable"><p class="muted">No measures extracted (model layer unavailable).</p></div>
+<h2 id="rels">Relationships</h2><p class="muted">No relationships extracted.</p>
+<h2 id="report">Report Pages &amp; Visuals</h2><div class="searchable"><div class="item" data-search="dashboard"><div class="item-head"><strong>Dashboard</strong><span class="meta">25 visuals</span></div><div class="visual"><div><strong>shape</strong><span class="meta">shape</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>shape</strong><span class="meta">shape</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>Unique Products Sold</strong><span class="meta">card</span></div><div class="fields">[Unique Products Sold]</div></div><div class="visual"><div><strong>Total Units Sold</strong><span class="meta">card</span></div><div class="fields">[Total Units Sold]</div></div><div class="visual"><div><strong>Total Sales</strong><span class="meta">card</span></div><div class="fields">[Total Sales]</div></div><div class="visual"><div><strong>Average Sales Per Product</strong><span class="meta">card</span></div><div class="fields">[AvgSalesPerProduct]</div></div><div class="visual"><div><strong>Overview background</strong><span class="meta">shape</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>actionButton</strong><span class="meta">actionButton</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>actionButton</strong><span class="meta">actionButton</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>actionButton</strong><span class="meta">actionButton</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>actionButton</strong><span class="meta">actionButton</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>slicer</strong><span class="meta">slicer</span></div><div class="fields"><code>Date[FiscalYear]</code>, <code>None[FiscalYear]</code></div></div><div class="visual"><div><strong>slicer</strong><span class="meta">slicer</span></div><div class="fields"><code>None[Category]</code>, <code>Product[Category]</code></div></div><div class="visual"><div><strong>slicer</strong><span class="meta">slicer</span></div><div class="fields"><code>None[Country]</code>, <code>Region[Country]</code></div><div class='dep'>Filters: Region[Country]</div></div><div class="visual"><div><strong>shape</strong><span class="meta">shape</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>Total Sales and Sales Growth Rate by Month</strong><span class="meta">lineStackedColumnComboChart</span></div><div class="fields">[SalesGrowth], [Total Sales]</div></div><div class="visual"><div><strong>Sales by Product</strong><span class="meta">Sales by Product</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>Sales Distribution by Product Category</strong><span class="meta">donutChart</span></div><div class="fields">[Total Sales], <code>None[Category]</code>, <code>Product[Category]</code></div></div><div class="visual"><div><strong>Total Sales by Product</strong><span class="meta">barChart</span></div><div class="fields">[Total Sales], <code>None[Category]</code>, <code>None[ProductName]</code>, <code>Product[Category]</code>, <code>Product[ProductName]</code>, <em>Max(None[Category])</em>, <em>Max(Product[Category])</em></div><div class='dep'>Filters: Product[ProductName]</div></div><div class="visual"><div><strong>Top 10 Salespersons by Total Sales</strong><span class="meta">barChart</span></div><div class="fields">[Total Sales], <code>None[Name]</code>, <code>Salesperson[Name]</code></div><div class='dep'>Filters: Salesperson[Name]</div></div><div class="visual"><div><strong>image</strong><span class="meta">image</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>Total Sales by Region</strong><span class="meta">clusteredBarChart</span></div><div class="fields">[Total Sales], <code>None[RegionName]</code>, <code>Region[RegionName]</code></div></div><div class="visual"><div><strong>shape</strong><span class="meta">shape</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>actionButton</strong><span class="meta">actionButton</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>actionButton</strong><span class="meta">actionButton</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div></div><div class="item" data-search="salesperson drillthru"><div class="item-head"><strong>Salesperson Drillthru</strong><span class="meta">18 visuals</span></div><div class='dep'>Page filters: Salesperson[Name]</div><div class="visual"><div><strong>pivotTable</strong><span class="meta">pivotTable</span></div><div class="fields">[Total Sales], [Total Units Sold], <code>None[Name]</code>, <code>None[ProductName]</code>, <code>Product[ProductName]</code></div></div><div class="visual"><div><strong>actionButton</strong><span class="meta">actionButton</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>Overview background</strong><span class="meta">shape</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>shape</strong><span class="meta">shape</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>shape</strong><span class="meta">shape</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>slicer</strong><span class="meta">slicer</span></div><div class="fields"><code>Date[FiscalYear]</code>, <code>None[FiscalYear]</code>, <code>None[Name]</code></div></div><div class="visual"><div><strong>slicer</strong><span class="meta">slicer</span></div><div class="fields"><code>None[Category]</code>, <code>None[Name]</code>, <code>Product[Category]</code></div></div><div class="visual"><div><strong>slicer</strong><span class="meta">slicer</span></div><div class="fields"><code>None[Country]</code>, <code>None[Name]</code>, <code>Region[Country]</code></div><div class='dep'>Filters: Region[Country]</div></div><div class="visual"><div><strong>slicer</strong><span class="meta">slicer</span></div><div class="fields"><code>None[Name]</code>, <code>None[RegionName]</code>, <code>Region[Country]</code>, <code>Region[RegionName]</code></div><div class='dep'>Filters: Region[Country]</div></div><div class="visual"><div><strong>columnChart</strong><span class="meta">columnChart</span></div><div class="fields">[Total Sales], <code>Date[Month]</code>, <code>None[Month]</code>, <code>None[Name]</code></div></div><div class="visual"><div><strong>Total Sales</strong><span class="meta">card</span></div><div class="fields">[Total Sales], <code>None[Name]</code></div></div><div class="visual"><div><strong>Total Units Sold</strong><span class="meta">card</span></div><div class="fields">[Total Units Sold], <code>None[Name]</code></div></div><div class="visual"><div><strong>Average Sales Per Product</strong><span class="meta">card</span></div><div class="fields">[AvgSalesPerProduct], <code>None[Name]</code></div></div><div class="visual"><div><strong>Best Selling Product</strong><span class="meta">card</span></div><div class="fields">[Best Selling Product], <code>None[Name]</code></div></div><div class="visual"><div><strong>image</strong><span class="meta">image</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>Best Fiscal Year</strong><span class="meta">card</span></div><div class="fields">[Best FY], <code>None[Name]</code></div></div><div class="visual"><div><strong>actionButton</strong><span class="meta">actionButton</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div><div class="visual"><div><strong>slicer</strong><span class="meta">slicer</span></div><div class="fields"><code>None[Name]</code>, <code>Region[Country]</code></div><div class='dep'>Filters: Region[Country]</div></div></div><div class="item" data-search="country sales tt"><div class="item-head"><strong>Country Sales TT</strong><span class="meta">1 visuals</span></div><div class="visual"><div><strong>pieChart</strong><span class="meta">pieChart</span></div><div class="fields">[Total Sales], <code>None[Country]</code>, <code>Region[Country]</code></div></div></div><div class="item" data-search="salesperson tt"><div class="item-head"><strong>Salesperson TT</strong><span class="meta">1 visuals</span></div><div class="visual"><div><strong>textbox</strong><span class="meta">textbox</span></div><div class="fields"><span class='muted'>no bound fields</span></div></div></div></div>
+<h2 id="pq">Power Query (M)</h2><div class="searchable"><p class="muted">No Power Query definitions extracted.</p></div>
+<h2 id="rls">Row-Level Security</h2><p class="muted">No row-level security roles defined.</p>
+<h2 id="graph">Measure Dependency Graph</h2>
+<details><summary>Show dependency edges</summary><pre>{}</pre></details>
+
+<script>
+document.getElementById('q').addEventListener('input', function(e) {
+  var term = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.searchable .item').forEach(function(el) {
+    var hay = el.getAttribute('data-search') || el.textContent.toLowerCase();
+    el.style.display = (!term || hay.indexOf(term) !== -1) ? '' : 'none';
+  });
+});
+</script>
+</div></body></html>

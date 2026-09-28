@@ -1,0 +1,152 @@
+{
+  "source_system": "pbix:Power BI for Everyone - Pulse Report.pbit",
+  "tables": [
+    {
+      "name": "_Measures",
+      "columns": [
+        {
+          "name": "Column1",
+          "type": "nvarchar"
+        }
+      ]
+    },
+    {
+      "name": "dim_customer",
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "int",
+          "key": true
+        },
+        {
+          "name": "name",
+          "type": "nvarchar"
+        },
+        {
+          "name": "segment",
+          "type": "nvarchar"
+        },
+        {
+          "name": "city_nm",
+          "type": "nvarchar"
+        },
+        {
+          "name": "country_cd",
+          "type": "nvarchar"
+        },
+        {
+          "name": "signup_dt",
+          "type": "datetime"
+        }
+      ]
+    },
+    {
+      "name": "fct_invoice",
+      "columns": [
+        {
+          "name": "invoice_id",
+          "type": "int"
+        },
+        {
+          "name": "customer_id",
+          "type": "int"
+        },
+        {
+          "name": "invoice_dt",
+          "type": "datetime"
+        },
+        {
+          "name": "amt_net_bkd",
+          "type": "float"
+        },
+        {
+          "name": "amt_tax",
+          "type": "float"
+        },
+        {
+          "name": "balance_due",
+          "type": "float"
+        },
+        {
+          "name": "paid_flg",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "fct_order_line",
+      "columns": [
+        {
+          "name": "order_line_id",
+          "type": "int"
+        },
+        {
+          "name": "order_id",
+          "type": "int"
+        },
+        {
+          "name": "customer_id",
+          "type": "int"
+        },
+        {
+          "name": "product_id",
+          "type": "int"
+        },
+        {
+          "name": "order_dt",
+          "type": "datetime"
+        },
+        {
+          "name": "qty_ordered",
+          "type": "int"
+        },
+        {
+          "name": "amt_net_bkd",
+          "type": "float"
+        },
+        {
+          "name": "amt_discount",
+          "type": "float"
+        },
+        {
+          "name": "margin_pct",
+          "type": "float"
+        },
+        {
+          "name": "status_cd",
+          "type": "int"
+        },
+        {
+          "name": "Year",
+          "type": "int"
+        },
+        {
+          "name": "Month Start",
+          "type": "datetime"
+        }
+      ]
+    }
+  ],
+  "declared_foreign_keys": [
+    {
+      "fk_table": "fct_invoice",
+      "fk_column": "customer_id",
+      "pk_table": "dim_customer",
+      "pk_column": "customer_id",
+      "is_active": true
+    },
+    {
+      "fk_table": "fct_order_line",
+      "fk_column": "customer_id",
+      "pk_table": "dim_customer",
+      "pk_column": "customer_id",
+      "is_active": true
+    }
+  ],
+  "report_intent": "Rebuild of 'Power BI for Everyone - Pulse Report.pbit'.",
+  "provenance": {
+    "extracted_from": "Power BI for Everyone - Pulse Report.pbit",
+    "sha256": "5e8c084f1a539e84ca382a2b236da243017909117de032e08bf40e646058a3b4",
+    "contract_version": "catalogue.v1"
+  }
+}

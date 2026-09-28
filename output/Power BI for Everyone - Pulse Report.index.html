@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PBIX Catalogue — Power BI for Everyone - Pulse Report.pbit</title>
+<style>
+:root {
+  --bg:#ffffff; --fg:#14181f; --muted:#5b6472; --line:#e3e6ec;
+  --panel:#f7f8fa; --accent:#1F3864; --code:#f2f3f7;
+  --err:#b3261e; --warn:#8a5a00; --info:#1F3864;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#14181f; --fg:#e8eaee; --muted:#9aa4b2; --line:#2a303a;
+    --panel:#1b2029; --accent:#8fb0e8; --code:#1e232c;
+    --err:#f2b8b5; --warn:#e8c98a; --info:#8fb0e8;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#14181f; --fg:#e8eaee; --muted:#9aa4b2; --line:#2a303a;
+  --panel:#1b2029; --accent:#8fb0e8; --code:#1e232c;
+  --err:#f2b8b5; --warn:#e8c98a; --info:#8fb0e8;
+}
+*,*::before,*::after { box-sizing:inherit; }
+html { scroll-padding-top:env(safe-area-inset-top,0px); }
+body { margin:0; background:var(--bg); color:var(--fg);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+.wrap { max-width:1100px; margin:0 auto; padding:24px 18px 64px; }
+h1 { font-size:24px; margin:0 0 4px; }
+h2 { font-size:18px; margin:36px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+.sub { color:var(--muted); font-size:13px; margin-bottom:20px; word-break:break-all; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:18px 0; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; text-align:center; }
+.card .num { font-size:26px; font-weight:700; color:var(--accent); }
+.card .lbl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+.banner { background:var(--panel); border-left:3px solid var(--accent); border-radius:6px; padding:12px 14px; margin:16px 0; font-size:13px; }
+.banner ul { margin:6px 0 0; padding-left:18px; }
+nav { position:sticky; top:env(safe-area-inset-top,0px); background:var(--bg); border-bottom:1px solid var(--line);
+  padding:10px 0; margin-bottom:8px; overflow-x:auto; white-space:nowrap; z-index:5; }
+nav a { color:var(--accent); text-decoration:none; font-size:13px; font-weight:600; margin-right:16px; }
+#q { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px;
+  background:var(--panel); color:var(--fg); font-size:14px; margin:8px 0 4px; }
+.item { border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin-bottom:10px; background:var(--panel); }
+.item-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; }
+.meta { color:var(--muted); font-size:12px; margin-left:auto; }
+.tags { margin:6px 0; }
+.tag { display:inline-block; background:var(--code); border:1px solid var(--line); border-radius:12px;
+  padding:1px 9px; font-size:11px; color:var(--muted); margin:2px 4px 2px 0; }
+.tag.c { font-weight:600; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px;
+  overflow-x:auto; font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; margin:8px 0; white-space:pre-wrap; word-break:break-word; }
+code { background:var(--code); border-radius:4px; padding:1px 5px; font:12px ui-monospace,Consolas,monospace; }
+.dep { font-size:12.5px; color:var(--muted); margin-top:5px; }
+.note { font-size:12px; color:var(--warn); margin-top:5px; }
+.muted { color:var(--muted); }
+table { width:100%; border-collapse:collapse; margin-top:8px; font-size:13px; display:block; overflow-x:auto; }
+table.full { display:table; }
+th,td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); }
+th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.4px; }
+.visual { border-left:2px solid var(--line); padding:6px 0 6px 12px; margin:8px 0 0 4px; }
+.fields { font-size:12.5px; color:var(--muted); margin-top:3px; }
+.finding { border:1px solid var(--line); border-left-width:3px; border-radius:6px;
+  padding:10px 12px; margin-bottom:8px; background:var(--panel); }
+.finding.error { border-left-color:var(--err); }
+.finding.warning { border-left-color:var(--warn); }
+.finding.info { border-left-color:var(--info); }
+.sev { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; margin-right:8px; }
+.finding.error .sev { color:var(--err); } .finding.warning .sev { color:var(--warn); }
+.finding.info .sev { color:var(--info); }
+.cat { font-size:11px; color:var(--muted); }
+.msg { margin-top:4px; }
+ul.detail { margin:6px 0 0; padding-left:18px; font-size:12.5px; color:var(--muted); }
+details summary { cursor:pointer; color:var(--accent); font-size:13px; font-weight:600; }
+</style></head><body><div class="wrap">
+
+<h1>Power BI for Everyone - Pulse Report.pbit</h1>
+<div class="sub">Extraction tier: <strong>full_model</strong> ·
+2026-09-25T04:26:51.510319+00:00 · sha256 5e8c084f1a539e84… ·
+contract catalogue.v1</div>
+
+<div class="banner"><strong>Extraction notes</strong><ul><li>No Report/Layout part found — report layer will be empty.</li></ul></div>
+<div class="cards"><div class="card"><div class="num">4</div><div class="lbl">Tables</div></div><div class="card"><div class="num">26</div><div class="lbl">Columns</div></div><div class="card"><div class="num">52</div><div class="lbl">Measures</div></div><div class="card"><div class="num">2</div><div class="lbl">Relationships</div></div><div class="card"><div class="num">0</div><div class="lbl">Pages</div></div><div class="card"><div class="num">0</div><div class="lbl">Visuals</div></div><div class="card"><div class="num">0</div><div class="lbl">M Queries</div></div><div class="card"><div class="num">0</div><div class="lbl">RLS Roles</div></div></div>
+
+<nav>
+<a href="#findings">Findings</a><a href="#tables">Tables</a><a href="#measures">Measures</a>
+<a href="#rels">Relationships</a><a href="#report">Report</a><a href="#pq">Power Query</a>
+<a href="#rls">RLS</a><a href="#graph">Dependencies</a>
+</nav>
+
+<input id="q" type="search" placeholder="Filter tables, measures, pages, queries…" autocomplete="off">
+
+<h2 id="findings">Findings</h2><div class="finding info"><span class="sev">info</span><span class="cat">hygiene</span><div class="msg">26 measure(s) are not used by any visual and are not a dependency of another measure.<ul class='detail'><li><code>ASP</code></li><li><code>ASP YTD</code></li><li><code>CR MEMO</code></li><li><code>Count Invoice</code></li><li><code>Count Order Line</code></li><li><code>Discount %</code></li><li><code>Discount Rate</code></li><li><code>Gross Margin %</code></li><li><code>Gross Margin % MTD</code></li><li><code>Gross Margin % YTD</code></li><li><code>Gross Profit YoY %</code></li><li><code>Margin Pct</code></li><li><code>MaxY</code></li><li><code>Revenue CY vs Revenue LY %</code></li><li><code>Revenue LTM YoY %</code></li><li><code>Revenue MoM %</code></li><li><code>Revenue Var % vs Target</code></li><li><code>Revenue Var % vs Target MTD</code></li><li><code>Revenue Var % vs Target QTD</code></li><li><code>Revenue Var % vs Target YTD</code></li><li><code>Revenue YTD Rank (Customer)</code></li><li><code>Revenue YTD Rank (Product)</code></li><li><code>Revenue YoY %</code></li><li><code>Tax Amount</code></li><li><code>Tax Rate</code></li></ul></div></div>
+<h2 id="tables">Tables &amp; Columns</h2><div class="searchable"><div class="item" data-search="_measures"><div class="item-head"><strong>_Measures</strong><span class="meta">1 cols · 43 measures · import</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Kind</th><th>Hidden</th></tr></thead><tbody><tr><td>Column1</td><td>string</td><td>data</td><td></td></tr></tbody></table></div><div class="item" data-search="dim_customer"><div class="item-head"><strong>dim_customer</strong><span class="meta">6 cols · 0 measures · import</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Kind</th><th>Hidden</th></tr></thead><tbody><tr><td>customer_id</td><td>int64</td><td>data</td><td></td></tr><tr><td>name</td><td>string</td><td>data</td><td></td></tr><tr><td>segment</td><td>string</td><td>data</td><td></td></tr><tr><td>city_nm</td><td>string</td><td>data</td><td></td></tr><tr><td>country_cd</td><td>string</td><td>data</td><td></td></tr><tr><td>signup_dt</td><td>dateTime</td><td>data</td><td></td></tr></tbody></table></div><div class="item" data-search="fct_invoice"><div class="item-head"><strong>fct_invoice</strong><span class="meta">7 cols · 4 measures · import</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Kind</th><th>Hidden</th></tr></thead><tbody><tr><td>invoice_id</td><td>int64</td><td>data</td><td></td></tr><tr><td>customer_id</td><td>int64</td><td>data</td><td></td></tr><tr><td>invoice_dt</td><td>dateTime</td><td>data</td><td></td></tr><tr><td>amt_net_bkd</td><td>double</td><td>data</td><td></td></tr><tr><td>amt_tax</td><td>double</td><td>data</td><td></td></tr><tr><td>balance_due</td><td>double</td><td>data</td><td></td></tr><tr><td>paid_flg</td><td>boolean</td><td>data</td><td></td></tr></tbody></table></div><div class="item" data-search="fct_order_line"><div class="item-head"><strong>fct_order_line</strong><span class="meta">12 cols · 5 measures · import</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Kind</th><th>Hidden</th></tr></thead><tbody><tr><td>order_line_id</td><td>int64</td><td>data</td><td></td></tr><tr><td>order_id</td><td>int64</td><td>data</td><td></td></tr><tr><td>customer_id</td><td>int64</td><td>data</td><td></td></tr><tr><td>product_id</td><td>int64</td><td>data</td><td></td></tr><tr><td>order_dt</td><td>dateTime</td><td>data</td><td></td></tr><tr><td>qty_ordered</td><td>int64</td><td>data</td><td></td></tr><tr><td>amt_net_bkd</td><td>double</td><td>data</td><td></td></tr><tr><td>amt_discount</td><td>double</td><td>data</td><td></td></tr><tr><td>margin_pct</td><td>double</td><td>data</td><td></td></tr><tr><td>status_cd</td><td>int64</td><td>data</td><td></td></tr><tr><td>Year</td><td>int64</td><td>calculated</td><td></td></tr><tr><td>Month Start</td><td>dateTime</td><td>calculated</td><td></td></tr></tbody></table></div></div>
+<h2 id="measures">Measures &amp; Business Logic</h2><div class="searchable"><div class="item" data-search="asp divide ( [revenue], [units] )"><div class="item-head"><strong>ASP</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Revenue], [Units] )</pre><div class='dep'>Depends on measures: <code>[Revenue]</code>, <code>[Units]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="asp ytd divide ( [revenue ytd], [units ytd] )"><div class="item-head"><strong>ASP YTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Revenue YTD], [Units YTD] )</pre><div class='dep'>Depends on measures: <code>[Revenue YTD]</code>, <code>[Units YTD]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="amt discount sum(&#x27;fct_order_line&#x27;[amt_discount])"><div class="item-head"><strong>Amt Discount</strong><span class="meta">fct_order_line · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM(&#x27;fct_order_line&#x27;[amt_discount])</pre><div class='dep'>Columns: <code>fct_order_line[amt_discount]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="amt net bkd (invoice) sum(&#x27;fct_invoice&#x27;[amt_net_bkd])"><div class="item-head"><strong>Amt Net Bkd (Invoice)</strong><span class="meta">fct_invoice · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM(&#x27;fct_invoice&#x27;[amt_net_bkd])</pre><div class='dep'>Columns: <code>fct_invoice[amt_net_bkd]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="amt net bkd (order line) sum(&#x27;fct_order_line&#x27;[amt_net_bkd])"><div class="item-head"><strong>Amt Net Bkd (Order Line)</strong><span class="meta">fct_order_line · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM(&#x27;fct_order_line&#x27;[amt_net_bkd])</pre><div class='dep'>Columns: <code>fct_order_line[amt_net_bkd]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="amt tax sum(&#x27;fct_invoice&#x27;[amt_tax])"><div class="item-head"><strong>Amt Tax</strong><span class="meta">fct_invoice · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM(&#x27;fct_invoice&#x27;[amt_tax])</pre><div class='dep'>Columns: <code>fct_invoice[amt_tax]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="cogs sum ( factsales[costamount] )"><div class="item-head"><strong>COGS</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM ( FactSales[CostAmount] )</pre><div class='dep'>Columns: <code>FactSales[CostAmount]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="cr memo divide(countrows(factsales) , 1.34)"><div class="item-head"><strong>CR MEMO</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag c">simple</span></div><pre>DIVIDE(COUNTROWS(FactSales) , 1.34)</pre><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="count invoice countrows(&#x27;fct_invoice&#x27;)"><div class="item-head"><strong>Count Invoice</strong><span class="meta">fct_invoice · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>COUNTROWS(&#x27;fct_invoice&#x27;)</pre><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="count order line countrows(&#x27;fct_order_line&#x27;)"><div class="item-head"><strong>Count Order Line</strong><span class="meta">fct_order_line · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>COUNTROWS(&#x27;fct_order_line&#x27;)</pre><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="discount % divide ( [discount amount], [revenue] )"><div class="item-head"><strong>Discount %</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Discount Amount], [Revenue] )</pre><div class='dep'>Depends on measures: <code>[Discount Amount]</code>, <code>[Revenue]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="discount amount sum ( factsales[discountamount] )"><div class="item-head"><strong>Discount Amount</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM ( FactSales[DiscountAmount] )</pre><div class='dep'>Columns: <code>FactSales[DiscountAmount]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="discount rate divide([amt discount], [amt net bkd (order line)])"><div class="item-head"><strong>Discount Rate</strong><span class="meta">fct_order_line · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE([Amt Discount], [Amt Net Bkd (Order Line)])</pre><div class='dep'>Depends on measures: <code>[Amt Discount]</code>, <code>[Amt Net Bkd (Order Line)]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="gross margin % divide ( [gross profit], [revenue] )"><div class="item-head"><strong>Gross Margin %</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Gross Profit], [Revenue] )</pre><div class='dep'>Depends on measures: <code>[Gross Profit]</code>, <code>[Revenue]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="gross margin % mtd divide ( [gross profit mtd], [revenue mtd] )"><div class="item-head"><strong>Gross Margin % MTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Gross Profit MTD], [Revenue MTD] )</pre><div class='dep'>Depends on measures: <code>[Gross Profit MTD]</code>, <code>[Revenue MTD]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="gross margin % ytd divide ( [gross profit ytd], [revenue ytd] )"><div class="item-head"><strong>Gross Margin % YTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Gross Profit YTD], [Revenue YTD] )</pre><div class='dep'>Depends on measures: <code>[Gross Profit YTD]</code>, <code>[Revenue YTD]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="gross profit [revenue] - [cogs]"><div class="item-head"><strong>Gross Profit</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Revenue] - [COGS]</pre><div class='dep'>Depends on measures: <code>[COGS]</code>, <code>[Revenue]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="gross profit ly calculate ( [gross profit], dateadd ( dimdate[date], -1, year ) )"><div class="item-head"><strong>Gross Profit LY</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">filtered_aggregation</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>CALCULATE ( [Gross Profit], DATEADD ( DimDate[Date], -1, YEAR ) )</pre><div class='dep'>Depends on measures: <code>[Gross Profit]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="gross profit mtd totalmtd ( [gross profit], dimdate[date] )"><div class="item-head"><strong>Gross Profit MTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>TOTALMTD ( [Gross Profit], DimDate[Date] )</pre><div class='dep'>Depends on measures: <code>[Gross Profit]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="gross profit ytd totalytd ( [gross profit], dimdate[date] )"><div class="item-head"><strong>Gross Profit YTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>TOTALYTD ( [Gross Profit], DimDate[Date] )</pre><div class='dep'>Depends on measures: <code>[Gross Profit]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="gross profit yoy % divide ( [gross profit] - [gross profit ly], [gross profit ly] )"><div class="item-head"><strong>Gross Profit YoY %</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>DIVIDE ( [Gross Profit] - [Gross Profit LY], [Gross Profit LY] )</pre><div class='dep'>Depends on measures: <code>[Gross Profit]</code>, <code>[Gross Profit LY]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="margin pct average(&#x27;fct_order_line&#x27;[margin_pct])"><div class="item-head"><strong>Margin Pct</strong><span class="meta">fct_order_line · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>AVERAGE(&#x27;fct_order_line&#x27;[margin_pct])</pre><div class='dep'>Columns: <code>fct_order_line[margin_pct]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="maxy max([revenue])* 1.5"><div class="item-head"><strong>MaxY</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>MAX([Revenue])* 1.5</pre><div class='dep'>Depends on measures: <code>[Revenue]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue sum ( factsales[salesamount] )"><div class="item-head"><strong>Revenue</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM ( FactSales[SalesAmount] )</pre><div class='dep'>Columns: <code>FactSales[SalesAmount]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue cy vs revenue ly % var result = divide ( [revenue] - [revenue ly], [revenue ly] )
+return
+    if (
+        result &gt; 0,
+        &quot;▲ &quot; &amp; format ( result, &quot;0.0%&quot; ),
+        if (
+            result &lt; 0,
+            &quot;▼ &quot; &amp; format ( result, &quot;0.0%&quot; ),
+            format ( result, &quot;0.0%&quot; )
+        )
+    )"><div class="item-head"><strong>Revenue CY vs Revenue LY %</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">conditional_logic</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>VAR Result = DIVIDE ( [Revenue] - [Revenue LY], [Revenue LY] )
+RETURN
+    IF (
+        Result &gt; 0,
+        &quot;▲ &quot; &amp; FORMAT ( Result, &quot;0.0%&quot; ),
+        IF (
+            Result &lt; 0,
+            &quot;▼ &quot; &amp; FORMAT ( Result, &quot;0.0%&quot; ),
+            FORMAT ( Result, &quot;0.0%&quot; )
+        )
+    )</pre><div class='dep'>Depends on measures: <code>[Revenue]</code>, <code>[Revenue LY]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis.</div></div><div class="item" data-search="revenue ltm calculate (
+        [revenue],
+        datesinperiod ( dimdate[date], max ( dimdate[date] ), -12, month )
+    )"><div class="item-head"><strong>Revenue LTM</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">filtered_aggregation</span><span class="tag c">moderate</span></div><pre>CALCULATE (
+        [Revenue],
+        DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -12, MONTH )
+    )</pre><div class='dep'>Depends on measures: <code>[Revenue]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue ltm yoy % divide ( [revenue ltm] - [revenue ltm ly], [revenue ltm ly] )"><div class="item-head"><strong>Revenue LTM YoY %</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>DIVIDE ( [Revenue LTM] - [Revenue LTM LY], [Revenue LTM LY] )</pre><div class='dep'>Depends on measures: <code>[Revenue LTM]</code>, <code>[Revenue LTM LY]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>References not matched to a known measure (may be columns or variables): Revenue LTM LY</div></div><div class="item" data-search="revenue ly calculate ( [revenue], dateadd ( dimdate[date], -1, year ) )"><div class="item-head"><strong>Revenue LY</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">filtered_aggregation</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>CALCULATE ( [Revenue], DATEADD ( DimDate[Date], -1, YEAR ) )</pre><div class='dep'>Depends on measures: <code>[Revenue]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue mtd totalmtd ( [revenue], dimdate[date] )"><div class="item-head"><strong>Revenue MTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>TOTALMTD ( [Revenue], DimDate[Date] )</pre><div class='dep'>Depends on measures: <code>[Revenue]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue mom % divide ( [revenue mom δ], [revenue pm] )"><div class="item-head"><strong>Revenue MoM %</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Revenue MoM Δ], [Revenue PM] )</pre><div class='dep'>Depends on measures: <code>[Revenue MoM Δ]</code>, <code>[Revenue PM]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue mom δ [revenue] - [revenue pm]"><div class="item-head"><strong>Revenue MoM Δ</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Revenue] - [Revenue PM]</pre><div class='dep'>Depends on measures: <code>[Revenue]</code>, <code>[Revenue PM]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue pm calculate ( [revenue], parallelperiod ( dimdate[date], -1, month ) )"><div class="item-head"><strong>Revenue PM</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">filtered_aggregation</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>CALCULATE ( [Revenue], PARALLELPERIOD ( DimDate[Date], -1, MONTH ) )</pre><div class='dep'>Depends on measures: <code>[Revenue]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue qtd totalqtd ( [revenue], dimdate[date] )"><div class="item-head"><strong>Revenue QTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>TOTALQTD ( [Revenue], DimDate[Date] )</pre><div class='dep'>Depends on measures: <code>[Revenue]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue var % vs target divide ( [revenue var vs target], facttargets[target] )"><div class="item-head"><strong>Revenue Var % vs Target</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Revenue Var vs Target], FactTargets[Target] )</pre><div class='dep'>Depends on measures: <code>[Revenue Var vs Target]</code></div><div class='dep'>Columns: <code>FactTargets[Target]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis.</div></div><div class="item" data-search="revenue var % vs target mtd divide ( [revenue var vs target mtd], [target mtd] )"><div class="item-head"><strong>Revenue Var % vs Target MTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Revenue Var vs Target MTD], [Target MTD] )</pre><div class='dep'>Depends on measures: <code>[Revenue Var vs Target MTD]</code>, <code>[Target MTD]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis. References not matched to a known measure (may be columns or variables): Target MTD</div></div><div class="item" data-search="revenue var % vs target qtd divide ( [revenue var vs target qtd], [target qtd] )"><div class="item-head"><strong>Revenue Var % vs Target QTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Revenue Var vs Target QTD], [Target QTD] )</pre><div class='dep'>Depends on measures: <code>[Revenue Var vs Target QTD]</code>, <code>[Target QTD]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis. References not matched to a known measure (may be columns or variables): Target QTD</div></div><div class="item" data-search="revenue var % vs target ytd divide ( [revenue var vs target ytd], [target ytd] )"><div class="item-head"><strong>Revenue Var % vs Target YTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Revenue Var vs Target YTD], [Target YTD] )</pre><div class='dep'>Depends on measures: <code>[Revenue Var vs Target YTD]</code>, <code>[Target YTD]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis. References not matched to a known measure (may be columns or variables): Target YTD</div></div><div class="item" data-search="revenue var vs target [revenue] - facttargets[target]"><div class="item-head"><strong>Revenue Var vs Target</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Revenue] - FactTargets[Target]</pre><div class='dep'>Depends on measures: <code>[Revenue]</code></div><div class='dep'>Columns: <code>FactTargets[Target]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue var vs target mtd [revenue mtd] - [target mtd]"><div class="item-head"><strong>Revenue Var vs Target MTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Revenue MTD] - [Target MTD]</pre><div class='dep'>Depends on measures: <code>[Revenue MTD]</code>, <code>[Target MTD]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>References not matched to a known measure (may be columns or variables): Target MTD</div></div><div class="item" data-search="revenue var vs target qtd [revenue qtd] - [target qtd]"><div class="item-head"><strong>Revenue Var vs Target QTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Revenue QTD] - [Target QTD]</pre><div class='dep'>Depends on measures: <code>[Revenue QTD]</code>, <code>[Target QTD]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>References not matched to a known measure (may be columns or variables): Target QTD</div></div><div class="item" data-search="revenue var vs target ytd [revenue ytd] - [target ytd]"><div class="item-head"><strong>Revenue Var vs Target YTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Revenue YTD] - [Target YTD]</pre><div class='dep'>Depends on measures: <code>[Revenue YTD]</code>, <code>[Target YTD]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>References not matched to a known measure (may be columns or variables): Target YTD</div></div><div class="item" data-search="revenue ytd totalytd ( [revenue], dimdate[date] )"><div class="item-head"><strong>Revenue YTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>TOTALYTD ( [Revenue], DimDate[Date] )</pre><div class='dep'>Depends on measures: <code>[Revenue]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue ytd rank (customer) rankx (
+        allselected ( dimcustomer[customername] ),
+        [revenue ytd],
+        ,
+        desc,
+        dense
+    )"><div class="item-head"><strong>Revenue YTD Rank (Customer)</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ranking</span><span class="tag">percent_of_total_candidate</span><span class="tag">iterator</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>RANKX (
+        ALLSELECTED ( DimCustomer[CustomerName] ),
+        [Revenue YTD],
+        ,
+        DESC,
+        DENSE
+    )</pre><div class='dep'>Depends on measures: <code>[Revenue YTD]</code></div><div class='dep'>Columns: <code>DimCustomer[CustomerName]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue ytd rank (product) rankx (
+        allselected ( dimproduct[productname] ),
+        [revenue ytd],
+        ,
+        desc,
+        dense
+    )"><div class="item-head"><strong>Revenue YTD Rank (Product)</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ranking</span><span class="tag">percent_of_total_candidate</span><span class="tag">iterator</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>RANKX (
+        ALLSELECTED ( DimProduct[ProductName] ),
+        [Revenue YTD],
+        ,
+        DESC,
+        DENSE
+    )</pre><div class='dep'>Depends on measures: <code>[Revenue YTD]</code></div><div class='dep'>Columns: <code>DimProduct[ProductName]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue yoy % divide ( [revenue yoy δ], [revenue ly] )"><div class="item-head"><strong>Revenue YoY %</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE ( [Revenue YoY Δ], [Revenue LY] )</pre><div class='dep'>Depends on measures: <code>[Revenue LY]</code>, <code>[Revenue YoY Δ]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="revenue yoy δ [revenue] - [revenue ly]"><div class="item-head"><strong>Revenue YoY Δ</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Revenue] - [Revenue LY]</pre><div class='dep'>Depends on measures: <code>[Revenue]</code>, <code>[Revenue LY]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="tax amount sum ( factsales[taxamount] )"><div class="item-head"><strong>Tax Amount</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM ( FactSales[TaxAmount] )</pre><div class='dep'>Columns: <code>FactSales[TaxAmount]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="tax rate divide([amt tax], [amt net bkd (invoice)])"><div class="item-head"><strong>Tax Rate</strong><span class="meta">fct_invoice · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE([Amt Tax], [Amt Net Bkd (Invoice)])</pre><div class='dep'>Depends on measures: <code>[Amt Net Bkd (Invoice)]</code>, <code>[Amt Tax]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="units sum ( factsales[quantity] )"><div class="item-head"><strong>Units</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM ( FactSales[Quantity] )</pre><div class='dep'>Columns: <code>FactSales[Quantity]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="units cy vs units ly % var result = divide ( [units] - [units ly], [units ly] )
+return
+    if (
+        result &gt; 0,
+        &quot;▲ &quot; &amp; format ( result, &quot;0.0%&quot; ),
+        if (
+            result &lt; 0,
+            &quot;▼ &quot; &amp; format ( result, &quot;0.0%&quot; ),
+            format ( result, &quot;0.0%&quot; )
+        )
+    )"><div class="item-head"><strong>Units CY vs Units LY %</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">conditional_logic</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>VAR Result = DIVIDE ( [Units] - [Units LY], [Units LY] )
+RETURN
+    IF (
+        Result &gt; 0,
+        &quot;▲ &quot; &amp; FORMAT ( Result, &quot;0.0%&quot; ),
+        IF (
+            Result &lt; 0,
+            &quot;▼ &quot; &amp; FORMAT ( Result, &quot;0.0%&quot; ),
+            FORMAT ( Result, &quot;0.0%&quot; )
+        )
+    )</pre><div class='dep'>Depends on measures: <code>[Units]</code>, <code>[Units LY]</code></div><div class='dep muted'>Not used in any visual</div><div class='note'>Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis.</div></div><div class="item" data-search="units ly calculate ( [units], dateadd ( dimdate[date], -1, year ) )"><div class="item-head"><strong>Units LY</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">filtered_aggregation</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>CALCULATE ( [Units], DATEADD ( DimDate[Date], -1, YEAR ) )</pre><div class='dep'>Depends on measures: <code>[Units]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="units ytd totalytd ( [units], dimdate[date] )"><div class="item-head"><strong>Units YTD</strong><span class="meta">_Measures · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>TOTALYTD ( [Units], DimDate[Date] )</pre><div class='dep'>Depends on measures: <code>[Units]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div></div>
+<h2 id="rels">Relationships</h2><table class="full"><thead><tr><th>From</th><th>To</th><th>Cardinality</th><th>Cross filter</th><th>State</th></tr></thead><tbody><tr><td>fct_invoice[customer_id]</td><td>dim_customer[customer_id]</td><td>many_to_one</td><td>singleDirection</td><td>active</td></tr><tr><td>fct_order_line[customer_id]</td><td>dim_customer[customer_id]</td><td>many_to_one</td><td>singleDirection</td><td>active</td></tr></tbody></table>
+<h2 id="report">Report Pages &amp; Visuals</h2><div class="searchable"><p class="muted">No report pages extracted.</p></div>
+<h2 id="pq">Power Query (M)</h2><div class="searchable"><p class="muted">No Power Query definitions extracted.</p></div>
+<h2 id="rls">Row-Level Security</h2><p class="muted">No row-level security roles defined.</p>
+<h2 id="graph">Measure Dependency Graph</h2>
+<details><summary>Show dependency edges</summary><pre>{
+  &quot;Units YTD&quot;: [
+    &quot;Units&quot;
+  ],
+  &quot;Units&quot;: [],
+  &quot;Tax Amount&quot;: [],
+  &quot;Revenue YTD Rank (Product)&quot;: [
+    &quot;Revenue YTD&quot;
+  ],
+  &quot;Revenue YTD Rank (Customer)&quot;: [
+    &quot;Revenue YTD&quot;
+  ],
+  &quot;Revenue YTD&quot;: [
+    &quot;Revenue&quot;
+  ],
+  &quot;Revenue YoY \u0394&quot;: [
+    &quot;Revenue&quot;,
+    &quot;Revenue LY&quot;
+  ],
+  &quot;Revenue YoY %&quot;: [
+    &quot;Revenue LY&quot;,
+    &quot;Revenue YoY \u0394&quot;
+  ],
+  &quot;Revenue Var vs Target YTD&quot;: [
+    &quot;Revenue YTD&quot;
+  ],
+  &quot;Revenue Var vs Target QTD&quot;: [
+    &quot;Revenue QTD&quot;
+  ],
+  &quot;Revenue Var vs Target MTD&quot;: [
+    &quot;Revenue MTD&quot;
+  ],
+  &quot;Revenue Var vs Target&quot;: [
+    &quot;Revenue&quot;
+  ],
+  &quot;Revenue Var % vs Target YTD&quot;: [
+    &quot;Revenue Var vs Target YTD&quot;
+  ],
+  &quot;Revenue Var % vs Target QTD&quot;: [
+    &quot;Revenue Var vs Target QTD&quot;
+  ],
+  &quot;Revenue Var % vs Target MTD&quot;: [
+    &quot;Revenue Var vs Target MTD&quot;
+  ],
+  &quot;Revenue Var % vs Target&quot;: [
+    &quot;Revenue Var vs Target&quot;
+  ],
+  &quot;Revenue QTD&quot;: [
+    &quot;Revenue&quot;
+  ],
+  &quot;Revenue PM&quot;: [
+    &quot;Revenue&quot;
+  ],
+  &quot;Revenue MTD&quot;: [
+    &quot;Revenue&quot;
+  ],
+  &quot;Revenue MoM \u0394&quot;: [
+    &quot;Revenue&quot;,
+    &quot;Revenue PM&quot;
+  ],
+  &quot;Revenue MoM %&quot;: [
+    &quot;Revenue MoM \u0394&quot;,
+    &quot;Revenue PM&quot;
+  ],
+  &quot;Revenue LY&quot;: [
+    &quot;Revenue&quot;
+  ],
+  &quot;Revenue LTM YoY %&quot;: [
+    &quot;Revenue LTM&quot;
+  ],
+  &quot;Revenue LTM&quot;: [
+    &quot;Revenue&quot;
+  ],
+  &quot;Revenue&quot;: [],
+  &quot;Gross Profit YTD&quot;: [
+    &quot;Gross Profit&quot;
+  ],
+  &quot;Gross Profit YoY %&quot;: [
+    &quot;Gross Profit&quot;,
+    &quot;Gross Profit LY&quot;
+  ],
+  &quot;Gross Profit MTD&quot;: [
+    &quot;Gross Profit&quot;
+  ],
+  &quot;Gross Profit LY&quot;: [
+    &quot;Gross Profit&quot;
+  ],
+  &quot;Gross Profit&quot;: [
+    &quot;COGS&quot;,
+    &quot;Revenue&quot;
+  ],
+  &quot;Gross Margin % YTD&quot;: [
+    &quot;Gross Profit YTD&quot;,
+    &quot;Revenue YTD&quot;
+  ],
+  &quot;Gross Margin % MTD&quot;: [
+    &quot;Gross Profit MTD&quot;,
+    &quot;Revenue MTD&quot;
+  ],
+  &quot;Gross Margin %&quot;: [
+    &quot;Gross Profit&quot;,
+    &quot;Revenue&quot;
+  ],
+  &quot;Discount Amount&quot;: [],
+  &quot;Discount %&quot;: [
+    &quot;Discount Amount&quot;,
+    &quot;Revenue&quot;
+  ],
+  &quot;COGS&quot;: [],
+  &quot;ASP YTD&quot;: [
+    &quot;Revenue YTD&quot;,
+    &quot;Units YTD&quot;
+  ],
+  &quot;ASP&quot;: [
+    &quot;Revenue&quot;,
+    &quot;Units&quot;
+  ],
+  &quot;MaxY&quot;: [
+    &quot;Revenue&quot;
+  ],
+  &quot;CR MEMO&quot;: [],
+  &quot;Revenue CY vs Revenue LY %&quot;: [
+    &quot;Revenue&quot;,
+    &quot;Revenue LY&quot;
+  ],
+  &quot;Units LY&quot;: [
+    &quot;Units&quot;
+  ],
+  &quot;Units CY vs Units LY %&quot;: [
+    &quot;Units&quot;,
+    &quot;Units LY&quot;
+  ],
+  &quot;Amt Net Bkd (Invoice)&quot;: [],
+  &quot;Amt Tax&quot;: [],
+  &quot;Count Invoice&quot;: [],
+  &quot;Tax Rate&quot;: [
+    &quot;Amt Net Bkd (Invoice)&quot;,
+    &quot;Amt Tax&quot;
+  ],
+  &quot;Amt Discount&quot;: [],
+  &quot;Amt Net Bkd (Order Line)&quot;: [],
+  &quot;Count Order Line&quot;: [],
+  &quot;Discount Rate&quot;: [
+    &quot;Amt Discount&quot;,
+    &quot;Amt Net Bkd (Order Line)&quot;
+  ],
+  &quot;Margin Pct&quot;: []
+}</pre></details>
+
+<script>
+document.getElementById('q').addEventListener('input', function(e) {
+  var term = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.searchable .item').forEach(function(el) {
+    var hay = el.getAttribute('data-search') || el.textContent.toLowerCase();
+    el.style.display = (!term || hay.indexOf(term) !== -1) ? '' : 'none';
+  });
+});
+</script>
+</div></body></html>

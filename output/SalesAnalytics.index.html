@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PBIX Catalogue — SalesAnalytics.pbit</title>
+<style>
+:root {
+  --bg:#ffffff; --fg:#14181f; --muted:#5b6472; --line:#e3e6ec;
+  --panel:#f7f8fa; --accent:#1F3864; --code:#f2f3f7;
+  --err:#b3261e; --warn:#8a5a00; --info:#1F3864;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#14181f; --fg:#e8eaee; --muted:#9aa4b2; --line:#2a303a;
+    --panel:#1b2029; --accent:#8fb0e8; --code:#1e232c;
+    --err:#f2b8b5; --warn:#e8c98a; --info:#8fb0e8;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#14181f; --fg:#e8eaee; --muted:#9aa4b2; --line:#2a303a;
+  --panel:#1b2029; --accent:#8fb0e8; --code:#1e232c;
+  --err:#f2b8b5; --warn:#e8c98a; --info:#8fb0e8;
+}
+*,*::before,*::after { box-sizing:inherit; }
+html { scroll-padding-top:env(safe-area-inset-top,0px); }
+body { margin:0; background:var(--bg); color:var(--fg);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+.wrap { max-width:1100px; margin:0 auto; padding:24px 18px 64px; }
+h1 { font-size:24px; margin:0 0 4px; }
+h2 { font-size:18px; margin:36px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+.sub { color:var(--muted); font-size:13px; margin-bottom:20px; word-break:break-all; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:18px 0; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; text-align:center; }
+.card .num { font-size:26px; font-weight:700; color:var(--accent); }
+.card .lbl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+.banner { background:var(--panel); border-left:3px solid var(--accent); border-radius:6px; padding:12px 14px; margin:16px 0; font-size:13px; }
+.banner ul { margin:6px 0 0; padding-left:18px; }
+nav { position:sticky; top:env(safe-area-inset-top,0px); background:var(--bg); border-bottom:1px solid var(--line);
+  padding:10px 0; margin-bottom:8px; overflow-x:auto; white-space:nowrap; z-index:5; }
+nav a { color:var(--accent); text-decoration:none; font-size:13px; font-weight:600; margin-right:16px; }
+#q { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px;
+  background:var(--panel); color:var(--fg); font-size:14px; margin:8px 0 4px; }
+.item { border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin-bottom:10px; background:var(--panel); }
+.item-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; }
+.meta { color:var(--muted); font-size:12px; margin-left:auto; }
+.tags { margin:6px 0; }
+.tag { display:inline-block; background:var(--code); border:1px solid var(--line); border-radius:12px;
+  padding:1px 9px; font-size:11px; color:var(--muted); margin:2px 4px 2px 0; }
+.tag.c { font-weight:600; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px;
+  overflow-x:auto; font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; margin:8px 0; white-space:pre-wrap; word-break:break-word; }
+code { background:var(--code); border-radius:4px; padding:1px 5px; font:12px ui-monospace,Consolas,monospace; }
+.dep { font-size:12.5px; color:var(--muted); margin-top:5px; }
+.note { font-size:12px; color:var(--warn); margin-top:5px; }
+.muted { color:var(--muted); }
+table { width:100%; border-collapse:collapse; margin-top:8px; font-size:13px; display:block; overflow-x:auto; }
+table.full { display:table; }
+th,td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); }
+th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.4px; }
+.visual { border-left:2px solid var(--line); padding:6px 0 6px 12px; margin:8px 0 0 4px; }
+.fields { font-size:12.5px; color:var(--muted); margin-top:3px; }
+.finding { border:1px solid var(--line); border-left-width:3px; border-radius:6px;
+  padding:10px 12px; margin-bottom:8px; background:var(--panel); }
+.finding.error { border-left-color:var(--err); }
+.finding.warning { border-left-color:var(--warn); }
+.finding.info { border-left-color:var(--info); }
+.sev { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; margin-right:8px; }
+.finding.error .sev { color:var(--err); } .finding.warning .sev { color:var(--warn); }
+.finding.info .sev { color:var(--info); }
+.cat { font-size:11px; color:var(--muted); }
+.msg { margin-top:4px; }
+ul.detail { margin:6px 0 0; padding-left:18px; font-size:12.5px; color:var(--muted); }
+details summary { cursor:pointer; color:var(--accent); font-size:13px; font-weight:600; }
+</style></head><body><div class="wrap">
+
+<h1>SalesAnalytics.pbit</h1>
+<div class="sub">Extraction tier: <strong>full_model</strong> ·
+2026-09-25T04:28:17.528350+00:00 · sha256 afef06c9f1c137d8… ·
+contract catalogue.v1</div>
+
+
+<div class="cards"><div class="card"><div class="num">4</div><div class="lbl">Tables</div></div><div class="card"><div class="num">22</div><div class="lbl">Columns</div></div><div class="card"><div class="num">13</div><div class="lbl">Measures</div></div><div class="card"><div class="num">4</div><div class="lbl">Relationships</div></div><div class="card"><div class="num">3</div><div class="lbl">Pages</div></div><div class="card"><div class="num">6</div><div class="lbl">Visuals</div></div><div class="card"><div class="num">3</div><div class="lbl">M Queries</div></div><div class="card"><div class="num">1</div><div class="lbl">RLS Roles</div></div></div>
+
+<nav>
+<a href="#findings">Findings</a><a href="#tables">Tables</a><a href="#measures">Measures</a>
+<a href="#rels">Relationships</a><a href="#report">Report</a><a href="#pq">Power Query</a>
+<a href="#rls">RLS</a><a href="#graph">Dependencies</a>
+</nav>
+
+<input id="q" type="search" placeholder="Filter tables, measures, pages, queries…" autocomplete="off">
+
+<h2 id="findings">Findings</h2><div class="finding error"><span class="sev">error</span><span class="cat">dax</span><div class="msg">1 circular measure reference(s) detected.<ul class='detail'><li><code>Circular A -&gt; Circular B -&gt; Circular A</code></li></ul></div></div><div class="finding error"><span class="sev">error</span><span class="cat">consistency</span><div class="msg">1 measure(s) referenced by visuals do not exist in the model.<ul class='detail'><li><code>Forecast Variance</code></li></ul></div></div><div class="finding warning"><span class="sev">warning</span><span class="cat">model</span><div class="msg">1 bidirectional relationship(s) — a common source of ambiguous filter paths and slow queries.<ul class='detail'><li><code>FactSales[ProductKey] &lt;-&gt; DimProduct[ProductKey]</code></li></ul></div></div><div class="finding warning"><span class="sev">warning</span><span class="cat">report</span><div class="msg">1 implicit aggregation(s) used in visuals (a raw column summarised in the visual rather than an explicit measure). These carry business logic that lives outside the model.</div></div><div class="finding info"><span class="sev">info</span><span class="cat">hygiene</span><div class="msg">4 measure(s) are not used by any visual and are not a dependency of another measure.<ul class='detail'><li><code>Legacy Discount Total</code></li><li><code>Net Revenue (base)</code></li><li><code>Sales by Ship Date</code></li><li><code>YoY Growth %</code></li></ul></div></div><div class="finding info"><span class="sev">info</span><span class="cat">model</span><div class="msg">1 role-playing dimension pattern(s) detected (multiple relationships between the same two tables).<ul class='detail'><li><code>FactSales -&gt; DimDate (active: [&#x27;OrderDateKey&#x27;], inactive: [&#x27;ShipDateKey&#x27;])</code></li></ul></div></div><div class="finding info"><span class="sev">info</span><span class="cat">report</span><div class="msg">1 hidden page(s).<ul class='detail'><li><code>QA Scratch</code></li></ul></div></div>
+<h2 id="tables">Tables &amp; Columns</h2><div class="searchable"><div class="item" data-search="factsales"><div class="item-head"><strong>FactSales</strong><span class="meta">10 cols · 13 measures · import</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Kind</th><th>Hidden</th></tr></thead><tbody><tr><td>SalesKey</td><td>int64</td><td>data</td><td>yes</td></tr><tr><td>OrderDateKey</td><td>dateTime</td><td>data</td><td></td></tr><tr><td>ShipDateKey</td><td>dateTime</td><td>data</td><td></td></tr><tr><td>CustomerKey</td><td>int64</td><td>data</td><td>yes</td></tr><tr><td>ProductKey</td><td>int64</td><td>data</td><td>yes</td></tr><tr><td>Quantity</td><td>int64</td><td>data</td><td></td></tr><tr><td>UnitPrice</td><td>decimal</td><td>data</td><td></td></tr><tr><td>NetAmount</td><td>decimal</td><td>data</td><td></td></tr><tr><td>Cost</td><td>decimal</td><td>data</td><td></td></tr><tr><td>Margin Amount</td><td>decimal</td><td>calculated</td><td></td></tr></tbody></table></div><div class="item" data-search="dimdate"><div class="item-head"><strong>DimDate</strong><span class="meta">5 cols · 0 measures · import</span></div><div class='dep'>Hierarchies: <code>Calendar</code></div><table><thead><tr><th>Column</th><th>Type</th><th>Kind</th><th>Hidden</th></tr></thead><tbody><tr><td>Date</td><td>dateTime</td><td>data</td><td></td></tr><tr><td>Year</td><td>int64</td><td>data</td><td></td></tr><tr><td>MonthName</td><td>string</td><td>data</td><td></td></tr><tr><td>MonthNumber</td><td>int64</td><td>data</td><td>yes</td></tr><tr><td>Quarter</td><td>string</td><td>data</td><td></td></tr></tbody></table></div><div class="item" data-search="dimcustomer"><div class="item-head"><strong>DimCustomer</strong><span class="meta">4 cols · 0 measures · import</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Kind</th><th>Hidden</th></tr></thead><tbody><tr><td>CustomerKey</td><td>int64</td><td>data</td><td>yes</td></tr><tr><td>CustomerName</td><td>string</td><td>data</td><td></td></tr><tr><td>Segment</td><td>string</td><td>data</td><td></td></tr><tr><td>Region</td><td>string</td><td>data</td><td></td></tr></tbody></table></div><div class="item" data-search="dimproduct"><div class="item-head"><strong>DimProduct</strong><span class="meta">3 cols · 0 measures · import</span></div><table><thead><tr><th>Column</th><th>Type</th><th>Kind</th><th>Hidden</th></tr></thead><tbody><tr><td>ProductKey</td><td>int64</td><td>data</td><td>yes</td></tr><tr><td>ProductName</td><td>string</td><td>data</td><td></td></tr><tr><td>Category</td><td>string</td><td>data</td><td></td></tr></tbody></table></div></div>
+<h2 id="measures">Measures &amp; Business Logic</h2><div class="searchable"><div class="item" data-search="total sales sum(factsales[netamount])"><div class="item-head"><strong>Total Sales</strong><span class="meta">FactSales · Core · used 3×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM(FactSales[NetAmount])</pre><div class='dep'>Columns: <code>FactSales[NetAmount]</code></div><div class='dep'>Used in: Executive Summary / Total Sales, Executive Summary / Sales Trend, Product Detail / Product Performance</div></div><div class="item" data-search="margin % divide([total sales] - [total cost], [total sales])"><div class="item-head"><strong>Margin %</strong><span class="meta">FactSales · Profitability · used 1×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE([Total Sales] - [Total Cost], [Total Sales])</pre><div class='dep'>Depends on measures: <code>[Total Cost]</code>, <code>[Total Sales]</code></div><div class='dep'>Used in: Executive Summary / Margin %</div></div><div class="item" data-search="product rank rankx(all(dimproduct[productname]), [total sales], , desc)"><div class="item-head"><strong>Product Rank</strong><span class="meta">FactSales · Analysis · used 1×</span></div><div class="tags"><span class="tag">ranking</span><span class="tag">percent_of_total_candidate</span><span class="tag">iterator</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>RANKX(ALL(DimProduct[ProductName]), [Total Sales], , DESC)</pre><div class='dep'>Depends on measures: <code>[Total Sales]</code></div><div class='dep'>Columns: <code>DimProduct[ProductName]</code></div><div class='dep'>Used in: Product Detail / Product Performance</div></div><div class="item" data-search="sales ytd totalytd([total sales], dimdate[date])"><div class="item-head"><strong>Sales YTD</strong><span class="meta">FactSales · Time Intelligence · used 1×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>TOTALYTD([Total Sales], DimDate[Date])</pre><div class='dep'>Depends on measures: <code>[Total Sales]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep'>Used in: Executive Summary / Sales Trend</div></div><div class="item" data-search="top product share var topproduct = topn(1, values(dimproduct[productname]), [total sales])
+var topvalue = calculate([total sales], topproduct)
+var allvalue = calculate([total sales], all(dimproduct))
+return divide(topvalue, allvalue)"><div class="item-head"><strong>Top Product Share</strong><span class="meta">FactSales · Analysis · used 1×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">ranking</span><span class="tag">filtered_aggregation</span><span class="tag">percent_of_total_candidate</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>VAR TopProduct = TOPN(1, VALUES(DimProduct[ProductName]), [Total Sales])
+VAR TopValue = CALCULATE([Total Sales], TopProduct)
+VAR AllValue = CALCULATE([Total Sales], ALL(DimProduct))
+RETURN DIVIDE(TopValue, AllValue)</pre><div class='dep'>Depends on measures: <code>[Total Sales]</code></div><div class='dep'>Columns: <code>DimProduct[ProductName]</code></div><div class='dep'>Used in: Product Detail / Product Performance</div><div class='note'>Uses 3 VAR declaration(s); variable-held references are not resolved by lexical analysis.</div></div><div class="item" data-search="circular a [circular b] + 1"><div class="item-head"><strong>Circular A</strong><span class="meta">FactSales · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Circular B] + 1</pre><div class='dep'>Depends on measures: <code>[Circular B]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="circular b [circular a] * 2"><div class="item-head"><strong>Circular B</strong><span class="meta">FactSales · used 0×</span></div><div class="tags"><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>[Circular A] * 2</pre><div class='dep'>Depends on measures: <code>[Circular A]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="legacy discount total sumx(factsales, factsales[unitprice] * 0.05)"><div class="item-head"><strong>Legacy Discount Total</strong><span class="meta">FactSales · Deprecated · used 0×</span></div><div class="tags"><span class="tag">iterator</span><span class="tag c">simple</span></div><pre>SUMX(FactSales, FactSales[UnitPrice] * 0.05)</pre><div class='dep'>Columns: <code>FactSales[UnitPrice]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="net revenue (base) sum(factsales[netamount]) - sum(factsales[cost])"><div class="item-head"><strong>Net Revenue (base)</strong><span class="meta">FactSales · Core · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM(FactSales[NetAmount]) - SUM(FactSales[Cost])</pre><div class='dep'>Columns: <code>FactSales[NetAmount]</code>, <code>FactSales[Cost]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="sales py calculate([total sales], sameperiodlastyear(dimdate[date]))"><div class="item-head"><strong>Sales PY</strong><span class="meta">FactSales · Time Intelligence · used 0×</span></div><div class="tags"><span class="tag">time_intelligence</span><span class="tag">filtered_aggregation</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>CALCULATE([Total Sales], SAMEPERIODLASTYEAR(DimDate[Date]))</pre><div class='dep'>Depends on measures: <code>[Total Sales]</code></div><div class='dep'>Columns: <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="sales by ship date calculate([total sales], userelationship(factsales[shipdatekey], dimdate[date]))"><div class="item-head"><strong>Sales by Ship Date</strong><span class="meta">FactSales · Time Intelligence · used 0×</span></div><div class="tags"><span class="tag">filtered_aggregation</span><span class="tag">role_playing_dimension</span><span class="tag">composed_from_measures</span><span class="tag c">moderate</span></div><pre>CALCULATE([Total Sales], USERELATIONSHIP(FactSales[ShipDateKey], DimDate[Date]))</pre><div class='dep'>Depends on measures: <code>[Total Sales]</code></div><div class='dep'>Columns: <code>FactSales[ShipDateKey]</code>, <code>DimDate[Date]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="total cost sum(factsales[cost])"><div class="item-head"><strong>Total Cost</strong><span class="meta">FactSales · Core · used 0×</span></div><div class="tags"><span class="tag">simple_aggregation</span><span class="tag c">simple</span></div><pre>SUM(FactSales[Cost])</pre><div class='dep'>Columns: <code>FactSales[Cost]</code></div><div class='dep muted'>Not used in any visual</div></div><div class="item" data-search="yoy growth % divide([total sales] - [sales py], [sales py])"><div class="item-head"><strong>YoY Growth %</strong><span class="meta">FactSales · Time Intelligence · used 0×</span></div><div class="tags"><span class="tag">ratio</span><span class="tag">composed_from_measures</span><span class="tag c">simple</span></div><pre>DIVIDE([Total Sales] - [Sales PY], [Sales PY])</pre><div class='dep'>Depends on measures: <code>[Sales PY]</code>, <code>[Total Sales]</code></div><div class='dep muted'>Not used in any visual</div></div></div>
+<h2 id="rels">Relationships</h2><table class="full"><thead><tr><th>From</th><th>To</th><th>Cardinality</th><th>Cross filter</th><th>State</th></tr></thead><tbody><tr><td>FactSales[OrderDateKey]</td><td>DimDate[Date]</td><td>many_to_one</td><td>singleDirection</td><td>active</td></tr><tr><td>FactSales[ShipDateKey]</td><td>DimDate[Date]</td><td>many_to_one</td><td>singleDirection</td><td><em>inactive</em></td></tr><tr><td>FactSales[CustomerKey]</td><td>DimCustomer[CustomerKey]</td><td>many_to_one</td><td>singleDirection</td><td>active</td></tr><tr><td>FactSales[ProductKey]</td><td>DimProduct[ProductKey]</td><td>many_to_one</td><td>bothDirections</td><td>active</td></tr></tbody></table>
+<h2 id="report">Report Pages &amp; Visuals</h2><div class="searchable"><div class="item" data-search="executive summary"><div class="item-head"><strong>Executive Summary</strong><span class="meta">4 visuals</span></div><div class="visual"><div><strong>Total Sales</strong><span class="meta">card</span></div><div class="fields">[Total Sales]</div></div><div class="visual"><div><strong>Margin %</strong><span class="meta">card</span></div><div class="fields">[Margin %]</div></div><div class="visual"><div><strong>Sales Trend</strong><span class="meta">lineChart</span></div><div class="fields">[Sales YTD], [Total Sales], <code>DimDate[MonthName]</code></div></div><div class="visual"><div><strong>Quantity by Category</strong><span class="meta">clusteredBarChart</span></div><div class="fields"><code>DimProduct[Category]</code>, <code>FactSales[Quantity]</code>, <em>Sum(FactSales[Quantity])</em></div></div></div><div class="item" data-search="product detail"><div class="item-head"><strong>Product Detail</strong><span class="meta">1 visuals</span></div><div class='dep'>Page filters: DimProduct[Category]</div><div class="visual"><div><strong>Product Performance</strong><span class="meta">tableEx</span></div><div class="fields">[Product Rank], [Top Product Share], [Total Sales], <code>DimProduct[ProductName]</code></div><div class='dep'>Filters: DimProduct[ProductName]</div></div></div><div class="item" data-search="qa scratch"><div class="item-head"><strong>QA Scratch</strong> <span class='tag'>hidden</span><span class="meta">1 visuals</span></div><div class="visual"><div><strong>Orphan Check</strong><span class="meta">card</span></div><div class="fields">[Forecast Variance]</div></div></div></div>
+<h2 id="pq">Power Query (M)</h2><div class="searchable"><div class="item" data-search="factsales"><div class="item-head"><strong>FactSales</strong><span class="meta">5 steps</span></div><div class="tags"><span class="tag">SQL Server</span></div><div class="dep">Steps: Source, dbo_FactSales, Removed Columns, Filtered Rows, Changed Type</div></div><div class="item" data-search="dimcustomer"><div class="item-head"><strong>DimCustomer</strong><span class="meta">3 steps</span></div><div class="tags"><span class="tag">SQL Server</span></div><div class="dep">Steps: Source, dbo_DimCustomer, Merged Region</div></div><div class="item" data-search="dimproduct"><div class="item-head"><strong>DimProduct</strong><span class="meta">2 steps</span></div><div class="tags"><span class="tag">Snowflake</span></div><div class="dep">Steps: Source, Query</div><pre>SELECT PRODUCT_KEY, PRODUCT_NAME, CATEGORY FROM DIM_PRODUCT WHERE ACTIVE = 1</pre></div></div>
+<h2 id="rls">Row-Level Security</h2><div class="item"><div class="item-head"><strong>RegionalManager</strong><span class="meta">read</span></div><div class="dep"><code>DimCustomer</code><pre>DimCustomer[Region] = USERPRINCIPALNAME()</pre></div></div>
+<h2 id="graph">Measure Dependency Graph</h2>
+<details><summary>Show dependency edges</summary><pre>{
+  &quot;Total Sales&quot;: [],
+  &quot;Net Revenue (base)&quot;: [],
+  &quot;Total Cost&quot;: [],
+  &quot;Margin %&quot;: [
+    &quot;Total Cost&quot;,
+    &quot;Total Sales&quot;
+  ],
+  &quot;Sales YTD&quot;: [
+    &quot;Total Sales&quot;
+  ],
+  &quot;Sales PY&quot;: [
+    &quot;Total Sales&quot;
+  ],
+  &quot;YoY Growth %&quot;: [
+    &quot;Sales PY&quot;,
+    &quot;Total Sales&quot;
+  ],
+  &quot;Sales by Ship Date&quot;: [
+    &quot;Total Sales&quot;
+  ],
+  &quot;Top Product Share&quot;: [
+    &quot;Total Sales&quot;
+  ],
+  &quot;Product Rank&quot;: [
+    &quot;Total Sales&quot;
+  ],
+  &quot;Legacy Discount Total&quot;: [],
+  &quot;Circular A&quot;: [
+    &quot;Circular B&quot;
+  ],
+  &quot;Circular B&quot;: [
+    &quot;Circular A&quot;
+  ]
+}</pre></details>
+
+<script>
+document.getElementById('q').addEventListener('input', function(e) {
+  var term = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.searchable .item').forEach(function(el) {
+    var hay = el.getAttribute('data-search') || el.textContent.toLowerCase();
+    el.style.display = (!term || hay.indexOf(term) !== -1) ? '' : 'none';
+  });
+});
+</script>
+</div></body></html>

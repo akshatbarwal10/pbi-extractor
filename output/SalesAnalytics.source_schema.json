@@ -1,0 +1,144 @@
+{
+  "source_system": "pbix:SalesAnalytics.pbit",
+  "tables": [
+    {
+      "name": "FactSales",
+      "columns": [
+        {
+          "name": "OrderDateKey",
+          "type": "datetime"
+        },
+        {
+          "name": "ShipDateKey",
+          "type": "datetime"
+        },
+        {
+          "name": "CustomerKey",
+          "type": "int"
+        },
+        {
+          "name": "ProductKey",
+          "type": "int"
+        },
+        {
+          "name": "Quantity",
+          "type": "int"
+        },
+        {
+          "name": "UnitPrice",
+          "type": "decimal"
+        },
+        {
+          "name": "NetAmount",
+          "type": "decimal"
+        },
+        {
+          "name": "Cost",
+          "type": "decimal"
+        },
+        {
+          "name": "Margin Amount",
+          "type": "decimal"
+        }
+      ]
+    },
+    {
+      "name": "DimDate",
+      "columns": [
+        {
+          "name": "Date",
+          "type": "datetime",
+          "key": true
+        },
+        {
+          "name": "Year",
+          "type": "int"
+        },
+        {
+          "name": "MonthName",
+          "type": "nvarchar"
+        },
+        {
+          "name": "Quarter",
+          "type": "nvarchar"
+        }
+      ]
+    },
+    {
+      "name": "DimCustomer",
+      "columns": [
+        {
+          "name": "CustomerKey",
+          "type": "int",
+          "key": true
+        },
+        {
+          "name": "CustomerName",
+          "type": "nvarchar"
+        },
+        {
+          "name": "Segment",
+          "type": "nvarchar"
+        },
+        {
+          "name": "Region",
+          "type": "nvarchar"
+        }
+      ]
+    },
+    {
+      "name": "DimProduct",
+      "columns": [
+        {
+          "name": "ProductKey",
+          "type": "int",
+          "key": true
+        },
+        {
+          "name": "ProductName",
+          "type": "nvarchar"
+        },
+        {
+          "name": "Category",
+          "type": "nvarchar"
+        }
+      ]
+    }
+  ],
+  "declared_foreign_keys": [
+    {
+      "fk_table": "FactSales",
+      "fk_column": "OrderDateKey",
+      "pk_table": "DimDate",
+      "pk_column": "Date",
+      "is_active": true
+    },
+    {
+      "fk_table": "FactSales",
+      "fk_column": "ShipDateKey",
+      "pk_table": "DimDate",
+      "pk_column": "Date",
+      "is_active": false
+    },
+    {
+      "fk_table": "FactSales",
+      "fk_column": "CustomerKey",
+      "pk_table": "DimCustomer",
+      "pk_column": "CustomerKey",
+      "is_active": true
+    },
+    {
+      "fk_table": "FactSales",
+      "fk_column": "ProductKey",
+      "pk_table": "DimProduct",
+      "pk_column": "ProductKey",
+      "is_active": true
+    }
+  ],
+  "report_intent": "Rebuild of 'SalesAnalytics.pbit'. Pages: Executive Summary, Product Detail, QA Scratch.",
+  "provenance": {
+    "extracted_from": "SalesAnalytics.pbit",
+    "sha256": "afef06c9f1c137d83a3237eaafd53f4d905bb18014a4c0f8167b1bad8209257a",
+    "contract_version": "catalogue.v1"
+  }
+}

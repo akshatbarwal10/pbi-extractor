@@ -1,0 +1,111 @@
+{
+  "measure_library": [
+    {
+      "name": "Total Sales",
+      "dax": "SUMX('{fact_table}', '{fact_table}'[QuantitySold] * '{fact_table}'[Price])",
+      "original_dax": "SUMX(Sales, Sales[QuantitySold] * Sales[Price])",
+      "format_string": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+      "display_folder": null,
+      "patterns": [
+        "iterator"
+      ],
+      "complexity": "simple",
+      "usage_count": 10,
+      "source_table": "MeasureTable"
+    },
+    {
+      "name": "Total Units Sold",
+      "dax": "SUM('{fact_table}'[QuantitySold])",
+      "original_dax": "SUM(Sales[QuantitySold])",
+      "format_string": "#,0",
+      "display_folder": null,
+      "patterns": [
+        "simple_aggregation"
+      ],
+      "complexity": "simple",
+      "usage_count": 3,
+      "source_table": "MeasureTable"
+    },
+    {
+      "name": "AvgSalesPerProduct",
+      "dax": "DIVIDE([Total '{fact_table}'], DISTINCTCOUNT('Product'[ProductID]), 0)",
+      "original_dax": "DIVIDE([Total Sales], DISTINCTCOUNT('Product'[ProductID]), 0)",
+      "format_string": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+      "display_folder": null,
+      "patterns": [
+        "ratio"
+      ],
+      "complexity": "moderate",
+      "usage_count": 2,
+      "source_table": "MeasureTable"
+    },
+    {
+      "name": "Best FY",
+      "dax": "VAR FYSales = \n    SUMMARIZE(\n        '{fact_table}',\n        '{date_table}'[FiscalYear],\n        \"Total '{fact_table}'\", SUMX('{fact_table}', '{fact_table}'[QuantitySold] * '{fact_table}'[Price])\n    )\nVAR TopFY = \n    TOPN(\n        1,\n        FYSales,\n        [Total '{fact_table}'],\n        DESC\n    )\nRETURN\n    MAXX(TopFY, '{date_table}'[FiscalYear])",
+      "original_dax": "VAR FYSales = \n    SUMMARIZE(\n        Sales,\n        'Date'[FiscalYear],\n        \"Total Sales\", SUMX(Sales, Sales[QuantitySold] * Sales[Price])\n    )\nVAR TopFY = \n    TOPN(\n        1,\n        FYSales,\n        [Total Sales],\n        DESC\n    )\nRETURN\n    MAXX(TopFY, 'Date'[FiscalYear])",
+      "format_string": null,
+      "display_folder": null,
+      "patterns": [
+        "ranking",
+        "iterator"
+      ],
+      "complexity": "moderate",
+      "usage_count": 1,
+      "source_table": "MeasureTable"
+    },
+    {
+      "name": "Best Selling Product",
+      "dax": "VAR TopProduct = \n    TOPN(\n        1,\n        SUMMARIZE(\n            '{fact_table}', 'Product'[ProductName],\n            \"Total '{fact_table}'\", SUM('{fact_table}'[QuantitySold])\n        ),\n        [Total '{fact_table}'],\n        DESC\n    )\nRETURN\n    MAXX(TopProduct, 'Product'[ProductName])",
+      "original_dax": "VAR TopProduct = \n    TOPN(\n        1,\n        SUMMARIZE(\n            Sales, 'Product'[ProductName],\n            \"Total Sales\", SUM(Sales[QuantitySold])\n        ),\n        [Total Sales],\n        DESC\n    )\nRETURN\n    MAXX(TopProduct, 'Product'[ProductName])",
+      "format_string": null,
+      "display_folder": null,
+      "patterns": [
+        "ranking",
+        "iterator"
+      ],
+      "complexity": "moderate",
+      "usage_count": 1,
+      "source_table": "MeasureTable"
+    },
+    {
+      "name": "SalesGrowth",
+      "dax": "VAR CurrMonthSales = [Total '{fact_table}']\nVAR PrevMonthSales = \n    CALCULATE(\n        [Total '{fact_table}'],\n        DATEADD('{date_table}'['{date_table}'], -1, MONTH)\n    )\nRETURN\n    DIVIDE(CurrMonthSales - PrevMonthSales, PrevMonthSales, 0)",
+      "original_dax": "VAR CurrMonthSales = [Total Sales]\nVAR PrevMonthSales = \n    CALCULATE(\n        [Total Sales],\n        DATEADD('Date'[Date], -1, MONTH)\n    )\nRETURN\n    DIVIDE(CurrMonthSales - PrevMonthSales, PrevMonthSales, 0)",
+      "format_string": "0.00%;-0.00%;0.00%",
+      "display_folder": null,
+      "patterns": [
+        "time_intelligence",
+        "ratio",
+        "filtered_aggregation",
+        "composed_from_measures"
+      ],
+      "complexity": "moderate",
+      "usage_count": 1,
+      "source_table": "MeasureTable"
+    },
+    {
+      "name": "Unique Products Sold",
+      "dax": "DISTINCTCOUNT('{fact_table}'[ProductID])",
+      "original_dax": "DISTINCTCOUNT('Sales'[ProductID])",
+      "format_string": "0",
+      "display_folder": null,
+      "patterns": [
+        "simple_aggregation"
+      ],
+      "complexity": "simple",
+      "usage_count": 1,
+      "source_table": "MeasureTable"
+    }
+  ],
+  "harvested_from": "AkshatBarwal_Nov22_Usecase.pbit",
+  "pattern_summary": {
+    "iterator": 3,
+    "simple_aggregation": 2,
+    "ratio": 2,
+    "ranking": 2,
+    "time_intelligence": 1,
+    "filtered_aggregation": 1,
+    "composed_from_measures": 1
+  },
+  "note": "Candidate library harvested from measures in active use. Review before promoting into standards.yaml \u2014 placeholders {fact_table} and {date_table} were substituted heuristically and should be checked."
+}

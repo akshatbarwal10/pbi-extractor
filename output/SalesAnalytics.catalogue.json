@@ -1,0 +1,1546 @@
+{
+  "contract_version": "catalogue.v1",
+  "source": {
+    "file": "SalesAnalytics.pbit",
+    "path": "C:\\Users\\abarwal002\\Documents\\pbix-extractor\\fixtures\\SalesAnalytics.pbit",
+    "sha256": "afef06c9f1c137d83a3237eaafd53f4d905bb18014a4c0f8167b1bad8209257a",
+    "size_bytes": 4317,
+    "extracted_at": "2026-09-25T04:28:17.528350+00:00",
+    "extraction_tier": "full_model",
+    "model_available": true,
+    "warnings": []
+  },
+  "statistics": {
+    "tables": 4,
+    "columns": 22,
+    "calculated_columns": 1,
+    "measures": 13,
+    "relationships": 4,
+    "inactive_relationships": 1,
+    "bidirectional_relationships": 1,
+    "rls_roles": 1,
+    "calculation_groups": 0,
+    "pages": 3,
+    "visuals": 6,
+    "m_queries": 3,
+    "unused_measures": 4
+  },
+  "model": {
+    "available": true,
+    "culture": "en-US",
+    "tables": [
+      {
+        "name": "FactSales",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "SalesKey",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "OrderDateKey",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "ShipDateKey",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "CustomerKey",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "ProductKey",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Quantity",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "UnitPrice",
+            "data_type": "decimal",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "NetAmount",
+            "data_type": "decimal",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "#,0.00",
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Cost",
+            "data_type": "decimal",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Margin Amount",
+            "data_type": "decimal",
+            "type": "calculated",
+            "expression": "FactSales[NetAmount] - FactSales[Cost]",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "FactSales",
+                    "column": "NetAmount"
+                  },
+                  {
+                    "table": "FactSales",
+                    "column": "Cost"
+                  }
+                ],
+                "tables": [
+                  "FactSales"
+                ]
+              },
+              "functions": [],
+              "patterns": [],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": []
+            }
+          }
+        ],
+        "measure_count": 13,
+        "partitions": [
+          {
+            "name": "FactSales-Partition",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let Source = Sql.Database(\"dw-prod.internal\", \"SalesDW\"), dbo_FactSales = Source{[Schema=\"dbo\",Item=\"FactSales\"]}[Data] in dbo_FactSales"
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "DimDate",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "Date",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Year",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "MonthName",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": "MonthNumber",
+            "description": null
+          },
+          {
+            "name": "MonthNumber",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Quarter",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "DimDate-P",
+            "mode": "import",
+            "source_type": "calculated",
+            "expression": "CALENDAR(DATE(2020,1,1), DATE(2026,12,31))"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Calendar",
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "MonthName",
+                "ordinal": 2
+              }
+            ]
+          }
+        ],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "DimCustomer",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "CustomerName",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Segment",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Region",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "DimCustomer-P",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let Source = Sql.Database(\"dw-prod.internal\", \"SalesDW\") in Source"
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "DimProduct",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "ProductKey",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "ProductName",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Category",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "DimProduct-P",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let Source = Snowflake.Databases(\"acct.snowflakecomputing.com\", \"WH\") in Source"
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      }
+    ],
+    "measures": [
+      {
+        "name": "Total Sales",
+        "table": "FactSales",
+        "expression": "SUM(FactSales[NetAmount])",
+        "format_string": "#,0",
+        "display_folder": "Core",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "NetAmount"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Executive Summary",
+            "visual": "Total Sales",
+            "visual_type": "card"
+          },
+          {
+            "page": "Executive Summary",
+            "visual": "Sales Trend",
+            "visual_type": "lineChart"
+          },
+          {
+            "page": "Product Detail",
+            "visual": "Product Performance",
+            "visual_type": "tableEx"
+          }
+        ],
+        "usage_count": 3
+      },
+      {
+        "name": "Net Revenue (base)",
+        "table": "FactSales",
+        "expression": "SUM(FactSales[NetAmount]) - SUM(FactSales[Cost])",
+        "format_string": null,
+        "display_folder": "Core",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "NetAmount"
+              },
+              {
+                "table": "FactSales",
+                "column": "Cost"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Total Cost",
+        "table": "FactSales",
+        "expression": "SUM(FactSales[Cost])",
+        "format_string": null,
+        "display_folder": "Core",
+        "description": null,
+        "is_hidden": true,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "Cost"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Margin %",
+        "table": "FactSales",
+        "expression": "DIVIDE([Total Sales] - [Total Cost], [Total Sales])",
+        "format_string": "0.00%",
+        "display_folder": "Profitability",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Total Cost",
+              "Total Sales"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Executive Summary",
+            "visual": "Margin %",
+            "visual_type": "card"
+          }
+        ],
+        "usage_count": 1
+      },
+      {
+        "name": "Sales YTD",
+        "table": "FactSales",
+        "expression": "TOTALYTD([Total Sales], DimDate[Date])",
+        "format_string": null,
+        "display_folder": "Time Intelligence",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Total Sales"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "TOTALYTD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Executive Summary",
+            "visual": "Sales Trend",
+            "visual_type": "lineChart"
+          }
+        ],
+        "usage_count": 1
+      },
+      {
+        "name": "Sales PY",
+        "table": "FactSales",
+        "expression": "CALCULATE([Total Sales], SAMEPERIODLASTYEAR(DimDate[Date]))",
+        "format_string": null,
+        "display_folder": "Time Intelligence",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Total Sales"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "CALCULATE",
+            "SAMEPERIODLASTYEAR"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "filtered_aggregation",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "YoY Growth %",
+        "table": "FactSales",
+        "expression": "DIVIDE([Total Sales] - [Sales PY], [Sales PY])",
+        "format_string": "0.0%",
+        "display_folder": "Time Intelligence",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Sales PY",
+              "Total Sales"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Sales by Ship Date",
+        "table": "FactSales",
+        "expression": "CALCULATE([Total Sales], USERELATIONSHIP(FactSales[ShipDateKey], DimDate[Date]))",
+        "format_string": null,
+        "display_folder": "Time Intelligence",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Total Sales"
+            ],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "ShipDateKey"
+              },
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate",
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "CALCULATE",
+            "USERELATIONSHIP"
+          ],
+          "patterns": [
+            "filtered_aggregation",
+            "role_playing_dimension",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Top Product Share",
+        "table": "FactSales",
+        "expression": "VAR TopProduct = TOPN(1, VALUES(DimProduct[ProductName]), [Total Sales])\nVAR TopValue = CALCULATE([Total Sales], TopProduct)\nVAR AllValue = CALCULATE([Total Sales], ALL(DimProduct))\nRETURN DIVIDE(TopValue, AllValue)",
+        "format_string": null,
+        "display_folder": "Analysis",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Total Sales"
+            ],
+            "columns": [
+              {
+                "table": "DimProduct",
+                "column": "ProductName"
+              }
+            ],
+            "tables": [
+              "DimProduct"
+            ]
+          },
+          "functions": [
+            "ALL",
+            "CALCULATE",
+            "DIVIDE",
+            "TOPN",
+            "VALUES"
+          ],
+          "patterns": [
+            "ratio",
+            "ranking",
+            "filtered_aggregation",
+            "percent_of_total_candidate",
+            "composed_from_measures"
+          ],
+          "variables": [
+            "TopProduct",
+            "TopValue",
+            "AllValue"
+          ],
+          "complexity": "moderate",
+          "confidence": "medium",
+          "notes": [
+            "Uses 3 VAR declaration(s); variable-held references are not resolved by lexical analysis."
+          ]
+        },
+        "used_in": [
+          {
+            "page": "Product Detail",
+            "visual": "Product Performance",
+            "visual_type": "tableEx"
+          }
+        ],
+        "usage_count": 1
+      },
+      {
+        "name": "Product Rank",
+        "table": "FactSales",
+        "expression": "RANKX(ALL(DimProduct[ProductName]), [Total Sales], , DESC)",
+        "format_string": null,
+        "display_folder": "Analysis",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Total Sales"
+            ],
+            "columns": [
+              {
+                "table": "DimProduct",
+                "column": "ProductName"
+              }
+            ],
+            "tables": [
+              "DimProduct"
+            ]
+          },
+          "functions": [
+            "ALL",
+            "RANKX"
+          ],
+          "patterns": [
+            "ranking",
+            "percent_of_total_candidate",
+            "iterator",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Product Detail",
+            "visual": "Product Performance",
+            "visual_type": "tableEx"
+          }
+        ],
+        "usage_count": 1
+      },
+      {
+        "name": "Legacy Discount Total",
+        "table": "FactSales",
+        "expression": "SUMX(FactSales, FactSales[UnitPrice] * 0.05)",
+        "format_string": null,
+        "display_folder": "Deprecated",
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "UnitPrice"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUMX"
+          ],
+          "patterns": [
+            "iterator"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Circular A",
+        "table": "FactSales",
+        "expression": "[Circular B] + 1",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Circular B"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Circular B",
+        "table": "FactSales",
+        "expression": "[Circular A] * 2",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Circular A"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      }
+    ],
+    "relationships": [
+      {
+        "name": "r1",
+        "from_table": "FactSales",
+        "from_column": "OrderDateKey",
+        "to_table": "DimDate",
+        "to_column": "Date",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      },
+      {
+        "name": "r2",
+        "from_table": "FactSales",
+        "from_column": "ShipDateKey",
+        "to_table": "DimDate",
+        "to_column": "Date",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": false,
+        "security_filtering": null
+      },
+      {
+        "name": "r3",
+        "from_table": "FactSales",
+        "from_column": "CustomerKey",
+        "to_table": "DimCustomer",
+        "to_column": "CustomerKey",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      },
+      {
+        "name": "r4",
+        "from_table": "FactSales",
+        "from_column": "ProductKey",
+        "to_table": "DimProduct",
+        "to_column": "ProductKey",
+        "cardinality": "many_to_one",
+        "cross_filter": "bothDirections",
+        "is_active": true,
+        "security_filtering": null
+      }
+    ],
+    "roles": [
+      {
+        "name": "RegionalManager",
+        "model_permission": "read",
+        "table_permissions": [
+          {
+            "table": "DimCustomer",
+            "filter_expression": "DimCustomer[Region] = USERPRINCIPALNAME()",
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "DimCustomer",
+                    "column": "Region"
+                  }
+                ],
+                "tables": [
+                  "DimCustomer"
+                ]
+              },
+              "functions": [
+                "USERPRINCIPALNAME"
+              ],
+              "patterns": [],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": []
+            }
+          }
+        ]
+      }
+    ],
+    "calculation_groups": []
+  },
+  "report": {
+    "available": true,
+    "pages": [
+      {
+        "name": "page1",
+        "display_name": "Executive Summary",
+        "ordinal": 0,
+        "width": 1280,
+        "height": 720,
+        "visibility": null,
+        "page_filters": [],
+        "visuals": [
+          {
+            "id": "v1",
+            "type": "card",
+            "title": "Total Sales",
+            "x": 20,
+            "y": 20,
+            "width": 280,
+            "height": 140,
+            "z": 0,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": "FactSales",
+                "name": "Total Sales"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": false
+          },
+          {
+            "id": "v2",
+            "type": "card",
+            "title": "Margin %",
+            "x": 320,
+            "y": 20,
+            "width": 280,
+            "height": 140,
+            "z": 0,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": "FactSales",
+                "name": "Margin %"
+              }
+            ],
+            "measures_used": [
+              "Margin %"
+            ],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": false
+          },
+          {
+            "id": "v3",
+            "type": "lineChart",
+            "title": "Sales Trend",
+            "x": 20,
+            "y": 180,
+            "width": 900,
+            "height": 320,
+            "z": 0,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": "FactSales",
+                "name": "Total Sales"
+              },
+              {
+                "kind": "measure",
+                "table": "FactSales",
+                "name": "Sales YTD"
+              },
+              {
+                "kind": "column",
+                "table": "DimDate",
+                "name": "MonthName"
+              }
+            ],
+            "measures_used": [
+              "Sales YTD",
+              "Total Sales"
+            ],
+            "columns_used": [
+              "DimDate[MonthName]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": false
+          },
+          {
+            "id": "v4",
+            "type": "clusteredBarChart",
+            "title": "Quantity by Category",
+            "x": 20,
+            "y": 520,
+            "width": 900,
+            "height": 180,
+            "z": 0,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "implicit_measure",
+                "table": "FactSales",
+                "name": "Quantity",
+                "aggregation": "Sum"
+              },
+              {
+                "kind": "column",
+                "table": "FactSales",
+                "name": "Quantity"
+              },
+              {
+                "kind": "column",
+                "table": "DimProduct",
+                "name": "Category"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "DimProduct[Category]",
+              "FactSales[Quantity]"
+            ],
+            "implicit_measures": [
+              "Sum(FactSales[Quantity])"
+            ],
+            "visual_filters": [],
+            "has_conditional_formatting": false
+          }
+        ],
+        "visual_count": 4
+      },
+      {
+        "name": "page2",
+        "display_name": "Product Detail",
+        "ordinal": 1,
+        "width": 1280,
+        "height": 720,
+        "visibility": null,
+        "page_filters": [
+          {
+            "name": "pf1",
+            "type": "Categorical",
+            "table": "DimProduct",
+            "field": "Category",
+            "has_condition": true,
+            "is_locked": true,
+            "is_hidden": false
+          }
+        ],
+        "visuals": [
+          {
+            "id": "v5",
+            "type": "tableEx",
+            "title": "Product Performance",
+            "x": 20,
+            "y": 20,
+            "width": 1200,
+            "height": 600,
+            "z": 0,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "column",
+                "table": "DimProduct",
+                "name": "ProductName"
+              },
+              {
+                "kind": "measure",
+                "table": "FactSales",
+                "name": "Total Sales"
+              },
+              {
+                "kind": "measure",
+                "table": "FactSales",
+                "name": "Product Rank"
+              },
+              {
+                "kind": "measure",
+                "table": "FactSales",
+                "name": "Top Product Share"
+              }
+            ],
+            "measures_used": [
+              "Product Rank",
+              "Top Product Share",
+              "Total Sales"
+            ],
+            "columns_used": [
+              "DimProduct[ProductName]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [
+              {
+                "name": "vf1",
+                "type": "TopN",
+                "table": "DimProduct",
+                "field": "ProductName",
+                "has_condition": true,
+                "is_locked": false,
+                "is_hidden": false
+              }
+            ],
+            "has_conditional_formatting": false
+          }
+        ],
+        "visual_count": 1
+      },
+      {
+        "name": "page3",
+        "display_name": "QA Scratch",
+        "ordinal": 2,
+        "width": 1280,
+        "height": 720,
+        "visibility": 1,
+        "page_filters": [],
+        "visuals": [
+          {
+            "id": "v6",
+            "type": "card",
+            "title": "Orphan Check",
+            "x": 20,
+            "y": 20,
+            "width": 280,
+            "height": 140,
+            "z": 0,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": "FactSales",
+                "name": "Forecast Variance"
+              }
+            ],
+            "measures_used": [
+              "Forecast Variance"
+            ],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": false
+          }
+        ],
+        "visual_count": 1
+      }
+    ],
+    "page_count": 3,
+    "visual_count": 6,
+    "report_filters": [
+      {
+        "name": "rf1",
+        "type": "Categorical",
+        "table": "DimDate",
+        "field": "Year",
+        "has_condition": true,
+        "is_locked": false,
+        "is_hidden": false
+      }
+    ],
+    "bookmarks": [
+      {
+        "name": "bm1",
+        "display_name": "Default View",
+        "targets_page": "page1"
+      }
+    ],
+    "theme": "CY24SU06"
+  },
+  "power_query": {
+    "available": true,
+    "queries": [
+      {
+        "name": "FactSales",
+        "connectors": [
+          "SQL Server"
+        ],
+        "step_count": 5,
+        "steps": [
+          "Source",
+          "dbo_FactSales",
+          "Removed Columns",
+          "Filtered Rows",
+          "Changed Type"
+        ],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "let\n    Source = Sql.Database(\"dw-prod.internal\", \"SalesDW\"),\n    dbo_FactSales = Source{[Schema=\"dbo\",Item=\"FactSales\"]}[Data],\n    #\"Removed Columns\" = Table.RemoveColumns(dbo_FactSales,{\"ETLBatchId\"}),\n    #\"Filtered Rows\" = Table.SelectRows(#\"Removed Columns\", each [OrderDateKey] >= #date(2020,1,1)),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Filtered Rows\",{{\"NetAmount\", type number}})\nin\n    #\"Changed Type\""
+      },
+      {
+        "name": "DimCustomer",
+        "connectors": [
+          "SQL Server"
+        ],
+        "step_count": 3,
+        "steps": [
+          "Source",
+          "dbo_DimCustomer",
+          "Merged Region"
+        ],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "let\n    Source = Sql.Database(\"dw-prod.internal\", \"SalesDW\"),\n    dbo_DimCustomer = Source{[Schema=\"dbo\",Item=\"DimCustomer\"]}[Data],\n    #\"Merged Region\" = Table.AddColumn(dbo_DimCustomer, \"RegionLabel\", each [Region] & \" Region\")\nin\n    #\"Merged Region\""
+      },
+      {
+        "name": "DimProduct",
+        "connectors": [
+          "Snowflake"
+        ],
+        "step_count": 2,
+        "steps": [
+          "Source",
+          "Query"
+        ],
+        "native_query": "SELECT PRODUCT_KEY, PRODUCT_NAME, CATEGORY FROM DIM_PRODUCT WHERE ACTIVE = 1",
+        "is_parameter": false,
+        "expression": "let\n    Source = Snowflake.Databases(\"acct.snowflakecomputing.com\", \"WH_REPORTING\"),\n    Query = Value.NativeQuery(Source, \"SELECT PRODUCT_KEY, PRODUCT_NAME, CATEGORY FROM DIM_PRODUCT WHERE ACTIVE = 1\")\nin\n    Query"
+      }
+    ],
+    "sources": [
+      {
+        "query": "FactSales",
+        "connector": "SQL Server",
+        "server": "dw-prod.internal",
+        "database": "SalesDW"
+      },
+      {
+        "query": "DimProduct",
+        "connector": "Snowflake",
+        "server": "acct.snowflakecomputing.com",
+        "database": "WH_REPORTING"
+      }
+    ]
+  },
+  "dax_dependency_graph": {
+    "edges": {
+      "Total Sales": [],
+      "Net Revenue (base)": [],
+      "Total Cost": [],
+      "Margin %": [
+        "Total Cost",
+        "Total Sales"
+      ],
+      "Sales YTD": [
+        "Total Sales"
+      ],
+      "Sales PY": [
+        "Total Sales"
+      ],
+      "YoY Growth %": [
+        "Sales PY",
+        "Total Sales"
+      ],
+      "Sales by Ship Date": [
+        "Total Sales"
+      ],
+      "Top Product Share": [
+        "Total Sales"
+      ],
+      "Product Rank": [
+        "Total Sales"
+      ],
+      "Legacy Discount Total": [],
+      "Circular A": [
+        "Circular B"
+      ],
+      "Circular B": [
+        "Circular A"
+      ]
+    },
+    "circular_references": [
+      [
+        "Circular A",
+        "Circular B",
+        "Circular A"
+      ]
+    ],
+    "base_measures": [
+      "Legacy Discount Total",
+      "Net Revenue (base)",
+      "Total Cost",
+      "Total Sales"
+    ],
+    "top_level_measures": [
+      "Legacy Discount Total",
+      "Margin %",
+      "Net Revenue (base)",
+      "Product Rank",
+      "Sales YTD",
+      "Sales by Ship Date",
+      "Top Product Share",
+      "YoY Growth %"
+    ]
+  },
+  "measure_usage": {
+    "Total Sales": [
+      {
+        "page": "Executive Summary",
+        "visual": "Total Sales",
+        "visual_type": "card"
+      },
+      {
+        "page": "Executive Summary",
+        "visual": "Sales Trend",
+        "visual_type": "lineChart"
+      },
+      {
+        "page": "Product Detail",
+        "visual": "Product Performance",
+        "visual_type": "tableEx"
+      }
+    ],
+    "Margin %": [
+      {
+        "page": "Executive Summary",
+        "visual": "Margin %",
+        "visual_type": "card"
+      }
+    ],
+    "Sales YTD": [
+      {
+        "page": "Executive Summary",
+        "visual": "Sales Trend",
+        "visual_type": "lineChart"
+      }
+    ],
+    "Product Rank": [
+      {
+        "page": "Product Detail",
+        "visual": "Product Performance",
+        "visual_type": "tableEx"
+      }
+    ],
+    "Top Product Share": [
+      {
+        "page": "Product Detail",
+        "visual": "Product Performance",
+        "visual_type": "tableEx"
+      }
+    ],
+    "Forecast Variance": [
+      {
+        "page": "QA Scratch",
+        "visual": "Orphan Check",
+        "visual_type": "card"
+      }
+    ]
+  },
+  "analysis": {
+    "unused_measures": [
+      "Legacy Discount Total",
+      "Net Revenue (base)",
+      "Sales by Ship Date",
+      "YoY Growth %"
+    ],
+    "measures_referenced_but_not_defined": [
+      "Forecast Variance"
+    ],
+    "role_playing_dimensions": [
+      {
+        "fact_table": "FactSales",
+        "dimension_table": "DimDate",
+        "relationship_count": 2,
+        "active": [
+          "OrderDateKey"
+        ],
+        "inactive": [
+          "ShipDateKey"
+        ]
+      }
+    ],
+    "circular_references": [
+      [
+        "Circular A",
+        "Circular B",
+        "Circular A"
+      ]
+    ]
+  },
+  "findings": [
+    {
+      "severity": "error",
+      "category": "dax",
+      "message": "1 circular measure reference(s) detected.",
+      "detail": [
+        "Circular A -> Circular B -> Circular A"
+      ]
+    },
+    {
+      "severity": "error",
+      "category": "consistency",
+      "message": "1 measure(s) referenced by visuals do not exist in the model.",
+      "detail": [
+        "Forecast Variance"
+      ]
+    },
+    {
+      "severity": "info",
+      "category": "hygiene",
+      "message": "4 measure(s) are not used by any visual and are not a dependency of another measure.",
+      "detail": [
+        "Legacy Discount Total",
+        "Net Revenue (base)",
+        "Sales by Ship Date",
+        "YoY Growth %"
+      ]
+    },
+    {
+      "severity": "warning",
+      "category": "model",
+      "message": "1 bidirectional relationship(s) \u2014 a common source of ambiguous filter paths and slow queries.",
+      "detail": [
+        "FactSales[ProductKey] <-> DimProduct[ProductKey]"
+      ]
+    },
+    {
+      "severity": "info",
+      "category": "model",
+      "message": "1 role-playing dimension pattern(s) detected (multiple relationships between the same two tables).",
+      "detail": [
+        "FactSales -> DimDate (active: ['OrderDateKey'], inactive: ['ShipDateKey'])"
+      ]
+    },
+    {
+      "severity": "warning",
+      "category": "report",
+      "message": "1 implicit aggregation(s) used in visuals (a raw column summarised in the visual rather than an explicit measure). These carry business logic that lives outside the model.",
+      "detail": []
+    },
+    {
+      "severity": "info",
+      "category": "report",
+      "message": "1 hidden page(s).",
+      "detail": [
+        "QA Scratch"
+      ]
+    }
+  ]
+}

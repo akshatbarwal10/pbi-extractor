@@ -1,0 +1,15 @@
+# The extraction core needs nothing — it is pure standard library, and
+# `python -m pbix_extractor` works with none of the below installed.
+#
+# These are for the UI and the client-ready exports only.
+
+streamlit>=1.30        # drag-and-drop UI (app.py)
+openpyxl>=3.1          # Excel data dictionary
+reportlab>=4.0         # PDF client report
+
+# The LLM explainer speaks plain HTTP over urllib and needs no client
+# library. Configure it with environment variables, or in the sidebar:
+#   PBIX_LLM_BASE_URL   e.g. https://api.openai.com/v1
+#                       or  http://localhost:11434/v1  (local Ollama)
+#   PBIX_LLM_MODEL      e.g. gpt-4o-mini
+#   PBIX_LLM_API_KEY    blank for a local runtime

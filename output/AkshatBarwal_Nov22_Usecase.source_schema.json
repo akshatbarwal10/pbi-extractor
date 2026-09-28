@@ -1,0 +1,195 @@
+{
+  "source_system": "pbix:AkshatBarwal_Nov22_Usecase.pbit",
+  "tables": [
+    {
+      "name": "Product",
+      "columns": [
+        {
+          "name": "ProductID",
+          "type": "int",
+          "key": true
+        },
+        {
+          "name": "ProductName",
+          "type": "nvarchar"
+        },
+        {
+          "name": "Category",
+          "type": "nvarchar"
+        },
+        {
+          "name": "Price",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Region",
+      "columns": [
+        {
+          "name": "RegionID",
+          "type": "int",
+          "key": true
+        },
+        {
+          "name": "RegionName",
+          "type": "nvarchar"
+        },
+        {
+          "name": "Country",
+          "type": "nvarchar"
+        }
+      ]
+    },
+    {
+      "name": "Salesperson",
+      "columns": [
+        {
+          "name": "SalespersonID",
+          "type": "int",
+          "key": true
+        },
+        {
+          "name": "Name",
+          "type": "nvarchar"
+        },
+        {
+          "name": "RegionID",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Sales",
+      "columns": [
+        {
+          "name": "SalesID",
+          "type": "int"
+        },
+        {
+          "name": "Date",
+          "type": "datetime"
+        },
+        {
+          "name": "ProductID",
+          "type": "int"
+        },
+        {
+          "name": "RegionID",
+          "type": "int"
+        },
+        {
+          "name": "SalespersonID",
+          "type": "int"
+        },
+        {
+          "name": "QuantitySold",
+          "type": "int"
+        },
+        {
+          "name": "Price",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Date",
+      "columns": [
+        {
+          "name": "Date",
+          "type": "datetime",
+          "key": true
+        },
+        {
+          "name": "Year",
+          "type": "int"
+        },
+        {
+          "name": "MonthNum",
+          "type": "int"
+        },
+        {
+          "name": "Month",
+          "type": "nvarchar"
+        },
+        {
+          "name": "FiscalYear",
+          "type": "nvarchar"
+        },
+        {
+          "name": "MonthYear",
+          "type": "nvarchar"
+        }
+      ]
+    },
+    {
+      "name": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
+      "columns": [
+        {
+          "name": "Date",
+          "type": "datetime",
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "MeasureTable",
+      "columns": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    }
+  ],
+  "declared_foreign_keys": [
+    {
+      "fk_table": "Sales",
+      "fk_column": "ProductID",
+      "pk_table": "Product",
+      "pk_column": "ProductID",
+      "is_active": true
+    },
+    {
+      "fk_table": "Sales",
+      "fk_column": "RegionID",
+      "pk_table": "Region",
+      "pk_column": "RegionID",
+      "is_active": true
+    },
+    {
+      "fk_table": "Sales",
+      "fk_column": "SalespersonID",
+      "pk_table": "Salesperson",
+      "pk_column": "SalespersonID",
+      "is_active": true
+    },
+    {
+      "fk_table": "Salesperson",
+      "fk_column": "RegionID",
+      "pk_table": "Region",
+      "pk_column": "RegionID",
+      "is_active": false
+    },
+    {
+      "fk_table": "Date",
+      "fk_column": "Date",
+      "pk_table": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
+      "pk_column": "Date",
+      "is_active": true
+    },
+    {
+      "fk_table": "Sales",
+      "fk_column": "Date",
+      "pk_table": "Date",
+      "pk_column": "Date",
+      "is_active": true
+    }
+  ],
+  "report_intent": "Rebuild of 'AkshatBarwal_Nov22_Usecase.pbit'. Pages: Dashboard, Salesperson Drillthru, Country Sales TT, Salesperson TT.",
+  "provenance": {
+    "extracted_from": "AkshatBarwal_Nov22_Usecase.pbit",
+    "sha256": "0a4888b1e50f8e34714c7ef8ab245610dd30dde338c22a9516e189897b6ce0d6",
+    "contract_version": "catalogue.v1"
+  }
+}

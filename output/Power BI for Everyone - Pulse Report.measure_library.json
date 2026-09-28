@@ -1,0 +1,6 @@
+{
+  "measure_library": [],
+  "harvested_from": "Power BI for Everyone - Pulse Report.pbit",
+  "pattern_summary": {},
+  "note": "Candidate library harvested from measures in active use. Review before promoting into standards.yaml \u2014 placeholders {fact_table} and {date_table} were substituted heuristically and should be checked."
+}

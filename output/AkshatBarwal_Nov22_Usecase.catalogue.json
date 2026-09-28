@@ -1,0 +1,1639 @@
+{
+  "contract_version": "catalogue.v1",
+  "source": {
+    "file": "AkshatBarwal_Nov22_Usecase.pbix",
+    "path": "C:\\Users\\abarwal002\\Documents\\AkshatBarwal_Nov22_Usecase.pbix",
+    "sha256": "6c94a64fd0877ed4dfb897559105e158c7be81b10f6712f6f96c5a007257ae42",
+    "size_bytes": 268793,
+    "extracted_at": "2026-09-25T04:37:11.682976+00:00",
+    "extraction_tier": "report_only",
+    "model_available": false,
+    "warnings": [
+      "This is a .pbix: the DataModel part is VertiPaq/Xpress9-compressed and cannot be read offline. Measures, relationships and column metadata are NOT available from this file. To extract the model, either save it as a .pbit (File > Save as > Power BI template), connect via XMLA/DMV, or decompile with pbi-tools."
+    ]
+  },
+  "statistics": {
+    "tables": 0,
+    "columns": 0,
+    "calculated_columns": 0,
+    "measures": 0,
+    "relationships": 0,
+    "inactive_relationships": 0,
+    "bidirectional_relationships": 0,
+    "rls_roles": 0,
+    "calculation_groups": 0,
+    "pages": 4,
+    "visuals": 45,
+    "m_queries": 0,
+    "unused_measures": 0
+  },
+  "model": {
+    "available": false,
+    "tables": [],
+    "measures": [],
+    "relationships": [],
+    "roles": [],
+    "calculation_groups": []
+  },
+  "report": {
+    "available": true,
+    "pages": [
+      {
+        "name": "59abe44383d7232985f7",
+        "display_name": "Dashboard",
+        "ordinal": 0,
+        "width": 1280,
+        "height": 800,
+        "visibility": null,
+        "page_filters": [],
+        "visuals": [
+          {
+            "id": "e2c8aaabfed4c39d349b",
+            "type": "shape",
+            "title": null,
+            "x": 8.314125262184533,
+            "y": 77.94492433298,
+            "width": 182.91075576805972,
+            "height": 281.640993256501,
+            "z": 2000,
+            "tab_order": null,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "29247d7406f4a1c907dc",
+            "type": "shape",
+            "title": "",
+            "x": 8.689011455239712,
+            "y": 11.17158615673677,
+            "width": 1262.3892357112552,
+            "height": 57.099218134432384,
+            "z": 1000,
+            "tab_order": 1000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "8d80b7f824397e32fe15",
+            "type": "card",
+            "title": "Unique Products Sold",
+            "x": 1034.6173674422787,
+            "y": 90.00356087563743,
+            "width": 230.8794472392266,
+            "height": 94.3378386568883,
+            "z": 6000,
+            "tab_order": 4000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Unique Products Sold"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Unique Products Sold"
+              }
+            ],
+            "measures_used": [
+              "Unique Products Sold"
+            ],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "5ae5feda0a85bbafa0cd",
+            "type": "card",
+            "title": "Total Units Sold",
+            "x": 497.1399445681652,
+            "y": 90.00356087563743,
+            "width": 248.25747014970602,
+            "height": 93.09655130613976,
+            "z": 5000,
+            "tab_order": 3000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Units Sold"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Units Sold"
+              }
+            ],
+            "measures_used": [
+              "Total Units Sold"
+            ],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "d49eedc0a267fb8a9a24",
+            "type": "card",
+            "title": "Total Sales",
+            "x": 212.88514124675174,
+            "y": 90.0035608756374,
+            "width": 281.77222861991635,
+            "height": 93.09655130613976,
+            "z": 4000,
+            "tab_order": 2000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "174b3f6927b73ed59f70",
+            "type": "card",
+            "title": "Average Sales Per Product",
+            "x": 747.8799894193681,
+            "y": 90.0035608756374,
+            "width": 284.2548033214134,
+            "height": 93.09655130613976,
+            "z": 7000,
+            "tab_order": 5000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "AvgSalesPerProduct"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "AvgSalesPerProduct"
+              }
+            ],
+            "measures_used": [
+              "AvgSalesPerProduct"
+            ],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "803d4e8236c0bff7122d",
+            "type": "shape",
+            "title": "Overview background",
+            "x": 203.48894976650436,
+            "y": 77.90719791060452,
+            "width": 1067.4448907751487,
+            "height": 113.95381186924244,
+            "z": 3000,
+            "tab_order": 6000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "941eb630714dac0ef54e",
+            "type": "actionButton",
+            "title": null,
+            "x": 15.11632198265461,
+            "y": 291.86129366510056,
+            "width": 165.11674781053497,
+            "height": 39.534995954635136,
+            "z": 8000,
+            "tab_order": 7000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "77be7809c964c6b08dd5",
+            "type": "actionButton",
+            "title": null,
+            "x": 15.588984866595998,
+            "y": 222.40285076343625,
+            "width": 164.2039739281445,
+            "height": 39.49209499537653,
+            "z": 9000,
+            "tab_order": 8000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "af7db5c63c5536cc21e2",
+            "type": "actionButton",
+            "title": null,
+            "x": 15.588984866595998,
+            "y": 150.69352037709464,
+            "width": 164.2039739281445,
+            "height": 40.5313606531496,
+            "z": 10000,
+            "tab_order": 9000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "1922b64e58ac7001add3",
+            "type": "actionButton",
+            "title": null,
+            "x": 15.588984866595998,
+            "y": 90.41611222625679,
+            "width": 163.16470827037145,
+            "height": 39.49209499537653,
+            "z": 11000,
+            "tab_order": 10000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "f89ec94cbd3b86e8b243",
+            "type": "slicer",
+            "title": null,
+            "x": 18.706781839915198,
+            "y": 387.6460903493538,
+            "width": 155.88984866596,
+            "height": 78.98418999075307,
+            "z": 12000,
+            "tab_order": 11000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "FiscalYear"
+              },
+              {
+                "kind": "column",
+                "table": "Date",
+                "name": "FiscalYear"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "Date[FiscalYear]",
+              "None[FiscalYear]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "0b1f3ca0cdbb1eda3131",
+            "type": "slicer",
+            "title": null,
+            "x": 18.706781839915198,
+            "y": 490.53339046888743,
+            "width": 155.88984866596,
+            "height": 78.98418999075307,
+            "z": 13000,
+            "tab_order": 12000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Category"
+              },
+              {
+                "kind": "column",
+                "table": "Product",
+                "name": "Category"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "None[Category]",
+              "Product[Category]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "9b64e0820d5f47563004",
+            "type": "slicer",
+            "title": null,
+            "x": 18.706781839915198,
+            "y": 597.5777532195133,
+            "width": 155.88984866596,
+            "height": 78.98418999075307,
+            "z": 14000,
+            "tab_order": 13000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Country"
+              },
+              {
+                "kind": "column",
+                "table": "Region",
+                "name": "Country"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "None[Country]",
+              "Region[Country]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [
+              {
+                "name": "70761d4da91635f66ec8",
+                "type": "Categorical",
+                "table": "Region",
+                "field": "Country",
+                "has_condition": false,
+                "is_locked": false,
+                "is_hidden": false
+              }
+            ],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "409042b103c57dea6bfc",
+            "type": "shape",
+            "title": null,
+            "x": 8.314125262184533,
+            "y": 369.9785741672117,
+            "width": 182.91075576805972,
+            "height": 339.83987009179276,
+            "z": 0,
+            "tab_order": 14000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "df512db29b17a614663a",
+            "type": "lineStackedColumnComboChart",
+            "title": "Total Sales and Sales Growth Rate by Month",
+            "x": 203.48894976650436,
+            "y": 201.1633617691729,
+            "width": 1067.4448907751487,
+            "height": 584.8853813288669,
+            "z": 16000,
+            "tab_order": 15000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "SalesGrowth"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "SalesGrowth"
+              }
+            ],
+            "measures_used": [
+              "SalesGrowth",
+              "Total Sales"
+            ],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "0e299add1d598a4f3f2c",
+            "type": "Sales by Product",
+            "title": null,
+            "x": 203.0002332465628,
+            "y": 207.8533253069192,
+            "width": 1067.444619557445,
+            "height": 573.2574413422094,
+            "z": 18000,
+            "tab_order": 17000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": false
+          },
+          {
+            "id": "2c98e240dbde1c19aacf",
+            "type": "donutChart",
+            "title": "Sales Distribution by Product Category",
+            "x": 0,
+            "y": 0,
+            "width": 456.9780414756355,
+            "height": 573.2574413422094,
+            "z": 1000,
+            "tab_order": 1000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Category"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "column",
+                "table": "Product",
+                "name": "Category"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [
+              "None[Category]",
+              "Product[Category]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "09e4b0374bcf6b04c2af",
+            "type": "barChart",
+            "title": "Total Sales by Product",
+            "x": 479.07085623258115,
+            "y": 0.17055245287049017,
+            "width": 588.3737633248641,
+            "height": 570.9318533448779,
+            "z": 0,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "ProductName"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "implicit_measure",
+                "table": null,
+                "name": "Category",
+                "aggregation": "Max"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Category"
+              },
+              {
+                "kind": "column",
+                "table": "Product",
+                "name": "ProductName"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              },
+              {
+                "kind": "implicit_measure",
+                "table": "Product",
+                "name": "Category",
+                "aggregation": "Max"
+              },
+              {
+                "kind": "column",
+                "table": "Product",
+                "name": "Category"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [
+              "None[Category]",
+              "None[ProductName]",
+              "Product[Category]",
+              "Product[ProductName]"
+            ],
+            "implicit_measures": [
+              "Max(None[Category])",
+              "Max(Product[Category])"
+            ],
+            "visual_filters": [
+              {
+                "name": null,
+                "type": "TopN",
+                "table": "Product",
+                "field": "ProductName",
+                "has_condition": true,
+                "is_locked": false,
+                "is_hidden": false
+              }
+            ],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "f6cc4e8a4b792acd9c7d",
+            "type": "barChart",
+            "title": "Top 10 Salespersons by Total Sales",
+            "x": 203.48894976650436,
+            "y": 201.1633617691729,
+            "width": 1062.7937147804857,
+            "height": 584.8853813288669,
+            "z": 17000,
+            "tab_order": 16000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "column",
+                "table": "Salesperson",
+                "name": "Name"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [
+              "None[Name]",
+              "Salesperson[Name]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [
+              {
+                "name": null,
+                "type": "TopN",
+                "table": "Salesperson",
+                "field": "Name",
+                "has_condition": true,
+                "is_locked": false,
+                "is_hidden": false
+              }
+            ],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "9d21cdb53588621d9e44",
+            "type": "image",
+            "title": null,
+            "x": 0,
+            "y": 0,
+            "width": 100.54427541063095,
+            "height": 80.68367779865446,
+            "z": 19000,
+            "tab_order": 18000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "06994114df5f6bd52237",
+            "type": "clusteredBarChart",
+            "title": "Total Sales by Region",
+            "x": 203.48894976650436,
+            "y": 202.32615576783863,
+            "width": 1067.4448907751487,
+            "height": 583.7225873302011,
+            "z": 15000,
+            "tab_order": 19000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "RegionName"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "column",
+                "table": "Region",
+                "name": "RegionName"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [
+              "None[RegionName]",
+              "Region[RegionName]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "fcfd5cf938b6ac139324",
+            "type": "shape",
+            "title": null,
+            "x": 9.302351989325913,
+            "y": 718.6066911754268,
+            "width": 182.55865779052107,
+            "height": 67.44205192261288,
+            "z": 20000,
+            "tab_order": 20000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "db032ea67fa82ec1c9c1",
+            "type": "actionButton",
+            "title": null,
+            "x": 1103.5044548154433,
+            "y": 19.860597611976484,
+            "width": 162.60864294805745,
+            "height": 39.72119522395297,
+            "z": 21000,
+            "tab_order": 21000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "7c70069cdd94f8e4b2f7",
+            "type": "actionButton",
+            "title": null,
+            "x": 17.378022910479423,
+            "y": 732.3595369416328,
+            "width": 165.09121764955452,
+            "height": 39.72119522395297,
+            "z": 22000,
+            "tab_order": 22000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          }
+        ],
+        "visual_count": 25
+      },
+      {
+        "name": "4428f855d23f8c47d43a",
+        "display_name": "Salesperson Drillthru",
+        "ordinal": 1,
+        "width": 1280,
+        "height": 800,
+        "visibility": 0,
+        "page_filters": [
+          {
+            "name": "2010c6c990a62a121d8e",
+            "type": "Categorical",
+            "table": "Salesperson",
+            "field": "Name",
+            "has_condition": true,
+            "is_locked": false,
+            "is_hidden": false
+          }
+        ],
+        "visuals": [
+          {
+            "id": "cae35f6e706b3182dcb8",
+            "type": "pivotTable",
+            "title": null,
+            "x": 932.2472448490657,
+            "y": 203.27195564378124,
+            "width": 334.1136742190887,
+            "height": 584.1148150683368,
+            "z": 1000,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "ProductName"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Units Sold"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "column",
+                "table": "Product",
+                "name": "ProductName"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Units Sold"
+              }
+            ],
+            "measures_used": [
+              "Total Sales",
+              "Total Units Sold"
+            ],
+            "columns_used": [
+              "None[Name]",
+              "None[ProductName]",
+              "Product[ProductName]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "b63029ae73e32e54f84a",
+            "type": "actionButton",
+            "title": null,
+            "x": 19.859903712323455,
+            "y": 19.859903712323455,
+            "width": 43.22449631505693,
+            "height": 39.71980742464691,
+            "z": 2000,
+            "tab_order": 1000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "9e2d9aa45a91d0ab87d0",
+            "type": "shape",
+            "title": "Overview background",
+            "x": 8.177607410956716,
+            "y": 78.27138521915714,
+            "width": 1260.519770917471,
+            "height": 114.48650375339403,
+            "z": 3000,
+            "tab_order": 2000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "9ed1d147ff1076481491",
+            "type": "shape",
+            "title": "",
+            "x": 8.689011455239712,
+            "y": 11.17158615673677,
+            "width": 1262.3892357112552,
+            "height": 57.099218134432384,
+            "z": 0,
+            "tab_order": 3000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "bbbff295980f85de3b0f",
+            "type": "shape",
+            "title": null,
+            "x": 8.177607410956716,
+            "y": 203.27195564378124,
+            "width": 183.4120519314578,
+            "height": 584.1148150683368,
+            "z": 4000,
+            "tab_order": 4000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "b1b2e18e55408d088ff1",
+            "type": "slicer",
+            "title": null,
+            "x": 21.510525821935417,
+            "y": 213.81349999409346,
+            "width": 155.88984866596,
+            "height": 78.98418999075307,
+            "z": 5000,
+            "tab_order": 5000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "FiscalYear"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "column",
+                "table": "Date",
+                "name": "FiscalYear"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "Date[FiscalYear]",
+              "None[FiscalYear]",
+              "None[Name]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "6a204ad26c86db0953ce",
+            "type": "slicer",
+            "title": null,
+            "x": 19.860597611976484,
+            "y": 636.780410933996,
+            "width": 156.4022061943148,
+            "height": 79.44239044790594,
+            "z": 6000,
+            "tab_order": 6000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Category"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "column",
+                "table": "Product",
+                "name": "Category"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "None[Category]",
+              "None[Name]",
+              "Product[Category]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "78d599ad21ae2573f309",
+            "type": "slicer",
+            "title": null,
+            "x": 21.510525821935417,
+            "y": 423.74516286425273,
+            "width": 155.88984866596,
+            "height": 78.98418999075307,
+            "z": 7000,
+            "tab_order": 7000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Country"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "column",
+                "table": "Region",
+                "name": "Country"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "None[Country]",
+              "None[Name]",
+              "Region[Country]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [
+              {
+                "name": "70761d4da91635f66ec8",
+                "type": "Categorical",
+                "table": "Region",
+                "field": "Country",
+                "has_condition": false,
+                "is_locked": false,
+                "is_hidden": false
+              }
+            ],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "9f1e3d9996f874e5d838",
+            "type": "slicer",
+            "title": null,
+            "x": 19.859903712323455,
+            "y": 530.3762520820499,
+            "width": 156.54277043831428,
+            "height": 81.77607410956716,
+            "z": 8000,
+            "tab_order": 8000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "RegionName"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "column",
+                "table": "Region",
+                "name": "Country"
+              },
+              {
+                "kind": "column",
+                "table": "Region",
+                "name": "RegionName"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "None[Name]",
+              "None[RegionName]",
+              "Region[Country]",
+              "Region[RegionName]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [
+              {
+                "name": "70761d4da91635f66ec8",
+                "type": "Categorical",
+                "table": "Region",
+                "field": "Country",
+                "has_condition": false,
+                "is_locked": false,
+                "is_hidden": false
+              }
+            ],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "6c6d4f9d865b33f3a397",
+            "type": "columnChart",
+            "title": null,
+            "x": 202.10372601364458,
+            "y": 203.27195564378124,
+            "width": 718.4612225340544,
+            "height": 584.1148150683368,
+            "z": 9000,
+            "tab_order": 9000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Month"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "column",
+                "table": "Date",
+                "name": "Month"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [
+              "Date[Month]",
+              "None[Month]",
+              "None[Name]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "fe6610de29d6a55af8cf",
+            "type": "card",
+            "title": "Total Sales",
+            "x": 234.81415565747142,
+            "y": 89.95368152052389,
+            "width": 259.3469778903416,
+            "height": 93.45837041093391,
+            "z": 10000,
+            "tab_order": 10000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Sales"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [
+              "None[Name]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "20f02efb582ce8e769c8",
+            "type": "card",
+            "title": "Total Units Sold",
+            "x": 497.1399445681652,
+            "y": 90.00356087563743,
+            "width": 248.25747014970602,
+            "height": 93.09655130613976,
+            "z": 11000,
+            "tab_order": 11000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Units Sold"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Total Units Sold"
+              }
+            ],
+            "measures_used": [
+              "Total Units Sold"
+            ],
+            "columns_used": [
+              "None[Name]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "355c41e20b685142aa66",
+            "type": "card",
+            "title": "Average Sales Per Product",
+            "x": 747.8799894193681,
+            "y": 90.0035608756374,
+            "width": 284.2548033214134,
+            "height": 93.09655130613976,
+            "z": 13000,
+            "tab_order": 13000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "AvgSalesPerProduct"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "AvgSalesPerProduct"
+              }
+            ],
+            "measures_used": [
+              "AvgSalesPerProduct"
+            ],
+            "columns_used": [
+              "None[Name]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "d7dc50128a8deb60b380",
+            "type": "card",
+            "title": "Best Selling Product",
+            "x": 1034.6173674422787,
+            "y": 90.00356087563743,
+            "width": 230.8794472392266,
+            "height": 94.3378386568883,
+            "z": 12000,
+            "tab_order": 12000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Best Selling Product"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Best Selling Product"
+              }
+            ],
+            "measures_used": [
+              "Best Selling Product"
+            ],
+            "columns_used": [
+              "None[Name]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "31a8d02cfbe96e4b8c71",
+            "type": "image",
+            "title": null,
+            "x": 1170.566089396947,
+            "y": 0,
+            "width": 100.46774819175394,
+            "height": 80.6078444794305,
+            "z": 14000,
+            "tab_order": 14000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "59e20cc0ba2caa4aa44a",
+            "type": "card",
+            "title": "Best Fiscal Year",
+            "x": 30.37397038355352,
+            "y": 89.95368152052389,
+            "width": 192.75788897255117,
+            "height": 92.29014078079723,
+            "z": 15000,
+            "tab_order": 15000,
+            "fields": [
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Best FY"
+              },
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "measure",
+                "table": "MeasureTable",
+                "name": "Best FY"
+              }
+            ],
+            "measures_used": [
+              "Best FY"
+            ],
+            "columns_used": [
+              "None[Name]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "e3a37d84d69eee831254",
+            "type": "actionButton",
+            "title": null,
+            "x": 21.101884962725013,
+            "y": 732.3595369416328,
+            "width": 155.16091884356626,
+            "height": 39.72119522395297,
+            "z": 16000,
+            "tab_order": 16000,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          },
+          {
+            "id": "ac192a80091471c99bb9",
+            "type": "slicer",
+            "title": null,
+            "x": 22.34317231347354,
+            "y": 317.76956179162374,
+            "width": 156.4022061943148,
+            "height": 81.924965149403,
+            "z": 17000,
+            "tab_order": 17000,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Name"
+              },
+              {
+                "kind": "column",
+                "table": "Region",
+                "name": "Country"
+              }
+            ],
+            "measures_used": [],
+            "columns_used": [
+              "None[Name]",
+              "Region[Country]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [
+              {
+                "name": "70761d4da91635f66ec8",
+                "type": "Categorical",
+                "table": "Region",
+                "field": "Country",
+                "has_condition": false,
+                "is_locked": false,
+                "is_hidden": false
+              }
+            ],
+            "has_conditional_formatting": true
+          }
+        ],
+        "visual_count": 18
+      },
+      {
+        "name": "34e5d01bfd56e9e6a9d4",
+        "display_name": "Country Sales TT",
+        "ordinal": 2,
+        "width": 320,
+        "height": 240,
+        "visibility": null,
+        "page_filters": [],
+        "visuals": [
+          {
+            "id": "d78e5844e6fd052a0e1a",
+            "type": "pieChart",
+            "title": null,
+            "x": 0,
+            "y": 0,
+            "width": 320,
+            "height": 240,
+            "z": 0,
+            "tab_order": null,
+            "fields": [
+              {
+                "kind": "column",
+                "table": null,
+                "name": "Country"
+              },
+              {
+                "kind": "measure",
+                "table": null,
+                "name": "Total Sales"
+              },
+              {
+                "kind": "column",
+                "table": "Region",
+                "name": "Country"
+              }
+            ],
+            "measures_used": [
+              "Total Sales"
+            ],
+            "columns_used": [
+              "None[Country]",
+              "Region[Country]"
+            ],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          }
+        ],
+        "visual_count": 1
+      },
+      {
+        "name": "8a01b775c5f449040537",
+        "display_name": "Salesperson TT",
+        "ordinal": 3,
+        "width": 250,
+        "height": 100,
+        "visibility": null,
+        "page_filters": [],
+        "visuals": [
+          {
+            "id": "a271497c29f42c09884f",
+            "type": "textbox",
+            "title": null,
+            "x": 0,
+            "y": 0,
+            "width": 250,
+            "height": 150,
+            "z": 0,
+            "tab_order": null,
+            "fields": [],
+            "measures_used": [],
+            "columns_used": [],
+            "implicit_measures": [],
+            "visual_filters": [],
+            "has_conditional_formatting": true
+          }
+        ],
+        "visual_count": 1
+      }
+    ],
+    "page_count": 4,
+    "visual_count": 45,
+    "report_filters": [],
+    "bookmarks": [
+      {
+        "name": "5cad03db664845560b2a",
+        "display_name": "Show Sales by Product",
+        "targets_page": "59abe44383d7232985f7"
+      },
+      {
+        "name": "b70f6b64b8d0d3a186f5",
+        "display_name": "Show Sales by Salesperson",
+        "targets_page": "59abe44383d7232985f7"
+      },
+      {
+        "name": "699f627c276b540a60be",
+        "display_name": "Show Sales and Rate by Month",
+        "targets_page": "59abe44383d7232985f7"
+      },
+      {
+        "name": "e0b36a06dafb7323c156",
+        "display_name": "Show Sales by Region",
+        "targets_page": "59abe44383d7232985f7"
+      }
+    ],
+    "theme": "CY24SU02"
+  },
+  "power_query": {
+    "available": false,
+    "queries": [],
+    "sources": []
+  },
+  "dax_dependency_graph": {
+    "edges": {},
+    "circular_references": [],
+    "base_measures": [],
+    "top_level_measures": []
+  },
+  "measure_usage": {
+    "Unique Products Sold": [
+      {
+        "page": "Dashboard",
+        "visual": "Unique Products Sold",
+        "visual_type": "card"
+      }
+    ],
+    "Total Units Sold": [
+      {
+        "page": "Dashboard",
+        "visual": "Total Units Sold",
+        "visual_type": "card"
+      },
+      {
+        "page": "Salesperson Drillthru",
+        "visual": "cae35f6e706b3182dcb8",
+        "visual_type": "pivotTable"
+      },
+      {
+        "page": "Salesperson Drillthru",
+        "visual": "Total Units Sold",
+        "visual_type": "card"
+      }
+    ],
+    "Total Sales": [
+      {
+        "page": "Dashboard",
+        "visual": "Total Sales",
+        "visual_type": "card"
+      },
+      {
+        "page": "Dashboard",
+        "visual": "Total Sales and Sales Growth Rate by Month",
+        "visual_type": "lineStackedColumnComboChart"
+      },
+      {
+        "page": "Dashboard",
+        "visual": "Sales Distribution by Product Category",
+        "visual_type": "donutChart"
+      },
+      {
+        "page": "Dashboard",
+        "visual": "Total Sales by Product",
+        "visual_type": "barChart"
+      },
+      {
+        "page": "Dashboard",
+        "visual": "Top 10 Salespersons by Total Sales",
+        "visual_type": "barChart"
+      },
+      {
+        "page": "Dashboard",
+        "visual": "Total Sales by Region",
+        "visual_type": "clusteredBarChart"
+      },
+      {
+        "page": "Salesperson Drillthru",
+        "visual": "cae35f6e706b3182dcb8",
+        "visual_type": "pivotTable"
+      },
+      {
+        "page": "Salesperson Drillthru",
+        "visual": "6c6d4f9d865b33f3a397",
+        "visual_type": "columnChart"
+      },
+      {
+        "page": "Salesperson Drillthru",
+        "visual": "Total Sales",
+        "visual_type": "card"
+      },
+      {
+        "page": "Country Sales TT",
+        "visual": "d78e5844e6fd052a0e1a",
+        "visual_type": "pieChart"
+      }
+    ],
+    "AvgSalesPerProduct": [
+      {
+        "page": "Dashboard",
+        "visual": "Average Sales Per Product",
+        "visual_type": "card"
+      },
+      {
+        "page": "Salesperson Drillthru",
+        "visual": "Average Sales Per Product",
+        "visual_type": "card"
+      }
+    ],
+    "SalesGrowth": [
+      {
+        "page": "Dashboard",
+        "visual": "Total Sales and Sales Growth Rate by Month",
+        "visual_type": "lineStackedColumnComboChart"
+      }
+    ],
+    "Best Selling Product": [
+      {
+        "page": "Salesperson Drillthru",
+        "visual": "Best Selling Product",
+        "visual_type": "card"
+      }
+    ],
+    "Best FY": [
+      {
+        "page": "Salesperson Drillthru",
+        "visual": "Best Fiscal Year",
+        "visual_type": "card"
+      }
+    ]
+  },
+  "analysis": {
+    "unused_measures": [],
+    "measures_referenced_but_not_defined": [],
+    "role_playing_dimensions": [],
+    "circular_references": []
+  },
+  "findings": [
+    {
+      "severity": "info",
+      "category": "coverage",
+      "message": "Model layer not extracted \u2014 source was a .pbix, whose DataModel part is compressed and unreadable offline. Report and Power Query layers were extracted normally.",
+      "detail": []
+    },
+    {
+      "severity": "warning",
+      "category": "report",
+      "message": "2 implicit aggregation(s) used in visuals (a raw column summarised in the visual rather than an explicit measure). These carry business logic that lives outside the model.",
+      "detail": []
+    }
+  ]
+}

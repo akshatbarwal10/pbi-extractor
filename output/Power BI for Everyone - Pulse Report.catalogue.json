@@ -1,0 +1,2553 @@
+{
+  "contract_version": "catalogue.v1",
+  "source": {
+    "file": "Power BI for Everyone - Pulse Report.pbit",
+    "path": "C:\\Users\\abarwal002\\Documents\\Power BI for Everyone - Pulse Report.pbit",
+    "sha256": "5e8c084f1a539e84ca382a2b236da243017909117de032e08bf40e646058a3b4",
+    "size_bytes": 245574,
+    "extracted_at": "2026-09-25T04:26:51.510319+00:00",
+    "extraction_tier": "full_model",
+    "model_available": true,
+    "warnings": [
+      "No Report/Layout part found \u2014 report layer will be empty."
+    ]
+  },
+  "statistics": {
+    "tables": 4,
+    "columns": 26,
+    "calculated_columns": 2,
+    "measures": 52,
+    "relationships": 2,
+    "inactive_relationships": 0,
+    "bidirectional_relationships": 0,
+    "rls_roles": 0,
+    "calculation_groups": 0,
+    "pages": 0,
+    "visuals": 0,
+    "m_queries": 0,
+    "unused_measures": 26
+  },
+  "model": {
+    "available": true,
+    "culture": "en-US",
+    "tables": [
+      {
+        "name": "_Measures",
+        "is_hidden": true,
+        "description": null,
+        "columns": [
+          {
+            "name": "Column1",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 43,
+        "partitions": [
+          {
+            "name": "_Measures",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let\n    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),\n    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}})\nin\n    #\"Changed Type\""
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "dim_customer",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "customer_id",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "name",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "segment",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "city_nm",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "country_cd",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "signup_dt",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "Short Date",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "dim_customer",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let\n\tSource = PostgreSQL.Database(\"ep-cool-mode-b305a5b7.c-4.ap-southeast-1.aws.neon.tech\", \"foundry\"),\n\tNavigationTable = Source{[Schema=\"demo\",Item=\"dim_customer\"]}[Data]\nin\n\tNavigationTable"
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "fct_invoice",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "invoice_id",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "customer_id",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "invoice_dt",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "Short Date",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "amt_net_bkd",
+            "data_type": "double",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "#,0.00",
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "amt_tax",
+            "data_type": "double",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "#,0.00",
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "balance_due",
+            "data_type": "double",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "#,0.00",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "paid_flg",
+            "data_type": "boolean",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": null,
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 4,
+        "partitions": [
+          {
+            "name": "fct_invoice",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let\n\tSource = PostgreSQL.Database(\"ep-cool-mode-b305a5b7.c-4.ap-southeast-1.aws.neon.tech\", \"foundry\"),\n\tNavigationTable = Source{[Schema=\"demo\",Item=\"fct_invoice\"]}[Data]\nin\n\tNavigationTable"
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "fct_order_line",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "order_line_id",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "order_id",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "customer_id",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "product_id",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "order_dt",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "Short Date",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "qty_ordered",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "amt_net_bkd",
+            "data_type": "double",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "#,0.00",
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "amt_discount",
+            "data_type": "double",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "#,0.00",
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "margin_pct",
+            "data_type": "double",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0.00",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "status_cd",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Year",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "YEAR('fct_order_line'[order_dt])",
+            "is_hidden": false,
+            "format_string": "0",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "fct_order_line",
+                    "column": "order_dt"
+                  }
+                ],
+                "tables": [
+                  "fct_order_line"
+                ]
+              },
+              "functions": [
+                "YEAR"
+              ],
+              "patterns": [],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": []
+            }
+          },
+          {
+            "name": "Month Start",
+            "data_type": "dateTime",
+            "type": "calculated",
+            "expression": "DATE(YEAR('fct_order_line'[order_dt]), MONTH('fct_order_line'[order_dt]), 1)",
+            "is_hidden": false,
+            "format_string": "mmm yyyy",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "fct_order_line",
+                    "column": "order_dt"
+                  }
+                ],
+                "tables": [
+                  "fct_order_line"
+                ]
+              },
+              "functions": [
+                "DATE",
+                "MONTH",
+                "YEAR"
+              ],
+              "patterns": [],
+              "variables": [],
+              "complexity": "moderate",
+              "confidence": "high",
+              "notes": []
+            }
+          }
+        ],
+        "measure_count": 5,
+        "partitions": [
+          {
+            "name": "fct_order_line",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let\n\tSource = PostgreSQL.Database(\"ep-cool-mode-b305a5b7.c-4.ap-southeast-1.aws.neon.tech\", \"foundry\"),\n\tNavigationTable = Source{[Schema=\"demo\",Item=\"fct_order_line\"]}[Data]\nin\n\tNavigationTable"
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      }
+    ],
+    "measures": [
+      {
+        "name": "Units YTD",
+        "table": "_Measures",
+        "expression": "TOTALYTD ( [Units], DimDate[Date] )",
+        "format_string": "0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Units"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "TOTALYTD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Units",
+        "table": "_Measures",
+        "expression": "SUM ( FactSales[Quantity] )",
+        "format_string": "0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "Quantity"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Tax Amount",
+        "table": "_Measures",
+        "expression": "SUM ( FactSales[TaxAmount] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "TaxAmount"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue YTD Rank (Product)",
+        "table": "_Measures",
+        "expression": "RANKX (\n        ALLSELECTED ( DimProduct[ProductName] ),\n        [Revenue YTD],\n        ,\n        DESC,\n        DENSE\n    )",
+        "format_string": "0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue YTD"
+            ],
+            "columns": [
+              {
+                "table": "DimProduct",
+                "column": "ProductName"
+              }
+            ],
+            "tables": [
+              "DimProduct"
+            ]
+          },
+          "functions": [
+            "ALLSELECTED",
+            "RANKX"
+          ],
+          "patterns": [
+            "ranking",
+            "percent_of_total_candidate",
+            "iterator",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue YTD Rank (Customer)",
+        "table": "_Measures",
+        "expression": "RANKX (\n        ALLSELECTED ( DimCustomer[CustomerName] ),\n        [Revenue YTD],\n        ,\n        DESC,\n        DENSE\n    )",
+        "format_string": "0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue YTD"
+            ],
+            "columns": [
+              {
+                "table": "DimCustomer",
+                "column": "CustomerName"
+              }
+            ],
+            "tables": [
+              "DimCustomer"
+            ]
+          },
+          "functions": [
+            "ALLSELECTED",
+            "RANKX"
+          ],
+          "patterns": [
+            "ranking",
+            "percent_of_total_candidate",
+            "iterator",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue YTD",
+        "table": "_Measures",
+        "expression": "TOTALYTD ( [Revenue], DimDate[Date] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "TOTALYTD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue YoY \u0394",
+        "table": "_Measures",
+        "expression": "[Revenue] - [Revenue LY]",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue",
+              "Revenue LY"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue YoY %",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue YoY \u0394], [Revenue LY] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue LY",
+              "Revenue YoY \u0394"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue Var vs Target YTD",
+        "table": "_Measures",
+        "expression": "[Revenue YTD] - [Target YTD]",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue YTD",
+              "Target YTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": [
+            "References not matched to a known measure (may be columns or variables): Target YTD"
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue Var vs Target QTD",
+        "table": "_Measures",
+        "expression": "[Revenue QTD] - [Target QTD]",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue QTD",
+              "Target QTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": [
+            "References not matched to a known measure (may be columns or variables): Target QTD"
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue Var vs Target MTD",
+        "table": "_Measures",
+        "expression": "[Revenue MTD] - [Target MTD]",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue MTD",
+              "Target MTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": [
+            "References not matched to a known measure (may be columns or variables): Target MTD"
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue Var vs Target",
+        "table": "_Measures",
+        "expression": "[Revenue] - FactTargets[Target]",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue"
+            ],
+            "columns": [
+              {
+                "table": "FactTargets",
+                "column": "Target"
+              }
+            ],
+            "tables": [
+              "FactTargets"
+            ]
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue Var % vs Target YTD",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue Var vs Target YTD], [Target YTD] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue Var vs Target YTD",
+              "Target YTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [
+            "vs"
+          ],
+          "complexity": "simple",
+          "confidence": "medium",
+          "notes": [
+            "Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis.",
+            "References not matched to a known measure (may be columns or variables): Target YTD"
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue Var % vs Target QTD",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue Var vs Target QTD], [Target QTD] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue Var vs Target QTD",
+              "Target QTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [
+            "vs"
+          ],
+          "complexity": "simple",
+          "confidence": "medium",
+          "notes": [
+            "Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis.",
+            "References not matched to a known measure (may be columns or variables): Target QTD"
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue Var % vs Target MTD",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue Var vs Target MTD], [Target MTD] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue Var vs Target MTD",
+              "Target MTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [
+            "vs"
+          ],
+          "complexity": "simple",
+          "confidence": "medium",
+          "notes": [
+            "Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis.",
+            "References not matched to a known measure (may be columns or variables): Target MTD"
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue Var % vs Target",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue Var vs Target], FactTargets[Target] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue Var vs Target"
+            ],
+            "columns": [
+              {
+                "table": "FactTargets",
+                "column": "Target"
+              }
+            ],
+            "tables": [
+              "FactTargets"
+            ]
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [
+            "vs"
+          ],
+          "complexity": "simple",
+          "confidence": "medium",
+          "notes": [
+            "Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis."
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue QTD",
+        "table": "_Measures",
+        "expression": "TOTALQTD ( [Revenue], DimDate[Date] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "TOTALQTD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue PM",
+        "table": "_Measures",
+        "expression": "CALCULATE ( [Revenue], PARALLELPERIOD ( DimDate[Date], -1, MONTH ) )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "CALCULATE",
+            "PARALLELPERIOD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "filtered_aggregation",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue MTD",
+        "table": "_Measures",
+        "expression": "TOTALMTD ( [Revenue], DimDate[Date] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "TOTALMTD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue MoM \u0394",
+        "table": "_Measures",
+        "expression": "[Revenue] - [Revenue PM]",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue",
+              "Revenue PM"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue MoM %",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue MoM \u0394], [Revenue PM] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue MoM \u0394",
+              "Revenue PM"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue LY",
+        "table": "_Measures",
+        "expression": "CALCULATE ( [Revenue], DATEADD ( DimDate[Date], -1, YEAR ) )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "CALCULATE",
+            "DATEADD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "filtered_aggregation",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue LTM YoY %",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue LTM] - [Revenue LTM LY], [Revenue LTM LY] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue LTM",
+              "Revenue LTM LY"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": [
+            "References not matched to a known measure (may be columns or variables): Revenue LTM LY"
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue LTM",
+        "table": "_Measures",
+        "expression": "CALCULATE (\n        [Revenue],\n        DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -12, MONTH )\n    )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "CALCULATE",
+            "DATESINPERIOD",
+            "MAX"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "filtered_aggregation"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue",
+        "table": "_Measures",
+        "expression": "SUM ( FactSales[SalesAmount] )",
+        "format_string": "\\$#,0;(\\$#,0);\\$#,0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "SalesAmount"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Gross Profit YTD",
+        "table": "_Measures",
+        "expression": "TOTALYTD ( [Gross Profit], DimDate[Date] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Gross Profit"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "TOTALYTD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Gross Profit YoY %",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Gross Profit] - [Gross Profit LY], [Gross Profit LY] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Gross Profit",
+              "Gross Profit LY"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Gross Profit MTD",
+        "table": "_Measures",
+        "expression": "TOTALMTD ( [Gross Profit], DimDate[Date] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Gross Profit"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "TOTALMTD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Gross Profit LY",
+        "table": "_Measures",
+        "expression": "CALCULATE ( [Gross Profit], DATEADD ( DimDate[Date], -1, YEAR ) )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Gross Profit"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "CALCULATE",
+            "DATEADD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "filtered_aggregation",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Gross Profit",
+        "table": "_Measures",
+        "expression": "[Revenue] - [COGS]",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "COGS",
+              "Revenue"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Gross Margin % YTD",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Gross Profit YTD], [Revenue YTD] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Gross Profit YTD",
+              "Revenue YTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Gross Margin % MTD",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Gross Profit MTD], [Revenue MTD] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Gross Profit MTD",
+              "Revenue MTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Gross Margin %",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Gross Profit], [Revenue] )",
+        "format_string": "0.00%;-0.00%;0.00%",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Gross Profit",
+              "Revenue"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Discount Amount",
+        "table": "_Measures",
+        "expression": "SUM ( FactSales[DiscountAmount] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "DiscountAmount"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Discount %",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Discount Amount], [Revenue] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Discount Amount",
+              "Revenue"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "COGS",
+        "table": "_Measures",
+        "expression": "SUM ( FactSales[CostAmount] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "FactSales",
+                "column": "CostAmount"
+              }
+            ],
+            "tables": [
+              "FactSales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "ASP YTD",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue YTD], [Units YTD] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue YTD",
+              "Units YTD"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "ASP",
+        "table": "_Measures",
+        "expression": "DIVIDE ( [Revenue], [Units] )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue",
+              "Units"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "MaxY",
+        "table": "_Measures",
+        "expression": "MAX([Revenue])* 1.5",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "MAX"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "CR MEMO",
+        "table": "_Measures",
+        "expression": "DIVIDE(COUNTROWS(FactSales) , 1.34)",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "COUNTROWS",
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Revenue CY vs Revenue LY %",
+        "table": "_Measures",
+        "expression": "VAR Result = DIVIDE ( [Revenue] - [Revenue LY], [Revenue LY] )\nRETURN\n    IF (\n        Result > 0,\n        \"\u25b2 \" & FORMAT ( Result, \"0.0%\" ),\n        IF (\n            Result < 0,\n            \"\u25bc \" & FORMAT ( Result, \"0.0%\" ),\n            FORMAT ( Result, \"0.0%\" )\n        )\n    )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Revenue",
+              "Revenue LY"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE",
+            "FORMAT"
+          ],
+          "patterns": [
+            "ratio",
+            "conditional_logic",
+            "composed_from_measures"
+          ],
+          "variables": [
+            "Result"
+          ],
+          "complexity": "moderate",
+          "confidence": "medium",
+          "notes": [
+            "Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis."
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Units LY",
+        "table": "_Measures",
+        "expression": "CALCULATE ( [Units], DATEADD ( DimDate[Date], -1, YEAR ) )",
+        "format_string": "0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Units"
+            ],
+            "columns": [
+              {
+                "table": "DimDate",
+                "column": "Date"
+              }
+            ],
+            "tables": [
+              "DimDate"
+            ]
+          },
+          "functions": [
+            "CALCULATE",
+            "DATEADD"
+          ],
+          "patterns": [
+            "time_intelligence",
+            "filtered_aggregation",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Units CY vs Units LY %",
+        "table": "_Measures",
+        "expression": "VAR Result = DIVIDE ( [Units] - [Units LY], [Units LY] )\nRETURN\n    IF (\n        Result > 0,\n        \"\u25b2 \" & FORMAT ( Result, \"0.0%\" ),\n        IF (\n            Result < 0,\n            \"\u25bc \" & FORMAT ( Result, \"0.0%\" ),\n            FORMAT ( Result, \"0.0%\" )\n        )\n    )",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Units",
+              "Units LY"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE",
+            "FORMAT"
+          ],
+          "patterns": [
+            "ratio",
+            "conditional_logic",
+            "composed_from_measures"
+          ],
+          "variables": [
+            "Result"
+          ],
+          "complexity": "moderate",
+          "confidence": "medium",
+          "notes": [
+            "Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis."
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Amt Net Bkd (Invoice)",
+        "table": "fct_invoice",
+        "expression": "SUM('fct_invoice'[amt_net_bkd])",
+        "format_string": "#,0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "fct_invoice",
+                "column": "amt_net_bkd"
+              }
+            ],
+            "tables": [
+              "fct_invoice"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Amt Tax",
+        "table": "fct_invoice",
+        "expression": "SUM('fct_invoice'[amt_tax])",
+        "format_string": "#,0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "fct_invoice",
+                "column": "amt_tax"
+              }
+            ],
+            "tables": [
+              "fct_invoice"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Count Invoice",
+        "table": "fct_invoice",
+        "expression": "COUNTROWS('fct_invoice')",
+        "format_string": "#,0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "COUNTROWS"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Tax Rate",
+        "table": "fct_invoice",
+        "expression": "DIVIDE([Amt Tax], [Amt Net Bkd (Invoice)])",
+        "format_string": "0.0%",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Amt Net Bkd (Invoice)",
+              "Amt Tax"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Amt Discount",
+        "table": "fct_order_line",
+        "expression": "SUM('fct_order_line'[amt_discount])",
+        "format_string": "#,0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "fct_order_line",
+                "column": "amt_discount"
+              }
+            ],
+            "tables": [
+              "fct_order_line"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Amt Net Bkd (Order Line)",
+        "table": "fct_order_line",
+        "expression": "SUM('fct_order_line'[amt_net_bkd])",
+        "format_string": "#,0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "fct_order_line",
+                "column": "amt_net_bkd"
+              }
+            ],
+            "tables": [
+              "fct_order_line"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Count Order Line",
+        "table": "fct_order_line",
+        "expression": "COUNTROWS('fct_order_line')",
+        "format_string": "#,0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "COUNTROWS"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Discount Rate",
+        "table": "fct_order_line",
+        "expression": "DIVIDE([Amt Discount], [Amt Net Bkd (Order Line)])",
+        "format_string": "0.0%",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Amt Discount",
+              "Amt Net Bkd (Order Line)"
+            ],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Margin Pct",
+        "table": "fct_order_line",
+        "expression": "AVERAGE('fct_order_line'[margin_pct])",
+        "format_string": "#,0.00",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "fct_order_line",
+                "column": "margin_pct"
+              }
+            ],
+            "tables": [
+              "fct_order_line"
+            ]
+          },
+          "functions": [
+            "AVERAGE"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      }
+    ],
+    "relationships": [
+      {
+        "name": "9d5f1c09-9968-5743-ac15-809a6b5443c6",
+        "from_table": "fct_invoice",
+        "from_column": "customer_id",
+        "to_table": "dim_customer",
+        "to_column": "customer_id",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      },
+      {
+        "name": "8aec4059-7f19-5520-864e-78b1a1ac3af1",
+        "from_table": "fct_order_line",
+        "from_column": "customer_id",
+        "to_table": "dim_customer",
+        "to_column": "customer_id",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      }
+    ],
+    "roles": [],
+    "calculation_groups": []
+  },
+  "report": {
+    "available": false,
+    "pages": [],
+    "report_filters": [],
+    "bookmarks": [],
+    "theme": null,
+    "page_count": 0,
+    "visual_count": 0
+  },
+  "power_query": {
+    "available": false,
+    "queries": [],
+    "sources": []
+  },
+  "dax_dependency_graph": {
+    "edges": {
+      "Units YTD": [
+        "Units"
+      ],
+      "Units": [],
+      "Tax Amount": [],
+      "Revenue YTD Rank (Product)": [
+        "Revenue YTD"
+      ],
+      "Revenue YTD Rank (Customer)": [
+        "Revenue YTD"
+      ],
+      "Revenue YTD": [
+        "Revenue"
+      ],
+      "Revenue YoY \u0394": [
+        "Revenue",
+        "Revenue LY"
+      ],
+      "Revenue YoY %": [
+        "Revenue LY",
+        "Revenue YoY \u0394"
+      ],
+      "Revenue Var vs Target YTD": [
+        "Revenue YTD"
+      ],
+      "Revenue Var vs Target QTD": [
+        "Revenue QTD"
+      ],
+      "Revenue Var vs Target MTD": [
+        "Revenue MTD"
+      ],
+      "Revenue Var vs Target": [
+        "Revenue"
+      ],
+      "Revenue Var % vs Target YTD": [
+        "Revenue Var vs Target YTD"
+      ],
+      "Revenue Var % vs Target QTD": [
+        "Revenue Var vs Target QTD"
+      ],
+      "Revenue Var % vs Target MTD": [
+        "Revenue Var vs Target MTD"
+      ],
+      "Revenue Var % vs Target": [
+        "Revenue Var vs Target"
+      ],
+      "Revenue QTD": [
+        "Revenue"
+      ],
+      "Revenue PM": [
+        "Revenue"
+      ],
+      "Revenue MTD": [
+        "Revenue"
+      ],
+      "Revenue MoM \u0394": [
+        "Revenue",
+        "Revenue PM"
+      ],
+      "Revenue MoM %": [
+        "Revenue MoM \u0394",
+        "Revenue PM"
+      ],
+      "Revenue LY": [
+        "Revenue"
+      ],
+      "Revenue LTM YoY %": [
+        "Revenue LTM"
+      ],
+      "Revenue LTM": [
+        "Revenue"
+      ],
+      "Revenue": [],
+      "Gross Profit YTD": [
+        "Gross Profit"
+      ],
+      "Gross Profit YoY %": [
+        "Gross Profit",
+        "Gross Profit LY"
+      ],
+      "Gross Profit MTD": [
+        "Gross Profit"
+      ],
+      "Gross Profit LY": [
+        "Gross Profit"
+      ],
+      "Gross Profit": [
+        "COGS",
+        "Revenue"
+      ],
+      "Gross Margin % YTD": [
+        "Gross Profit YTD",
+        "Revenue YTD"
+      ],
+      "Gross Margin % MTD": [
+        "Gross Profit MTD",
+        "Revenue MTD"
+      ],
+      "Gross Margin %": [
+        "Gross Profit",
+        "Revenue"
+      ],
+      "Discount Amount": [],
+      "Discount %": [
+        "Discount Amount",
+        "Revenue"
+      ],
+      "COGS": [],
+      "ASP YTD": [
+        "Revenue YTD",
+        "Units YTD"
+      ],
+      "ASP": [
+        "Revenue",
+        "Units"
+      ],
+      "MaxY": [
+        "Revenue"
+      ],
+      "CR MEMO": [],
+      "Revenue CY vs Revenue LY %": [
+        "Revenue",
+        "Revenue LY"
+      ],
+      "Units LY": [
+        "Units"
+      ],
+      "Units CY vs Units LY %": [
+        "Units",
+        "Units LY"
+      ],
+      "Amt Net Bkd (Invoice)": [],
+      "Amt Tax": [],
+      "Count Invoice": [],
+      "Tax Rate": [
+        "Amt Net Bkd (Invoice)",
+        "Amt Tax"
+      ],
+      "Amt Discount": [],
+      "Amt Net Bkd (Order Line)": [],
+      "Count Order Line": [],
+      "Discount Rate": [
+        "Amt Discount",
+        "Amt Net Bkd (Order Line)"
+      ],
+      "Margin Pct": []
+    },
+    "circular_references": [],
+    "base_measures": [
+      "Amt Discount",
+      "Amt Net Bkd (Invoice)",
+      "Amt Net Bkd (Order Line)",
+      "Amt Tax",
+      "COGS",
+      "CR MEMO",
+      "Count Invoice",
+      "Count Order Line",
+      "Discount Amount",
+      "Margin Pct",
+      "Revenue",
+      "Tax Amount",
+      "Units"
+    ],
+    "top_level_measures": [
+      "ASP",
+      "ASP YTD",
+      "CR MEMO",
+      "Count Invoice",
+      "Count Order Line",
+      "Discount %",
+      "Discount Rate",
+      "Gross Margin %",
+      "Gross Margin % MTD",
+      "Gross Margin % YTD",
+      "Gross Profit YoY %",
+      "Margin Pct",
+      "MaxY",
+      "Revenue CY vs Revenue LY %",
+      "Revenue LTM YoY %",
+      "Revenue MoM %",
+      "Revenue Var % vs Target",
+      "Revenue Var % vs Target MTD",
+      "Revenue Var % vs Target QTD",
+      "Revenue Var % vs Target YTD",
+      "Revenue YTD Rank (Customer)",
+      "Revenue YTD Rank (Product)",
+      "Revenue YoY %",
+      "Tax Amount",
+      "Tax Rate",
+      "Units CY vs Units LY %"
+    ]
+  },
+  "measure_usage": {},
+  "analysis": {
+    "unused_measures": [
+      "ASP",
+      "ASP YTD",
+      "CR MEMO",
+      "Count Invoice",
+      "Count Order Line",
+      "Discount %",
+      "Discount Rate",
+      "Gross Margin %",
+      "Gross Margin % MTD",
+      "Gross Margin % YTD",
+      "Gross Profit YoY %",
+      "Margin Pct",
+      "MaxY",
+      "Revenue CY vs Revenue LY %",
+      "Revenue LTM YoY %",
+      "Revenue MoM %",
+      "Revenue Var % vs Target",
+      "Revenue Var % vs Target MTD",
+      "Revenue Var % vs Target QTD",
+      "Revenue Var % vs Target YTD",
+      "Revenue YTD Rank (Customer)",
+      "Revenue YTD Rank (Product)",
+      "Revenue YoY %",
+      "Tax Amount",
+      "Tax Rate",
+      "Units CY vs Units LY %"
+    ],
+    "measures_referenced_but_not_defined": [],
+    "role_playing_dimensions": [],
+    "circular_references": []
+  },
+  "findings": [
+    {
+      "severity": "info",
+      "category": "hygiene",
+      "message": "26 measure(s) are not used by any visual and are not a dependency of another measure.",
+      "detail": [
+        "ASP",
+        "ASP YTD",
+        "CR MEMO",
+        "Count Invoice",
+        "Count Order Line",
+        "Discount %",
+        "Discount Rate",
+        "Gross Margin %",
+        "Gross Margin % MTD",
+        "Gross Margin % YTD",
+        "Gross Profit YoY %",
+        "Margin Pct",
+        "MaxY",
+        "Revenue CY vs Revenue LY %",
+        "Revenue LTM YoY %",
+        "Revenue MoM %",
+        "Revenue Var % vs Target",
+        "Revenue Var % vs Target MTD",
+        "Revenue Var % vs Target QTD",
+        "Revenue Var % vs Target YTD",
+        "Revenue YTD Rank (Customer)",
+        "Revenue YTD Rank (Product)",
+        "Revenue YoY %",
+        "Tax Amount",
+        "Tax Rate"
+      ]
+    }
+  ]
+}

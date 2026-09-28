@@ -1,0 +1,103 @@
+{
+  "measure_library": [
+    {
+      "name": "Total Sales",
+      "dax": "SUM('{fact_table}'[NetAmount])",
+      "original_dax": "SUM(FactSales[NetAmount])",
+      "format_string": "#,0",
+      "display_folder": "Core",
+      "patterns": [
+        "simple_aggregation"
+      ],
+      "complexity": "simple",
+      "usage_count": 3,
+      "source_table": "FactSales"
+    },
+    {
+      "name": "Margin %",
+      "dax": "DIVIDE([Total Sales] - [Total Cost], [Total Sales])",
+      "original_dax": "DIVIDE([Total Sales] - [Total Cost], [Total Sales])",
+      "format_string": "0.00%",
+      "display_folder": "Profitability",
+      "patterns": [
+        "ratio",
+        "composed_from_measures"
+      ],
+      "complexity": "simple",
+      "usage_count": 1,
+      "source_table": "FactSales"
+    },
+    {
+      "name": "Product Rank",
+      "dax": "RANKX(ALL(DimProduct[ProductName]), [Total Sales], , DESC)",
+      "original_dax": "RANKX(ALL(DimProduct[ProductName]), [Total Sales], , DESC)",
+      "format_string": null,
+      "display_folder": "Analysis",
+      "patterns": [
+        "ranking",
+        "percent_of_total_candidate",
+        "iterator",
+        "composed_from_measures"
+      ],
+      "complexity": "simple",
+      "usage_count": 1,
+      "source_table": "FactSales"
+    },
+    {
+      "name": "Sales YTD",
+      "dax": "TOTALYTD([Total Sales], '{date_table}'[Date])",
+      "original_dax": "TOTALYTD([Total Sales], DimDate[Date])",
+      "format_string": null,
+      "display_folder": "Time Intelligence",
+      "patterns": [
+        "time_intelligence",
+        "composed_from_measures"
+      ],
+      "complexity": "simple",
+      "usage_count": 1,
+      "source_table": "FactSales"
+    },
+    {
+      "name": "Top Product Share",
+      "dax": "VAR TopProduct = TOPN(1, VALUES(DimProduct[ProductName]), [Total Sales])\nVAR TopValue = CALCULATE([Total Sales], TopProduct)\nVAR AllValue = CALCULATE([Total Sales], ALL(DimProduct))\nRETURN DIVIDE(TopValue, AllValue)",
+      "original_dax": "VAR TopProduct = TOPN(1, VALUES(DimProduct[ProductName]), [Total Sales])\nVAR TopValue = CALCULATE([Total Sales], TopProduct)\nVAR AllValue = CALCULATE([Total Sales], ALL(DimProduct))\nRETURN DIVIDE(TopValue, AllValue)",
+      "format_string": null,
+      "display_folder": "Analysis",
+      "patterns": [
+        "ratio",
+        "ranking",
+        "filtered_aggregation",
+        "percent_of_total_candidate",
+        "composed_from_measures"
+      ],
+      "complexity": "moderate",
+      "usage_count": 1,
+      "source_table": "FactSales"
+    },
+    {
+      "name": "Total Cost",
+      "dax": "SUM('{fact_table}'[Cost])",
+      "original_dax": "SUM(FactSales[Cost])",
+      "format_string": null,
+      "display_folder": "Core",
+      "patterns": [
+        "simple_aggregation"
+      ],
+      "complexity": "simple",
+      "usage_count": 0,
+      "source_table": "FactSales"
+    }
+  ],
+  "harvested_from": "SalesAnalytics.pbit",
+  "pattern_summary": {
+    "composed_from_measures": 4,
+    "simple_aggregation": 2,
+    "ratio": 2,
+    "ranking": 2,
+    "percent_of_total_candidate": 2,
+    "iterator": 1,
+    "time_intelligence": 1,
+    "filtered_aggregation": 1
+  },
+  "note": "Candidate library harvested from measures in active use. Review before promoting into standards.yaml \u2014 placeholders {fact_table} and {date_table} were substituted heuristically and should be checked."
+}

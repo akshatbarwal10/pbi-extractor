@@ -27,6 +27,13 @@ Recognised keys:
 
     PBIX_LLM_BATCH_SIZE measures per request (default 8)
     PBIX_EXPLAIN        set to 0/false to disable explanations entirely
+
+    # optional: recovering a .pbix's model via a local pbi-tools install
+    # (see pbix_converter.py). Off by default only in the sense that it
+    # requires pbi-tools to actually be present on this machine.
+    PBIX_PBITOOLS_PATH     full path to pbi-tools(.exe), if not on PATH
+    PBIX_PBITOOLS_TIMEOUT  seconds to allow the decompile (default 300)
+    PBIX_PBITOOLS_ENABLED  set to 0/false to disable even if installed
 """
 from __future__ import annotations
 

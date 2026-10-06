@@ -35,6 +35,7 @@ from typing import Any
 
 # Extraction tiers, in descending order of completeness.
 TIER_FULL_MODEL = "full_model"        # TMSL available (pbit / decompiled)
+TIER_FULL_MODEL_RECOVERED = "full_model_recovered"  # pbix, model recovered via pbi-tools
 TIER_REPORT_ONLY = "report_only"      # pbix: report + mashup, no model
 TIER_UNKNOWN = "unknown"
 
@@ -91,6 +92,14 @@ class PbixPackage:
     project_model: Any | None = None
     project_report: Any | None = None
 
+    # Populated only for a .pbix whose model was recovered via a local
+    # pbi-tools decompile (see pbix_converter.py). Independent of
+    # is_project: the report/mashup layers here still come from this
+    # package's own `parts` — pbix_converter never touches them, because
+    # they were already readable without it.
+    recovered_model: Any | None = None
+    recovery_error: str | None = None
+
     # ---- part accessors -------------------------------------------------
 
     def has(self, name: str) -> bool:
@@ -123,8 +132,10 @@ class PbixPackage:
         """TMSL model definition.
 
         Present in .pbit, absent in .pbix, and synthesised from TMDL for
-        a .pbip project.
+        a .pbip project — or, when pbi-tools recovered it, for a .pbix.
         """
+        if self.recovered_model is not None:
+            return self.recovered_model
         if self.is_project:
             return self.project_model
         for name in ("DataModelSchema", "DataModel/DataModelSchema"):
@@ -173,6 +184,27 @@ def open_package(path: str) -> PbixPackage:
             "either save it as a .pbit (File > Save as > Power BI template), "
             "connect via XMLA/DMV, or decompile with pbi-tools."
         )
+
+        # Optional: recover the model via a locally installed pbi-tools +
+        # Power BI Desktop. A no-op everywhere neither exists — this must
+        # never become a hard dependency for the common case.
+        from . import pbix_converter
+        if pbix_converter.available():
+            try:
+                pkg.recovered_model = pbix_converter.recover_model(path)
+                pkg.tier = TIER_FULL_MODEL_RECOVERED
+                pkg.warnings.append(
+                    "Model recovered from the .pbix via a local pbi-tools "
+                    "decompile (Power BI Desktop's own engine was used to read "
+                    "the compressed DataModel part). Treat the model layer "
+                    "below the same as one sourced from a .pbit."
+                )
+            except pbix_converter.ConversionError as e:
+                pkg.recovery_error = str(e)
+                pkg.warnings.append(
+                    f"pbi-tools was available and model recovery was attempted, "
+                    f"but failed: {e}"
+                )
     else:
         pkg.warnings.append(
             "No DataModel or DataModelSchema part found — this may be a "

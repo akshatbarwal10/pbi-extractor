@@ -1,6 +1,55 @@
 {
-  "source_system": "pbix:AkshatBarwal_Nov22_Usecase.pbit",
+  "source_system": "pbix:AkshatBarwal_Nov22_Usecase.pbix",
   "tables": [
+    {
+      "name": "Date",
+      "columns": [
+        {
+          "name": "Date",
+          "type": "nvarchar",
+          "key": true
+        },
+        {
+          "name": "Year",
+          "type": "nvarchar"
+        },
+        {
+          "name": "MonthNum",
+          "type": "nvarchar"
+        },
+        {
+          "name": "Month",
+          "type": "nvarchar"
+        },
+        {
+          "name": "FiscalYear",
+          "type": "nvarchar"
+        },
+        {
+          "name": "MonthYear",
+          "type": "nvarchar"
+        }
+      ]
+    },
+    {
+      "name": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
+      "columns": [
+        {
+          "name": "Date",
+          "type": "datetime",
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "MeasureTable",
+      "columns": [
+        {
+          "name": "Value",
+          "type": "nvarchar"
+        }
+      ]
+    },
     {
       "name": "Product",
       "columns": [
@@ -42,24 +91,6 @@
       ]
     },
     {
-      "name": "Salesperson",
-      "columns": [
-        {
-          "name": "SalespersonID",
-          "type": "int",
-          "key": true
-        },
-        {
-          "name": "Name",
-          "type": "nvarchar"
-        },
-        {
-          "name": "RegionID",
-          "type": "int"
-        }
-      ]
-    },
-    {
       "name": "Sales",
       "columns": [
         {
@@ -88,55 +119,24 @@
         },
         {
           "name": "Price",
-          "type": "int"
+          "type": "nvarchar"
         }
       ]
     },
     {
-      "name": "Date",
+      "name": "Salesperson",
       "columns": [
         {
-          "name": "Date",
-          "type": "datetime",
+          "name": "SalespersonID",
+          "type": "int",
           "key": true
         },
         {
-          "name": "Year",
-          "type": "int"
-        },
-        {
-          "name": "MonthNum",
-          "type": "int"
-        },
-        {
-          "name": "Month",
+          "name": "Name",
           "type": "nvarchar"
         },
         {
-          "name": "FiscalYear",
-          "type": "nvarchar"
-        },
-        {
-          "name": "MonthYear",
-          "type": "nvarchar"
-        }
-      ]
-    },
-    {
-      "name": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
-      "columns": [
-        {
-          "name": "Date",
-          "type": "datetime",
-          "key": true
-        }
-      ]
-    },
-    {
-      "name": "MeasureTable",
-      "columns": [
-        {
-          "name": "Value",
+          "name": "RegionID",
           "type": "int"
         }
       ]
@@ -186,10 +186,10 @@
       "is_active": true
     }
   ],
-  "report_intent": "Rebuild of 'AkshatBarwal_Nov22_Usecase.pbit'. Pages: Dashboard, Salesperson Drillthru, Country Sales TT, Salesperson TT.",
+  "report_intent": "Rebuild of 'AkshatBarwal_Nov22_Usecase.pbix'. Pages: Dashboard, Salesperson Drillthru, Country Sales TT, Salesperson TT.",
   "provenance": {
-    "extracted_from": "AkshatBarwal_Nov22_Usecase.pbit",
-    "sha256": "0a4888b1e50f8e34714c7ef8ab245610dd30dde338c22a9516e189897b6ce0d6",
+    "extracted_from": "AkshatBarwal_Nov22_Usecase.pbix",
+    "sha256": "6c94a64fd0877ed4dfb897559105e158c7be81b10f6712f6f96c5a007257ae42",
     "contract_version": "catalogue.v1"
   }
 }

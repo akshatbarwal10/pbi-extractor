@@ -18,7 +18,7 @@ from html import escape
 
 import streamlit as st
 
-from pbix_extractor import config, ui_service
+from pbix_extractor import config, pbix_converter, ui_service
 from pbix_extractor.container import PbixError
 
 st.set_page_config(
@@ -59,16 +59,29 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("### Accepted files")
-    st.markdown(
-        "- **`.pbit`** — full model\n"
-        "- **`.pbip`** (zip the project folder) — full model\n"
-        "- **`.pbix`** — report layer only"
-    )
-    st.caption(
-        "A `.pbix` stores its data model in a compressed format that cannot be "
-        "read outside Power BI, so no tool can recover measures from one "
-        "offline. Save as `.pbit` or use a `.pbip` project for full coverage."
-    )
+    if pbix_converter.available():
+        st.markdown(
+            "- **`.pbit`** — full model\n"
+            "- **`.pbip`** (zip the project folder) — full model\n"
+            "- **`.pbix`** — full model, recovered locally via pbi-tools"
+        )
+        st.caption(
+            "This deployment has pbi-tools + Power BI Desktop available, so a "
+            "`.pbix`'s compressed data model is decompiled locally before "
+            "extraction. Nothing leaves this machine to do it."
+        )
+    else:
+        st.markdown(
+            "- **`.pbit`** — full model\n"
+            "- **`.pbip`** (zip the project folder) — full model\n"
+            "- **`.pbix`** — report layer only"
+        )
+        st.caption(
+            "A `.pbix` stores its data model in a compressed format that cannot "
+            "be read outside Power BI, so no tool can recover measures from one "
+            "offline on this deployment. Save as `.pbit` or use a `.pbip` "
+            "project for full coverage."
+        )
 
     # Explanations are an operator setting, read from `.env` — reported
     # here so it is clear whether they are on, never editable in the browser.

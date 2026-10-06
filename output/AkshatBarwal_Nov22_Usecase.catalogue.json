@@ -2,38 +2,1666 @@
   "contract_version": "catalogue.v1",
   "source": {
     "file": "AkshatBarwal_Nov22_Usecase.pbix",
-    "path": "C:\\Users\\abarwal002\\Documents\\AkshatBarwal_Nov22_Usecase.pbix",
+    "path": "C:\\Users\\abarwal002\\Documents\\pbix-extractor\\pbi_files\\AkshatBarwal_Nov22_Usecase.pbix",
     "sha256": "6c94a64fd0877ed4dfb897559105e158c7be81b10f6712f6f96c5a007257ae42",
     "size_bytes": 268793,
-    "extracted_at": "2026-09-25T04:37:11.682976+00:00",
-    "extraction_tier": "report_only",
-    "model_available": false,
+    "extracted_at": "2026-10-06T07:05:24.194354+00:00",
+    "extraction_tier": "full_model_recovered",
+    "source_format": "pbix",
+    "model_available": true,
     "warnings": [
-      "This is a .pbix: the DataModel part is VertiPaq/Xpress9-compressed and cannot be read offline. Measures, relationships and column metadata are NOT available from this file. To extract the model, either save it as a .pbit (File > Save as > Power BI template), connect via XMLA/DMV, or decompile with pbi-tools."
+      "This is a .pbix: the DataModel part is VertiPaq/Xpress9-compressed and cannot be read offline. Measures, relationships and column metadata are NOT available from this file. To extract the model, either save it as a .pbit (File > Save as > Power BI template), connect via XMLA/DMV, or decompile with pbi-tools.",
+      "Model recovered from the .pbix via a local pbi-tools decompile (Power BI Desktop's own engine was used to read the compressed DataModel part). Treat the model layer below the same as one sourced from a .pbit."
     ]
   },
   "statistics": {
-    "tables": 0,
-    "columns": 0,
-    "calculated_columns": 0,
-    "measures": 0,
-    "relationships": 0,
-    "inactive_relationships": 0,
+    "tables": 8,
+    "columns": 38,
+    "calculated_columns": 18,
+    "measures": 10,
+    "relationships": 6,
+    "inactive_relationships": 1,
     "bidirectional_relationships": 0,
-    "rls_roles": 0,
+    "rls_roles": 2,
     "calculation_groups": 0,
     "pages": 4,
     "visuals": 45,
-    "m_queries": 0,
-    "unused_measures": 0
+    "m_queries": 8,
+    "unused_measures": 3
   },
   "model": {
-    "available": false,
-    "tables": [],
-    "measures": [],
-    "relationships": [],
-    "roles": [],
-    "calculation_groups": []
+    "available": true,
+    "culture": "en-US",
+    "tables": [
+      {
+        "name": "Date",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "Date",
+            "data_type": null,
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "General Date",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Year",
+            "data_type": null,
+            "type": "calculated",
+            "expression": "Year('Date'[Date])",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "Date",
+                    "column": "Date"
+                  }
+                ],
+                "tables": [
+                  "Date"
+                ]
+              },
+              "functions": [
+                "YEAR"
+              ],
+              "patterns": [],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": []
+            }
+          },
+          {
+            "name": "MonthNum",
+            "data_type": null,
+            "type": "calculated",
+            "expression": "MONTH('Date'[Date])",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "Date",
+                    "column": "Date"
+                  }
+                ],
+                "tables": [
+                  "Date"
+                ]
+              },
+              "functions": [
+                "MONTH"
+              ],
+              "patterns": [],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": []
+            }
+          },
+          {
+            "name": "Month",
+            "data_type": null,
+            "type": "calculated",
+            "expression": "FORMAT('Date'[Date], \"MMMM\")",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "Date",
+                    "column": "Date"
+                  }
+                ],
+                "tables": [
+                  "Date"
+                ]
+              },
+              "functions": [
+                "FORMAT"
+              ],
+              "patterns": [],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": []
+            }
+          },
+          {
+            "name": "FiscalYear",
+            "data_type": null,
+            "type": "calculated",
+            "expression": "\nVAR FiscYear = IF(MONTH('Date'[Date]) >=4, YEAR('Date'[Date]) + 1, YEAR('Date'[Date]))\nRETURN \"FY\" & RIGHT(FiscYear, 2)",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "Date",
+                    "column": "Date"
+                  }
+                ],
+                "tables": [
+                  "Date"
+                ]
+              },
+              "functions": [
+                "MONTH",
+                "RIGHT",
+                "YEAR"
+              ],
+              "patterns": [
+                "conditional_logic"
+              ],
+              "variables": [
+                "FiscYear"
+              ],
+              "complexity": "moderate",
+              "confidence": "medium",
+              "notes": [
+                "Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis."
+              ]
+            }
+          },
+          {
+            "name": "MonthYear",
+            "data_type": null,
+            "type": "calculated",
+            "expression": "FORMAT('Date'[Date], \"MMM YYYY\")",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "Date",
+                    "column": "Date"
+                  }
+                ],
+                "tables": [
+                  "Date"
+                ]
+              },
+              "functions": [
+                "FORMAT"
+              ],
+              "patterns": [],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": []
+            }
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "Date",
+            "mode": "import",
+            "source_type": "calculated",
+            "expression": "CALENDAR(MIN(Sales[Date]), MAX(Sales[Date]))"
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "DateTableTemplate_64d61e3a-bca9-4363-b2e5-3e5a2716f5f0",
+        "is_hidden": true,
+        "description": null,
+        "columns": [
+          {
+            "name": "Date",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Year",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "YEAR([Date])",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "Date"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "YEAR"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): Date"
+              ]
+            }
+          },
+          {
+            "name": "MonthNo",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "MONTH([Date])",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "Date"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "MONTH"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): Date"
+              ]
+            }
+          },
+          {
+            "name": "Month",
+            "data_type": "string",
+            "type": "calculated",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": "MonthNo",
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "Date"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "FORMAT"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): Date"
+              ]
+            }
+          },
+          {
+            "name": "QuarterNo",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "MonthNo"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "INT"
+              ],
+              "patterns": [
+                "ratio",
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): MonthNo"
+              ]
+            }
+          },
+          {
+            "name": "Quarter",
+            "data_type": "string",
+            "type": "calculated",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": "QuarterNo",
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "QuarterNo"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): QuarterNo"
+              ]
+            }
+          },
+          {
+            "name": "Day",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "DAY([Date])",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "Date"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "DAY"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): Date"
+              ]
+            }
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "DateTableTemplate_64d61e3a-bca9-4363-b2e5-3e5a2716f5f0",
+            "mode": "import",
+            "source_type": "calculated",
+            "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "ordinal": 3
+              }
+            ]
+          }
+        ],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
+        "is_hidden": true,
+        "description": null,
+        "columns": [
+          {
+            "name": "Date",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Year",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "YEAR([Date])",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "Date"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "YEAR"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): Date"
+              ]
+            }
+          },
+          {
+            "name": "MonthNo",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "MONTH([Date])",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "Date"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "MONTH"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): Date"
+              ]
+            }
+          },
+          {
+            "name": "Month",
+            "data_type": "string",
+            "type": "calculated",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": "MonthNo",
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "Date"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "FORMAT"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): Date"
+              ]
+            }
+          },
+          {
+            "name": "QuarterNo",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "MonthNo"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "INT"
+              ],
+              "patterns": [
+                "ratio",
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): MonthNo"
+              ]
+            }
+          },
+          {
+            "name": "Quarter",
+            "data_type": "string",
+            "type": "calculated",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": "QuarterNo",
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "QuarterNo"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): QuarterNo"
+              ]
+            }
+          },
+          {
+            "name": "Day",
+            "data_type": "int64",
+            "type": "calculated",
+            "expression": "DAY([Date])",
+            "is_hidden": true,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [
+                  "Date"
+                ],
+                "columns": [],
+                "tables": []
+              },
+              "functions": [
+                "DAY"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): Date"
+              ]
+            }
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
+            "mode": "import",
+            "source_type": "calculated",
+            "expression": "Calendar(Date(Year(MIN('Date'[Date])), 1, 1), Date(Year(MAX('Date'[Date])), 12, 31))"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "ordinal": 3
+              }
+            ]
+          }
+        ],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "MeasureTable",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "Value",
+            "data_type": null,
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 9,
+        "partitions": [
+          {
+            "name": "MeasureTable",
+            "mode": "import",
+            "source_type": "calculated",
+            "expression": "{BLANK()}"
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "Product",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "ProductID",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "ProductName",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Category",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Price",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "Product",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let\n    Source = Excel.Workbook(File.Contents(\"C:\\Users\\abarwal002\\OneDrive - PwC\\UseCaseData.xlsx\"), null, true),\n    Product_Sheet = Source{[Item=\"Product\",Kind=\"Sheet\"]}[Data],\n    #\"Promoted Headers\" = Table.PromoteHeaders(Product_Sheet, [PromoteAllScalars=true]),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"ProductID\", Int64.Type}, {\"ProductName\", type text}, {\"Category\", type text}, {\"Price\", Int64.Type}})\nin\n    #\"Changed Type\""
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "Region",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "RegionID",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "RegionName",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Country",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "Region",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let\n    Source = Excel.Workbook(File.Contents(\"C:\\Users\\abarwal002\\OneDrive - PwC\\UseCaseData.xlsx\"), null, true),\n    Region_Sheet = Source{[Item=\"Region\",Kind=\"Sheet\"]}[Data],\n    #\"Promoted Headers\" = Table.PromoteHeaders(Region_Sheet, [PromoteAllScalars=true]),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"RegionID\", Int64.Type}, {\"RegionName\", type text}, {\"Country\", type text}})\nin\n    #\"Changed Type\""
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "Sales",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "SalesID",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "count",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Date",
+            "data_type": "dateTime",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": "Long Date",
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "ProductID",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "RegionID",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "SalespersonID",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "QuantitySold",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Price",
+            "data_type": null,
+            "type": "calculated",
+            "expression": "RELATED('Product'[Price])",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "sum",
+            "sort_by_column": null,
+            "description": null,
+            "analysis": {
+              "references": {
+                "measures": [],
+                "columns": [
+                  {
+                    "table": "Product",
+                    "column": "Price"
+                  }
+                ],
+                "tables": [
+                  "Product"
+                ]
+              },
+              "functions": [
+                "RELATED"
+              ],
+              "patterns": [],
+              "variables": [],
+              "complexity": "simple",
+              "confidence": "high",
+              "notes": []
+            }
+          }
+        ],
+        "measure_count": 1,
+        "partitions": [
+          {
+            "name": "Sales",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let\n    Source = Excel.Workbook(File.Contents(\"C:\\Users\\abarwal002\\OneDrive - PwC\\UseCaseData.xlsx\"), null, true),\n    Sales_Sheet = Source{[Item=\"Sales\",Kind=\"Sheet\"]}[Data],\n    #\"Promoted Headers\" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"SalesID\", Int64.Type}, {\"Date\", type date}, {\"ProductID\", Int64.Type}, {\"RegionID\", Int64.Type}, {\"SalespersonID\", Int64.Type}, {\"QuantitySold\", Int64.Type}})\nin\n    #\"Changed Type\""
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      },
+      {
+        "name": "Salesperson",
+        "is_hidden": false,
+        "description": null,
+        "columns": [
+          {
+            "name": "SalespersonID",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "Name",
+            "data_type": "string",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": null,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          },
+          {
+            "name": "RegionID",
+            "data_type": "int64",
+            "type": "data",
+            "expression": "",
+            "is_hidden": false,
+            "format_string": 0,
+            "summarize_by": "none",
+            "sort_by_column": null,
+            "description": null
+          }
+        ],
+        "measure_count": 0,
+        "partitions": [
+          {
+            "name": "Salesperson",
+            "mode": "import",
+            "source_type": "m",
+            "expression": "let\n    Source = Excel.Workbook(File.Contents(\"C:\\Users\\abarwal002\\OneDrive - PwC\\UseCaseData.xlsx\"), null, true),\n    Salesperson_Sheet = Source{[Item=\"Salesperson\",Kind=\"Sheet\"]}[Data],\n    #\"Promoted Headers\" = Table.PromoteHeaders(Salesperson_Sheet, [PromoteAllScalars=true]),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"SalespersonID\", Int64.Type}, {\"Name\", type text}, {\"RegionID\", Int64.Type}})\nin\n    #\"Changed Type\""
+          }
+        ],
+        "hierarchies": [],
+        "storage_mode": "import",
+        "is_calculation_group": false
+      }
+    ],
+    "measures": [
+      {
+        "name": "Total Sales",
+        "table": "MeasureTable",
+        "expression": "SUMX(Sales, Sales[QuantitySold] * Sales[Price])",
+        "format_string": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "Sales",
+                "column": "QuantitySold"
+              },
+              {
+                "table": "Sales",
+                "column": "Price"
+              }
+            ],
+            "tables": [
+              "Sales"
+            ]
+          },
+          "functions": [
+            "SUMX"
+          ],
+          "patterns": [
+            "iterator"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Dashboard",
+            "visual": "Total Sales",
+            "visual_type": "card"
+          },
+          {
+            "page": "Dashboard",
+            "visual": "Total Sales and Sales Growth Rate by Month",
+            "visual_type": "lineStackedColumnComboChart"
+          },
+          {
+            "page": "Dashboard",
+            "visual": "Sales Distribution by Product Category",
+            "visual_type": "donutChart"
+          },
+          {
+            "page": "Dashboard",
+            "visual": "Total Sales by Product",
+            "visual_type": "barChart"
+          },
+          {
+            "page": "Dashboard",
+            "visual": "Top 10 Salespersons by Total Sales",
+            "visual_type": "barChart"
+          },
+          {
+            "page": "Dashboard",
+            "visual": "Total Sales by Region",
+            "visual_type": "clusteredBarChart"
+          },
+          {
+            "page": "Salesperson Drillthru",
+            "visual": "cae35f6e706b3182dcb8",
+            "visual_type": "pivotTable"
+          },
+          {
+            "page": "Salesperson Drillthru",
+            "visual": "6c6d4f9d865b33f3a397",
+            "visual_type": "columnChart"
+          },
+          {
+            "page": "Salesperson Drillthru",
+            "visual": "Total Sales",
+            "visual_type": "card"
+          },
+          {
+            "page": "Country Sales TT",
+            "visual": "d78e5844e6fd052a0e1a",
+            "visual_type": "pieChart"
+          }
+        ],
+        "usage_count": 10
+      },
+      {
+        "name": "AvgSalesPerProduct",
+        "table": "MeasureTable",
+        "expression": "DIVIDE([Total Sales], DISTINCTCOUNT('Product'[ProductID]), 0)",
+        "format_string": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Total Sales"
+            ],
+            "columns": [
+              {
+                "table": "Product",
+                "column": "ProductID"
+              }
+            ],
+            "tables": [
+              "Product"
+            ]
+          },
+          "functions": [
+            "DISTINCTCOUNT",
+            "DIVIDE"
+          ],
+          "patterns": [
+            "ratio"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Dashboard",
+            "visual": "Average Sales Per Product",
+            "visual_type": "card"
+          },
+          {
+            "page": "Salesperson Drillthru",
+            "visual": "Average Sales Per Product",
+            "visual_type": "card"
+          }
+        ],
+        "usage_count": 2
+      },
+      {
+        "name": "Total Units Sold",
+        "table": "MeasureTable",
+        "expression": "SUM(Sales[QuantitySold])",
+        "format_string": "#,0",
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "Sales",
+                "column": "QuantitySold"
+              }
+            ],
+            "tables": [
+              "Sales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Dashboard",
+            "visual": "Total Units Sold",
+            "visual_type": "card"
+          },
+          {
+            "page": "Salesperson Drillthru",
+            "visual": "cae35f6e706b3182dcb8",
+            "visual_type": "pivotTable"
+          },
+          {
+            "page": "Salesperson Drillthru",
+            "visual": "Total Units Sold",
+            "visual_type": "card"
+          }
+        ],
+        "usage_count": 3
+      },
+      {
+        "name": "SalesGrowth",
+        "table": "MeasureTable",
+        "expression": "```",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Dashboard",
+            "visual": "Total Sales and Sales Growth Rate by Month",
+            "visual_type": "lineStackedColumnComboChart"
+          }
+        ],
+        "usage_count": 1
+      },
+      {
+        "name": "Unique Products Sold",
+        "table": "MeasureTable",
+        "expression": "DISTINCTCOUNT('Sales'[ProductID])",
+        "format_string": 0,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "Sales",
+                "column": "ProductID"
+              }
+            ],
+            "tables": [
+              "Sales"
+            ]
+          },
+          "functions": [
+            "DISTINCTCOUNT"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Dashboard",
+            "visual": "Unique Products Sold",
+            "visual_type": "card"
+          }
+        ],
+        "usage_count": 1
+      },
+      {
+        "name": "SalespersonRank",
+        "table": "MeasureTable",
+        "expression": "RANKX(ALL(Salesperson[Name]),\n        [Total Sales],\n        ,DESC\n)",
+        "format_string": 0,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [
+              "Total Sales"
+            ],
+            "columns": [
+              {
+                "table": "Salesperson",
+                "column": "Name"
+              }
+            ],
+            "tables": [
+              "Salesperson"
+            ]
+          },
+          "functions": [
+            "ALL",
+            "RANKX"
+          ],
+          "patterns": [
+            "ranking",
+            "percent_of_total_candidate",
+            "iterator",
+            "composed_from_measures"
+          ],
+          "variables": [],
+          "complexity": "moderate",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Most Sold Product",
+        "table": "MeasureTable",
+        "expression": "VAR MaxSales = MAXX(\n    FILTER(\n        Sales,\n        Sales[RegionID] = SELECTEDVALUE(Region[RegionID])\n    ),\n    Sales[QuantitySold]\n)\nRETURN\nSELECTEDVALUE('Product'[ProductName], \"No Product\")",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "Sales",
+                "column": "RegionID"
+              },
+              {
+                "table": "Region",
+                "column": "RegionID"
+              },
+              {
+                "table": "Sales",
+                "column": "QuantitySold"
+              },
+              {
+                "table": "Product",
+                "column": "ProductName"
+              }
+            ],
+            "tables": [
+              "Product",
+              "Region",
+              "Sales"
+            ]
+          },
+          "functions": [
+            "FILTER",
+            "MAXX",
+            "SELECTEDVALUE"
+          ],
+          "patterns": [
+            "iterator"
+          ],
+          "variables": [
+            "MaxSales"
+          ],
+          "complexity": "moderate",
+          "confidence": "medium",
+          "notes": [
+            "Uses 1 VAR declaration(s); variable-held references are not resolved by lexical analysis."
+          ]
+        },
+        "used_in": [],
+        "usage_count": 0
+      },
+      {
+        "name": "Best Selling Product",
+        "table": "MeasureTable",
+        "expression": "```",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Salesperson Drillthru",
+            "visual": "Best Selling Product",
+            "visual_type": "card"
+          }
+        ],
+        "usage_count": 1
+      },
+      {
+        "name": "Best FY",
+        "table": "MeasureTable",
+        "expression": "```",
+        "format_string": null,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [],
+            "tables": []
+          },
+          "functions": [],
+          "patterns": [],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [
+          {
+            "page": "Salesperson Drillthru",
+            "visual": "Best Fiscal Year",
+            "visual_type": "card"
+          }
+        ],
+        "usage_count": 1
+      },
+      {
+        "name": "QuantitySold x Price",
+        "table": "Sales",
+        "expression": "SUM('Sales'[QuantitySold]) * SUM('Sales'[Price])",
+        "format_string": 0,
+        "display_folder": null,
+        "description": null,
+        "is_hidden": false,
+        "analysis": {
+          "references": {
+            "measures": [],
+            "columns": [
+              {
+                "table": "Sales",
+                "column": "QuantitySold"
+              },
+              {
+                "table": "Sales",
+                "column": "Price"
+              }
+            ],
+            "tables": [
+              "Sales"
+            ]
+          },
+          "functions": [
+            "SUM"
+          ],
+          "patterns": [
+            "simple_aggregation"
+          ],
+          "variables": [],
+          "complexity": "simple",
+          "confidence": "high",
+          "notes": []
+        },
+        "used_in": [],
+        "usage_count": 0
+      }
+    ],
+    "relationships": [
+      {
+        "name": "d475fe37-74bc-4ca3-b97b-bd4e2a3c5023",
+        "from_table": "Sales",
+        "from_column": "ProductID",
+        "to_table": "Product",
+        "to_column": "ProductID",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      },
+      {
+        "name": "0e2347c3-5c68-407f-90ad-d78123bb65e3",
+        "from_table": "Sales",
+        "from_column": "RegionID",
+        "to_table": "Region",
+        "to_column": "RegionID",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      },
+      {
+        "name": "9cf950ac-6f4a-40e6-ae70-aeac71cb3528",
+        "from_table": "Sales",
+        "from_column": "SalespersonID",
+        "to_table": "Salesperson",
+        "to_column": "SalespersonID",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      },
+      {
+        "name": "25ef9456-5317-42a3-bf68-4e11e2362194",
+        "from_table": "Salesperson",
+        "from_column": "RegionID",
+        "to_table": "Region",
+        "to_column": "RegionID",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": false,
+        "security_filtering": null
+      },
+      {
+        "name": "182d5acc-7902-4c38-a0e2-f5729139802e",
+        "from_table": "Date",
+        "from_column": "Date",
+        "to_table": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
+        "to_column": "Date",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      },
+      {
+        "name": "1c0a0382-b39d-4888-89a6-03a583937dd9",
+        "from_table": "Sales",
+        "from_column": "Date",
+        "to_table": "Date",
+        "to_column": "Date",
+        "cardinality": "many_to_one",
+        "cross_filter": "singleDirection",
+        "is_active": true,
+        "security_filtering": null
+      }
+    ],
+    "roles": [
+      {
+        "name": "SalespersonRegion",
+        "model_permission": "read",
+        "table_permissions": [
+          {
+            "table": "Sales",
+            "filter_expression": "[RegionID] = LOOKUPVALUE(Salesperson[RegionID], Salesperson[Name], USERNAME())",
+            "analysis": {
+              "references": {
+                "measures": [
+                  "RegionID"
+                ],
+                "columns": [
+                  {
+                    "table": "Salesperson",
+                    "column": "RegionID"
+                  },
+                  {
+                    "table": "Salesperson",
+                    "column": "Name"
+                  }
+                ],
+                "tables": [
+                  "Salesperson"
+                ]
+              },
+              "functions": [
+                "LOOKUPVALUE",
+                "USERNAME"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "moderate",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): RegionID"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "SalespersonRole",
+        "model_permission": "read",
+        "table_permissions": [
+          {
+            "table": "Sales",
+            "filter_expression": "[SalespersonID] = LOOKUPVALUE(Salesperson[SalespersonID], Salesperson[Name], USERNAME())",
+            "analysis": {
+              "references": {
+                "measures": [
+                  "SalespersonID"
+                ],
+                "columns": [
+                  {
+                    "table": "Salesperson",
+                    "column": "SalespersonID"
+                  },
+                  {
+                    "table": "Salesperson",
+                    "column": "Name"
+                  }
+                ],
+                "tables": [
+                  "Salesperson"
+                ]
+              },
+              "functions": [
+                "LOOKUPVALUE",
+                "USERNAME"
+              ],
+              "patterns": [
+                "composed_from_measures"
+              ],
+              "variables": [],
+              "complexity": "moderate",
+              "confidence": "high",
+              "notes": [
+                "References not matched to a known measure (may be columns or variables): SalespersonID"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "calculation_groups": [],
+    "expressions": []
   },
   "report": {
     "available": true,
@@ -1495,15 +3123,174 @@
     "theme": "CY24SU02"
   },
   "power_query": {
-    "available": false,
-    "queries": [],
-    "sources": []
+    "available": true,
+    "queries": [
+      {
+        "name": "Date",
+        "connectors": [],
+        "step_count": 0,
+        "steps": [],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "CALENDAR(MIN(Sales[Date]), MAX(Sales[Date]))",
+        "table": "Date",
+        "mode": "import"
+      },
+      {
+        "name": "DateTableTemplate_64d61e3a-bca9-4363-b2e5-3e5a2716f5f0",
+        "connectors": [],
+        "step_count": 0,
+        "steps": [],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+        "table": "DateTableTemplate_64d61e3a-bca9-4363-b2e5-3e5a2716f5f0",
+        "mode": "import"
+      },
+      {
+        "name": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
+        "connectors": [],
+        "step_count": 0,
+        "steps": [],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "Calendar(Date(Year(MIN('Date'[Date])), 1, 1), Date(Year(MAX('Date'[Date])), 12, 31))",
+        "table": "LocalDateTable_d1ca2cea-a8fd-42ed-b9a3-2634fbbaa594",
+        "mode": "import"
+      },
+      {
+        "name": "MeasureTable",
+        "connectors": [],
+        "step_count": 0,
+        "steps": [],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "{BLANK()}",
+        "table": "MeasureTable",
+        "mode": "import"
+      },
+      {
+        "name": "Product",
+        "connectors": [
+          "Excel"
+        ],
+        "step_count": 4,
+        "steps": [
+          "Source",
+          "Product_Sheet",
+          "Promoted Headers",
+          "Changed Type"
+        ],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "let\n    Source = Excel.Workbook(File.Contents(\"C:\\Users\\abarwal002\\OneDrive - PwC\\UseCaseData.xlsx\"), null, true),\n    Product_Sheet = Source{[Item=\"Product\",Kind=\"Sheet\"]}[Data],\n    #\"Promoted Headers\" = Table.PromoteHeaders(Product_Sheet, [PromoteAllScalars=true]),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"ProductID\", Int64.Type}, {\"ProductName\", type text}, {\"Category\", type text}, {\"Price\", Int64.Type}})\nin\n    #\"Changed Type\"",
+        "table": "Product",
+        "mode": "import"
+      },
+      {
+        "name": "Region",
+        "connectors": [
+          "Excel"
+        ],
+        "step_count": 4,
+        "steps": [
+          "Source",
+          "Region_Sheet",
+          "Promoted Headers",
+          "Changed Type"
+        ],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "let\n    Source = Excel.Workbook(File.Contents(\"C:\\Users\\abarwal002\\OneDrive - PwC\\UseCaseData.xlsx\"), null, true),\n    Region_Sheet = Source{[Item=\"Region\",Kind=\"Sheet\"]}[Data],\n    #\"Promoted Headers\" = Table.PromoteHeaders(Region_Sheet, [PromoteAllScalars=true]),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"RegionID\", Int64.Type}, {\"RegionName\", type text}, {\"Country\", type text}})\nin\n    #\"Changed Type\"",
+        "table": "Region",
+        "mode": "import"
+      },
+      {
+        "name": "Sales",
+        "connectors": [
+          "Excel"
+        ],
+        "step_count": 4,
+        "steps": [
+          "Source",
+          "Sales_Sheet",
+          "Promoted Headers",
+          "Changed Type"
+        ],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "let\n    Source = Excel.Workbook(File.Contents(\"C:\\Users\\abarwal002\\OneDrive - PwC\\UseCaseData.xlsx\"), null, true),\n    Sales_Sheet = Source{[Item=\"Sales\",Kind=\"Sheet\"]}[Data],\n    #\"Promoted Headers\" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"SalesID\", Int64.Type}, {\"Date\", type date}, {\"ProductID\", Int64.Type}, {\"RegionID\", Int64.Type}, {\"SalespersonID\", Int64.Type}, {\"QuantitySold\", Int64.Type}})\nin\n    #\"Changed Type\"",
+        "table": "Sales",
+        "mode": "import"
+      },
+      {
+        "name": "Salesperson",
+        "connectors": [
+          "Excel"
+        ],
+        "step_count": 4,
+        "steps": [
+          "Source",
+          "Salesperson_Sheet",
+          "Promoted Headers",
+          "Changed Type"
+        ],
+        "native_query": null,
+        "is_parameter": false,
+        "expression": "let\n    Source = Excel.Workbook(File.Contents(\"C:\\Users\\abarwal002\\OneDrive - PwC\\UseCaseData.xlsx\"), null, true),\n    Salesperson_Sheet = Source{[Item=\"Salesperson\",Kind=\"Sheet\"]}[Data],\n    #\"Promoted Headers\" = Table.PromoteHeaders(Salesperson_Sheet, [PromoteAllScalars=true]),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"SalespersonID\", Int64.Type}, {\"Name\", type text}, {\"RegionID\", Int64.Type}})\nin\n    #\"Changed Type\"",
+        "table": "Salesperson",
+        "mode": "import"
+      }
+    ],
+    "sources": [
+      {
+        "query": "Product",
+        "connector": "Excel",
+        "server": null,
+        "database": null
+      }
+    ],
+    "origin": "model_partitions"
   },
   "dax_dependency_graph": {
-    "edges": {},
+    "edges": {
+      "Total Sales": [],
+      "AvgSalesPerProduct": [
+        "Total Sales"
+      ],
+      "Total Units Sold": [],
+      "SalesGrowth": [],
+      "Unique Products Sold": [],
+      "SalespersonRank": [
+        "Total Sales"
+      ],
+      "Most Sold Product": [],
+      "Best Selling Product": [],
+      "Best FY": [],
+      "QuantitySold x Price": []
+    },
     "circular_references": [],
-    "base_measures": [],
-    "top_level_measures": []
+    "base_measures": [
+      "Best FY",
+      "Best Selling Product",
+      "Most Sold Product",
+      "QuantitySold x Price",
+      "SalesGrowth",
+      "Total Sales",
+      "Total Units Sold",
+      "Unique Products Sold"
+    ],
+    "top_level_measures": [
+      "AvgSalesPerProduct",
+      "Best FY",
+      "Best Selling Product",
+      "Most Sold Product",
+      "QuantitySold x Price",
+      "SalesGrowth",
+      "SalespersonRank",
+      "Total Units Sold",
+      "Unique Products Sold"
+    ]
   },
   "measure_usage": {
     "Unique Products Sold": [
@@ -1617,7 +3404,11 @@
     ]
   },
   "analysis": {
-    "unused_measures": [],
+    "unused_measures": [
+      "Most Sold Product",
+      "QuantitySold x Price",
+      "SalespersonRank"
+    ],
     "measures_referenced_but_not_defined": [],
     "role_playing_dimensions": [],
     "circular_references": []
@@ -1625,9 +3416,13 @@
   "findings": [
     {
       "severity": "info",
-      "category": "coverage",
-      "message": "Model layer not extracted \u2014 source was a .pbix, whose DataModel part is compressed and unreadable offline. Report and Power Query layers were extracted normally.",
-      "detail": []
+      "category": "hygiene",
+      "message": "3 measure(s) are not used by any visual and are not a dependency of another measure.",
+      "detail": [
+        "Most Sold Product",
+        "QuantitySold x Price",
+        "SalespersonRank"
+      ]
     },
     {
       "severity": "warning",

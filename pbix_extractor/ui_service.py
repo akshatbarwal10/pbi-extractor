@@ -31,6 +31,14 @@ TIER_MESSAGES = {
         "Measures, relationships, columns, hierarchies and row-level security "
         "were all readable from this file.",
     ),
+    "full_model_recovered": (
+        "success",
+        "Full model recovered from .pbix",
+        "This file's compressed data model was decompiled locally via "
+        "pbi-tools and Power BI Desktop's own engine — nothing left this "
+        "machine. Measures, relationships, columns and RLS below are as "
+        "complete as they would be from a .pbit.",
+    ),
     "report_only": (
         "warning",
         "Report layer only — no semantic model",
